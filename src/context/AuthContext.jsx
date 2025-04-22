@@ -53,10 +53,10 @@ export const AuthProvider = ({ children }) => {
         try {
             const response = await fetch("https://entrega-final-modulo-6-bootcamp-dwfs-udd.onrender.com/api/sessions/register", {
                 method: "POST",
+                credentials: "include",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                credentials: "include",
                 body: JSON.stringify({
                     first_name,
                     last_name,
@@ -98,10 +98,10 @@ export const AuthProvider = ({ children }) => {
         try {
             const response = await fetch("https://entrega-final-modulo-6-bootcamp-dwfs-udd.onrender.com/api/sessions/login", {
                 method: "POST",
+                credentials: "include",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                credentials: "include",
                 body: JSON.stringify({
                     email,
                     password,
