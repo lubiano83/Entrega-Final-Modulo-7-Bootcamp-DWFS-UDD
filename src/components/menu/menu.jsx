@@ -1,4 +1,4 @@
-import useAuth from "../../hook/useAuth"
+import useAuth from "../../hook/useAuth";
 
 export default function Menu() {
 
