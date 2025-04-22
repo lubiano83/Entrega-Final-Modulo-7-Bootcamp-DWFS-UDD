@@ -1,10 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Footer from "./components/footer/Footer";
+import { AuthProvider } from "./context/AuthContext";
 import Navbar from "./components/header/Navbar";
+import Menu from "./components/menu/menu";
 import InicioPage from "./pages/InicioPage";
 import RegisterPage from "./pages/RegisterPage";
-import { AuthProvider } from "./context/AuthContext";
-import Menu from "./components/menu/menu";
+import ProfilePage from "./pages/ProfilePage";
+import AdminPage from "./pages/AdminPage";
+import Footer from "./components/footer/Footer";
 
 export default function App() {
 
@@ -21,7 +23,9 @@ export default function App() {
             <Menu />
             <Routes>
               <Route path="/" element={ <InicioPage /> } />
-              <Route path="/auth/register" element={ <RegisterPage /> } />
+              <Route path="/admin" element={ <AdminPage /> } />
+              <Route path="/profile" element={ <ProfilePage /> } />
+              <Route path="/register" element={ <RegisterPage /> } />
             </Routes>
           </div>
           <Footer derechos={derechos} email={email} />

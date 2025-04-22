@@ -1,11 +1,11 @@
 import { createContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
 
     const [ logged, setLogged ] = useState(false);
+    const [ token, setToken ] = useState(null);
     const [ quantityLogged, setQuantityLogged ] = useState(0);
     const [ quantityRegistered, setQuantityRegistered ] = useState(0);
     const [ first_name, setFirst_name ] = useState("");
@@ -18,12 +18,12 @@ export const AuthProvider = ({ children }) => {
     const [ city, setCity ] = useState("");
     const [ street, setStreet ] = useState("");
     const [ number, setNumber ] = useState("");
-    const navigate = useNavigate;
 
     useEffect(() => {
         usersRegistered();
         usersLogged();
-    }, [])
+        getCurrentSession();
+    }, []);    
 
     const usersRegistered = async() => {
         try {
@@ -85,9 +85,11 @@ export const AuthProvider = ({ children }) => {
                 setCity("");
                 setStreet("");
                 setNumber("");
+                return true;
             } else {
                 const error = await response.json();
                 alert(error.message);
+                return false;
             }
         } catch (error) {
             throw new Error("Hubo un problema al conectarse al backend..", error.message);
@@ -113,7 +115,6 @@ export const AuthProvider = ({ children }) => {
                 setEmail("");
                 setPassword("");
                 setLogged(true);
-                navigate("/");
             } else {
                 const error = await response.json();
                 alert(error.message);
@@ -133,7 +134,6 @@ export const AuthProvider = ({ children }) => {
             if (response.ok) {
                 await response.json();
                 setLogged(false);
-                navigate("/");
             } else {
                 const error = await response.json();
                 alert(error.message);
@@ -141,10 +141,32 @@ export const AuthProvider = ({ children }) => {
         } catch (error) {
             throw new Error("Hubo un problema al conectarse al backend..", error.message);
         }
-    };    
+    };
+
+    const getCurrentSession = async () => {
+        try {
+            const response = await fetch("https://entrega-final-modulo-6-bootcamp-dwfs-udd.onrender.com/api/sessions/current/user", {
+                method: "GET",
+                credentials: "include"
+            });
+    
+            if (response.ok) {
+                const data = await response.json();
+                setLogged(true);
+                setToken(data.token);
+            } else {
+                setToken(null);
+                setLogged(false);
+            }
+        } catch (error) {
+            console.log("Error al verificar la sesión:", error.message);
+            setToken(null);
+            setLogged(false);
+        }
+    };
 
     return (
-        <AuthContext.Provider value={{ quantityRegistered, quantityLogged, registerUser, loginUser, logoutUser, first_name, setFirst_name, last_name, setLast_name, phone, setPhone, email, setEmail, password, setPassword, country, setCountry, state, setState, city, setCity, street, setStreet, number, setNumber, logged }}>
+        <AuthContext.Provider value={{ quantityRegistered, quantityLogged, registerUser, loginUser, logoutUser, first_name, setFirst_name, last_name, setLast_name, phone, setPhone, email, setEmail, password, setPassword, country, setCountry, state, setState, city, setCity, street, setStreet, number, setNumber, logged, token }}>
             {children}
         </AuthContext.Provider>
     )

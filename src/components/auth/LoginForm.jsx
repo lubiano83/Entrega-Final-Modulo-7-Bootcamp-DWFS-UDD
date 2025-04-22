@@ -7,9 +7,9 @@ export default function LoginForm() {
 
     const { loginUser, email, setEmail, password, setPassword } = useAuth();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
-        loginUser();
+        await loginUser();
     };
 
     return (
@@ -18,7 +18,7 @@ export default function LoginForm() {
             <input type="text" name="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Ingresa tu email.." className="border-2 border-amber-950 rounded-lg bg-white text-amber-950 px-2 py-1 w-full" />
             <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Ingresa tu contraseña.." className="border-2 border-amber-950 rounded-lg bg-white text-amber-950 px-2 py-1 w-full" />
             <div className="flex justify-center items-center gap-2">
-                <Link>
+                <Link to={"/register"}>
                     <Boton>Register</Boton>
                 </Link>
                 <Boton type="submit">Ingresar</Boton>
