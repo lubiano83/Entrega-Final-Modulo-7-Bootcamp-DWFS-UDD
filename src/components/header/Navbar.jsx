@@ -1,11 +1,11 @@
 import Logo from "../Logo";
 import SvgImage from "./SvgImage";
-import useUser from "../../hook/useUser";
+import useAuth from "../../hook/useAuth";
 import { Link } from "react-router-dom";
 
 export default function Navbar() {
 
-    const { user } = useUser();
+    const { user } = useAuth();
 
     return (
         <div className="flex justify-evenly items-center p-4 bg-amber-700 gap-2">

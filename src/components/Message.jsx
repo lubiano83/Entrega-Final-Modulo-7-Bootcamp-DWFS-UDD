@@ -6,4 +6,4 @@ export default function Message({ children }) {
         { children }
     </div>
   )
-}
+};

@@ -1,21 +1,23 @@
 import { Link } from "react-router-dom";
-import useUser from "../../hook/useUser";
+import useAuth from "../../hook/useAuth";
 import Boton from "../Boton";
 import moment from "moment";
 import Message from "../Message";
 
 export default function ProfileData() {
 
-    const { user } = useUser();
+    const { user } = useAuth();
 
     try {
         return (
             <>
                 { user ? (
                     <div className="bg-amber-300 p-8 rounded-2xl text-amber-950 flex flex-col flex-flow justify-center items-center w-1/4 min-w-72 gap-4">
-                        <div className="w-full flex justify-center items-center bg-white aspect-square">
-                            <img src={user.image} alt="Foto de perfil" />
-                        </div>
+                        <Link to={"/profile/image"}>
+                            <div className="w-full flex justify-center items-center bg-white aspect-square">
+                                <img src={user.image} alt="Foto de perfil" className="cursor-pointer"/>
+                            </div>
+                        </Link>
                         <div>
                             <h3><strong>Id:</strong> { user._id }</h3>
                             <h3><strong>Nombre:</strong> { user.first_name }</h3>
@@ -35,7 +37,9 @@ export default function ProfileData() {
                             <Link to={"/"}>
                                 <Boton>Volver</Boton>
                             </Link>
-                            <Boton>Editar</Boton>
+                            <Link to={"/profile/edit"}>
+                                <Boton>Editar</Boton>
+                            </Link>
                         </div>
                     </div>
                 ) : <Message>Cargando...</Message> }

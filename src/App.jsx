@@ -1,11 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
-import { UserProvider } from "./context/UserContext";
 import Navbar from "./components/header/Navbar";
 import Menu from "./components/menu/menu";
 import InicioPage from "./pages/InicioPage";
 import RegisterPage from "./pages/RegisterPage";
 import ProfilePage from "./pages/ProfilePage";
+import EditProfilePage from "./pages/EditProfilePage";
+import ProfileImagePage from "./pages/ProfileImagePage";
 import AdminPage from "./pages/AdminPage";
 import Footer from "./components/footer/Footer";
 
@@ -17,23 +18,23 @@ export default function App() {
 
   return (
     <AuthProvider>
-      <UserProvider>
-        <BrowserRouter>
-          <div className="min-h-screen grid grid-rows-[auto_1fr_auto] font-serif">
-            <Navbar />
-            <div className="flex flex-col w-full xl:flex-row">
-              <Menu />
-              <Routes>
-                <Route path="/" element={ <InicioPage /> } />
-                <Route path="/admin" element={ <AdminPage /> } />
-                <Route path="/profile" element={ <ProfilePage /> } />
-                <Route path="/register" element={ <RegisterPage /> } />
-              </Routes>
-            </div>
-            <Footer derechos={derechos} email={email} />
+      <BrowserRouter>
+        <div className="min-h-screen grid grid-rows-[auto_1fr_auto] font-serif">
+          <Navbar />
+          <div className="flex flex-col w-full xl:flex-row">
+            <Menu />
+            <Routes>
+              <Route path="/" element={ <InicioPage /> } />
+              <Route path="/admin" element={ <AdminPage /> } />
+              <Route path="/profile" element={ <ProfilePage /> } />
+              <Route path="/profile/edit" element={ <EditProfilePage /> } />
+              <Route path="/profile/image" element={ <ProfileImagePage /> } />
+              <Route path="/register" element={ <RegisterPage /> } />
+            </Routes>
           </div>
-        </BrowserRouter>
-      </UserProvider>
+          <Footer derechos={derechos} email={email} />
+        </div>
+      </BrowserRouter>
     </AuthProvider>
   )
 };

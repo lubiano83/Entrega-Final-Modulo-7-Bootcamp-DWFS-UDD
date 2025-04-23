@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import { jwtDecode } from "jwt-decode";
 
 export const AuthContext = createContext(null);
 
@@ -6,8 +7,10 @@ export const AuthProvider = ({ children }) => {
 
     const [ logged, setLogged ] = useState(false);
     const [ token, setToken ] = useState(null);
+    const [ user, setUser ] = useState(null);
     const [ quantityLogged, setQuantityLogged ] = useState(0);
     const [ quantityRegistered, setQuantityRegistered ] = useState(0);
+    const [ image, setImage ] = useState(null);
     const [ first_name, setFirst_name ] = useState("");
     const [ last_name, setLast_name ] = useState("");
     const [ phone, setPhone ] = useState("");
@@ -23,7 +26,17 @@ export const AuthProvider = ({ children }) => {
         usersRegistered();
         usersLogged();
         getCurrentSession();
-    }, []);    
+    }, []);
+
+    useEffect(() => {
+        if (!token) return;
+      
+        const fetchUser = async () => {
+          await getUserById();
+        };
+      
+        fetchUser();
+    }, [token]);
 
     const usersRegistered = async() => {
         try {
@@ -165,8 +178,100 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
+    const getUserById = async() => {    
+        try {
+            if(!token) throw new Error("Token no encontrado..");
+            const decoded = jwtDecode(token);
+            const id = decoded.id;
+            const response = await fetch(`https://entrega-final-modulo-6-bootcamp-dwfs-udd.onrender.com/api/users/${id}`, {
+                method: "GET",
+                credentials: "include",
+            });
+
+            const data = await response.json();
+            setUser(data.payload)
+        } catch (error) {
+            throw new Error("Hubo un problema al conectarse al backend..", error.message);
+        }
+    };
+
+    const updateUserById = async() => {
+        try {
+            if(!token) throw new Error("Token no encontrado..");
+            const decoded = jwtDecode(token);
+            const id = decoded.id;
+            const response = await fetch(`https://entrega-final-modulo-6-bootcamp-dwfs-udd.onrender.com/api/users/${id}`, {
+                method: "PUT",
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    first_name,
+                    last_name,
+                    phone,
+                    address: {
+                        country,
+                        state,
+                        city,
+                        street,
+                        number
+                    }
+                })
+            });
+
+            if (response.ok) {
+                alert("Usuario modificado con éxito");
+                setFirst_name("");
+                setLast_name("");
+                setPhone("");
+                setCountry("");
+                setState("");
+                setCity("");
+                setStreet("");
+                setNumber("");
+                await getUserById();
+                return true;
+            } else {
+                const error = await response.json();
+                alert(error.message);
+                return false;
+            }
+        } catch (error) {
+            throw new Error("Hubo un problema al conectarse al backend..", error.message);
+        }
+    };
+
+    const changeImageById = async() => {
+        try {
+            if(!token) throw new Error("Token no encontrado..");
+            const decoded = jwtDecode(token);
+            const id = decoded.id;
+            const formData = new FormData();
+            formData.append("image", image);
+            const response = await fetch(`https://entrega-final-modulo-6-bootcamp-dwfs-udd.onrender.com/api/users/image/${id}`, {
+                method: "PATCH",
+                body: formData,
+                credentials: "include"
+            })
+            if (response.ok) {
+                const data = await response.json();
+                alert("Imagen actualizada con éxito");
+                setImage(null);
+                setUser(prev => ({ ...prev, image: data.imageUrl }));
+                return true;
+            } else {
+                const error = await response.json();
+                alert(error.message);
+                return false;
+            }
+        } catch (error) {
+            console.error("Hubo un problema al conectarse al backend..", error.message);
+        }
+    };
+
     return (
-        <AuthContext.Provider value={{ quantityRegistered, quantityLogged, registerUser, loginUser, logoutUser, getCurrentSession, first_name, setFirst_name, last_name, setLast_name, phone, setPhone, email, setEmail, password, setPassword, country, setCountry, state, setState, city, setCity, street, setStreet, number, setNumber, logged, token }}>
+        <AuthContext.Provider value={{ quantityRegistered, quantityLogged, registerUser, loginUser, logoutUser, getCurrentSession, getUserById, updateUserById, changeImageById, user, image, setImage, first_name, setFirst_name, last_name, setLast_name, phone, setPhone, email, setEmail, password, setPassword, country, setCountry, state, setState, city, setCity, street, setStreet, number, setNumber, logged, token }}>
             {children}
         </AuthContext.Provider>
     )
