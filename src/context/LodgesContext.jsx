@@ -9,6 +9,7 @@ export const LodgesProvider = ({ children }) => {
     const [ size, setSize ] = useState("");
     const [ bedroom, setBedroom ] = useState("");
     const [ bathroom, setBathroom ] = useState("");
+    const [ capacity, setCapacity ] = useState("");
     const [ high, setHigh ] = useState("");
     const [ medium, setMedium ] = useState("");
     const [ low, setLow ] = useState("");
@@ -41,6 +42,7 @@ export const LodgesProvider = ({ children }) => {
                     size,
                     bedroom,
                     bathroom,
+                    capacity,
                     season: {
                         high,
                         medium,
@@ -54,6 +56,7 @@ export const LodgesProvider = ({ children }) => {
                 setSize("");
                 setBedroom("");
                 setBathroom("");
+                setCapacity("");
                 setHigh("");
                 setMedium("");
                 setLow("");
@@ -69,7 +72,7 @@ export const LodgesProvider = ({ children }) => {
     };
 
     return (
-        <LodgesContext.Provider value={{ createLodge, lodge }}>
+        <LodgesContext.Provider value={{ createLodge, lodge, hotel, setHotel, size, setSize, bedroom, setBedroom, bathroom, setBathroom, capacity, setCapacity, high, setHigh, medium, setMedium, low, setLow }}>
             { children }
         </LodgesContext.Provider>
     )

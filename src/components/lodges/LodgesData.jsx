@@ -5,7 +5,7 @@ import Message from "../Message";
 
 export default function LodgesData() {
 
-    const { lodge } = useLodges();
+    const { lodge } = useLodges([]);
 
     try {
         return (
