@@ -1,5 +1,5 @@
 import Logo from "../Logo";
-import SvgImage from "./SvgImage";
+import SvgImage from "../SvgImage";
 import useAuth from "../../hook/useAuth";
 import { Link } from "react-router-dom";
 
@@ -12,7 +12,7 @@ export default function Navbar() {
             <Logo />
             <SvgImage src={"/sun-4-svgrepo-com.svg"} />
             <Link to={"/profile"}>
-                { user ? <img src={user.image} alt="imagen usuario" width={30} height={30} className="rounded-2xl hover:scale-110 cursor-pointer" /> : <SvgImage src={"/user-circle-svgrepo-com-white.svg"} /> }
+                { user ? <img src={user.image} alt="imagen usuario" width={30} height={30} className="rounded-2xl hover:scale-110 cursor-pointer bg-white" /> : <SvgImage src={"/user-circle-svgrepo-com-white.svg"} /> }
             </Link>
         </div>
     )

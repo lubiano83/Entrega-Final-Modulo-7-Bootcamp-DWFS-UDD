@@ -15,7 +15,7 @@ export default function EditProfile() {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="bg-amber-300 rounded-xl p-8 flex flex-col justify-center items-center gap-4 min-w-72 w-1/2">
+        <form onSubmit={handleSubmit} className="bg-amber-100 rounded-xl p-4 flex flex-col justify-center items-center gap-4 min-w-72 w-1/2 shadow-sm shadow-amber-950 max-w-xl">
              <Title>Editar Usuario:</Title>
              <input type="text" name="first_name" value={first_name} onChange={(e) => setFirst_name(e.target.value)} placeholder="Ingresa tu nombre.." className="border-2 border-amber-950 rounded-lg bg-white text-amber-950 px-2 py-1 w-full" />
              <input type="text" name="last_name" value={last_name} onChange={(e) => setLast_name(e.target.value)} placeholder="Ingresa tu apellido.." className="border-2 border-amber-950 rounded-lg bg-white text-amber-950 px-2 py-1 w-full" />

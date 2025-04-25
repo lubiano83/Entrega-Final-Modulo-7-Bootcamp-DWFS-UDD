@@ -127,7 +127,7 @@ export const AuthProvider = ({ children }) => {
                 alert("Login realizado con éxito");
                 setEmail("");
                 setPassword("");
-                setLogged(true);
+                await getCurrentSession();
             } else {
                 const error = await response.json();
                 alert(error.message);
@@ -145,8 +145,10 @@ export const AuthProvider = ({ children }) => {
             });
     
             if (response.ok) {
-                await response.json();
+                alert("Logout realizado con éxito");
                 setLogged(false);
+                setToken(null);
+                setUser(null);     
             } else {
                 const error = await response.json();
                 alert(error.message);
@@ -272,7 +274,7 @@ export const AuthProvider = ({ children }) => {
 
     return (
         <AuthContext.Provider value={{ quantityRegistered, quantityLogged, registerUser, loginUser, logoutUser, getCurrentSession, getUserById, updateUserById, changeImageById, user, image, setImage, first_name, setFirst_name, last_name, setLast_name, phone, setPhone, email, setEmail, password, setPassword, country, setCountry, state, setState, city, setCity, street, setStreet, number, setNumber, logged, token }}>
-            {children}
+            { children }
         </AuthContext.Provider>
     )
 };

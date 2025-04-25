@@ -1,11 +1,11 @@
-import useAuth from "../hook/useAuth";
+import useAuth from "../../hook/useAuth";
 
-export default function AdminPage() {
+export default function UsersRecords() {
 
     const { quantityRegistered, quantityLogged } = useAuth();
 
     return (
-        <div className="text-amber-950 h-full w-full flex flex-col justify-center items-center p-8">
+        <div className="w-full flex flex-col justify-center items-center gap-1 text-amber-950">
             <p>Usuarios Registrados: {quantityRegistered}</p>
             <p>Usuarios Online: {quantityLogged}</p>
         </div>
