@@ -128,9 +128,11 @@ export const AuthProvider = ({ children }) => {
                 setEmail("");
                 setPassword("");
                 await getCurrentSession();
+                return true;
             } else {
                 const error = await response.json();
                 alert(error.message);
+                return false;
             }
         } catch (error) {
             throw new Error("Hubo un problema al conectarse al backend..", error.message);

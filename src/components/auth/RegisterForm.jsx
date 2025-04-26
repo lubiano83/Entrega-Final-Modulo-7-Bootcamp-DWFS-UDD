@@ -11,7 +11,7 @@ export default function Register() {
     const handleSubmit = async(e) => {
         e.preventDefault();
         const success = await registerUser();
-        if(success) return navigate("/lodges");
+        if(success) return navigate("/login");
     };
 
     return (

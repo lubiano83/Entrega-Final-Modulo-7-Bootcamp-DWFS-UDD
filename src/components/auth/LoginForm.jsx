@@ -11,8 +11,8 @@ export default function LoginForm() {
 
     const handleSubmit = async(e) => {
         e.preventDefault();
-        await loginUser();
-        navigate("/lodges");
+        const success = await loginUser();
+        if(success) return navigate("/");
     };
 
     return (
