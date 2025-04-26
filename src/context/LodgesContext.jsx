@@ -8,18 +8,22 @@ export const LodgesProvider = ({ children }) => {
 
     const { token, getCurrentSession } = useAuth();
     const [ lodge, setLodge ] = useState([]);
+    const [ lodgeById, setLodgeById ] = useState({});
     const [ lodgeUserId, setLodgeUserId ] = useState([]);
     const [ hotel, setHotel ] = useState("");
     const [ size, setSize ] = useState("");
     const [ bedroom, setBedroom ] = useState("");
     const [ bathroom, setBathroom ] = useState("");
     const [ capacity, setCapacity ] = useState("");
+    const [ wifi, setWifi ] = useState("");
     const [ high, setHigh ] = useState("");
     const [ medium, setMedium ] = useState("");
     const [ low, setLow ] = useState("");
+    const [ available, setAvailable ] = useState(false);
 
     useEffect(() => {
         getLodges();
+        getLodgeById();
         getCurrentSession();
     }, []);
 
@@ -40,6 +44,18 @@ export const LodgesProvider = ({ children }) => {
             });
             const data = await response.json();
             setLodge(data.payload);
+        } catch (error) {
+            throw new Error("Hubo un problema al conectarse al backend..", error.message);
+        }
+    };
+
+    const getLodgeById = async() => {
+        try {
+            const response = await fetch(`https://entrega-final-modulo-6-bootcamp-dwfs-udd.onrender.com/api/lodges/${lodge._id}`, {
+                method: "GET"
+            });
+            const data = await response.json();
+            setLodgeById(data.payload);
         } catch (error) {
             throw new Error("Hubo un problema al conectarse al backend..", error.message);
         }
@@ -86,13 +102,13 @@ export const LodgesProvider = ({ children }) => {
             if (response.ok) {
                 alert("Cabaña creada con éxito");
                 setHotel("");
-                setSize("");
-                setBedroom("");
-                setBathroom("");
-                setCapacity("");
-                setHigh("");
-                setMedium("");
-                setLow("");
+                setSize(0);
+                setBedroom(0);
+                setBathroom(0);
+                setCapacity(0);
+                setHigh(0);
+                setMedium(0);
+                setLow(0);
                 await getLodgesByUserId();
                 return true;
             } else {
@@ -105,8 +121,77 @@ export const LodgesProvider = ({ children }) => {
         }
     };
 
+    const updateLodgeById = async() => {
+        try {
+            const id = lodge.id;
+            const response = await fetch(`https://entrega-final-modulo-6-bootcamp-dwfs-udd.onrender.com/api/lodges/${id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    hotel,
+                    size,
+                    bedroom,
+                    bathroom,
+                    capacity,
+                    wifi,
+                    season: {
+                        high,
+                        medium,
+                        low
+                    }
+                })
+            });
+            if (response.ok) {
+                alert("Cabaña modificada con éxito");
+                setHotel("");
+                setSize(0);
+                setBedroom(0);
+                setBathroom(0);
+                setCapacity(0);
+                setWifi(false);
+                setHigh(0);
+                setMedium(0);
+                setLow(0);
+                await getLodgesByUserId();
+                return true;
+            } else {
+                const error = await response.json();
+                alert(error.message);
+                return false;
+            }
+        } catch (error) {
+            throw new Error("Hubo un problema al conectarse al backend..", error.message);
+        }
+    };
+
+    const changeAvailable = async(id, newAvailable) => {
+        try {
+            const response = await fetch(`https://entrega-final-modulo-6-bootcamp-dwfs-udd.onrender.com/api/lodges/available/${id}`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ available: newAvailable })
+            });
+            if (response.ok) {
+                alert("Disponibilidad modificada con éxito");
+                await getLodgesByUserId();
+                getLodges();
+                return true;
+            } else {
+                const error = await response.json();
+                alert(error.message);
+                return false;
+            }
+        } catch (error) {
+            console.error("Hubo un problema al conectarse al backend..", error.message);
+        }
+    };    
+
     return (
-        <LodgesContext.Provider value={{ createLodge, lodge, lodgeUserId, hotel, setHotel, size, setSize, bedroom, setBedroom, bathroom, setBathroom, capacity, setCapacity, high, setHigh, medium, setMedium, low, setLow }}>
+        <LodgesContext.Provider value={{ createLodge, updateLodgeById, changeAvailable, lodge, lodgeById, lodgeUserId, hotel, setHotel, size, setSize, bedroom, setBedroom, bathroom, setBathroom, capacity, setCapacity, wifi, setWifi, high, setHigh, medium, setMedium, low, setLow }}>
             { children }
         </LodgesContext.Provider>
     )

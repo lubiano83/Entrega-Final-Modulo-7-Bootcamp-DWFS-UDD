@@ -3,7 +3,7 @@ import Title from "./Title";
 export default function Inicio() {
 
     return (
-        <div className="w-1/2 flex flex-col justify-center items-center gap-4 bg-amber-100 p-4 rounded-2xl shadow-sm shadow-amber-950 max-w-3xl">
+        <div className="w-1/2 flex flex-col justify-center items-center gap-4 bg-amber-100 p-4 rounded-2xl shadow-sm shadow-amber-950 max-w-3xl min-w-72">
             <Title>Las Trancas Lodges</Title>
             <h3 className="text-lg">Las Trancas Lodges es una plataforma innovadora pensada para facilitar la publicación y arriendo de cabañas en la zona de Las Trancas, un destino turístico de creciente interés, ubicado a minutos de los centros de ski de Nevados de Chillán. Tanto propietarios particulares como complejos turísticos pueden registrar sus alojamientos y ofrecerlos directamente a visitantes interesados en disfrutar de la naturaleza, la nieve y las actividades de montaña.</h3>
             <h3 className="text-lg">La aplicación permite crear publicaciones detalladas, incluyendo fotografías, cantidad de habitaciones, baños, tamaño de la propiedad, capacidad de personas y precios diferenciados según la temporada (alta, media o baja). Cada propietario puede gestionar fácilmente la disponibilidad de su cabaña, actualizar datos en cualquier momento y mantener su oferta actualizada y competitiva.</h3>
