@@ -30,7 +30,7 @@ export default function EditLodge() {
                             <input type="number" name="medium" value={medium} onChange={(e) => setMedium(e.target.value)} placeholder="Precio temporada media.." className="border-2 border-amber-950 rounded-lg bg-white text-amber-950 px-2 py-1 w-full" />
                             <input type="number" name="low" value={low} onChange={(e) => setLow(e.target.value)} placeholder="Precio temporada baja.." className="border-2 border-amber-950 rounded-lg bg-white text-amber-950 px-2 py-1 w-full" />
                             <div className="flex justify-center items-center gap-2">
-                                <Link to={"/admin"}>
+                                <Link to={"/admin/lodges"}>
                                     <Boton>Volver</Boton>
                                 </Link>
                                 <Boton type="submit">Ingresar</Boton>

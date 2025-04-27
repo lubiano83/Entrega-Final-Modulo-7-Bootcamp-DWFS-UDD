@@ -9,35 +9,58 @@ export default function YourLodges() {
 
     try {
         return (
-            <div className="flex justify-center items-center gap-8 w-full h-full flex-wrap">
+            <div className="w-full overflow-x-auto p-4">
                 {
                     lodgeUserId && lodgeUserId.length > 0 ? (
-                        lodgeUserId.map(item => (
-                            <div key={item._id} className={`flex flex-col justify-center items-center gap-4 bg-amber-100 rounded-xl p-4 w-1/4 min-w-72 max-w-lg shadow-sm shadow-amber-950`}>
-                                <Link to={"/"} className="aspect-square w-full bg-white flex justify-center items-center">
-                                    {item.image.length > 0 ? (
-                                        <img src={item.image[0]} alt="imagen lodge" className="w-full bg-white aspect-square object-cover"/>
-                                    ) : (
-                                        <Message>Sin Imagen..</Message>
-                                    )}
-                                </Link>
-                                <div className="flex flex-col justify-evenly items-center w-full gap-2">
-                                    <h3 className="text-xl italic underline"><strong>{ item.hotel }</strong></h3>
-                                    <div className="flex justify-center items-center gap-1"><strong>Disponible:</strong>
-                                        <input type="checkbox" checked={item.available} onChange={() => changeAvailable(item._id, !item.available)} className="w-5 h-5" />
-                                    </div>
-                                    <div className="flex justify-center items-center gap-2">
-                                        <Link to={`/lodges/${item._id}`}>
-                                            <Boton>Ver</Boton>
-                                        </Link>
-                                        <Link to={`/admin/lodges/${item._id}`}>
-                                            <Boton>Modificar</Boton>
-                                        </Link>
-                                    </div>
-                                </div>
-                            </div>
-                        ))
-                    ) : <Message>No hay cabañas disponibles...</Message>
+                        <table className="text-amber-950 flex flex-col justify-center items-center">
+                            <thead className="bg-amber-200">
+                                <tr className="border">
+                                    <th className="border border-amber-950 w-72 p-2">Imagen</th>
+                                    <th className="border border-amber-950 w-52 p-2">Hotel</th>
+                                    <th className="border border-amber-950 w-36 p-2">Piezas</th>
+                                    <th className="border border-amber-950 w-36 p-2">Baños</th>
+                                    <th className="border border-amber-950 w-36 p-2">Mt2</th>
+                                    <th className="border border-amber-950 w-36 p-2">Wifi</th>
+                                    <th className="border border-amber-950 w-36 p-2">Disponible</th>
+                                    <th className="border border-amber-950 w-72 p-2">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    lodgeUserId.map(item => (
+                                        <tr key={item._id} className="text-center bg-amber-100">
+                                            <td className="border border-amber-950 w-72 p-2">
+                                                <Link to="/">
+                                                    {item.image.length > 0 ? (
+                                                        <img src={item.image[0]} alt="imagen lodge" className="w-4 h-4 object-cover mx-auto" />
+                                                    ) : (
+                                                        <Message>Sin Imagen</Message>
+                                                    )}
+                                                </Link>
+                                            </td>
+                                            <td className="border border-amber-950 w-52 p-2">{item.hotel}</td>
+                                            <td className="border border-amber-950 w-36 p-2">{item.bedroom}</td>
+                                            <td className="border border-amber-950 w-36 p-2">{item.bathroom}</td>
+                                            <td className="border border-amber-950 w-36 p-2">{item.size}</td>
+                                            <td className="border border-amber-950 w-36 p-2">{item.wifi ? "Sí" : "No"}</td>
+                                            <td className="border border-amber-950 w-36 p-2">
+                                                <input type="checkbox" checked={item.available} onChange={() => changeAvailable(item._id, !item.available)} className="w-5 h-5" />
+                                            </td>
+                                            <td className="border border-amber-950 w-72 p-2">
+                                                <div className="flex justify-center items-center gap-2">
+                                                    <Link to={`/admin/lodges/${item._id}`}>
+                                                        <Boton>Editar</Boton>
+                                                    </Link>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    ))
+                                }
+                            </tbody>
+                        </table>
+                    ) : (
+                        <Message>No hay cabañas disponibles...</Message>
+                    )
                 }
             </div>
         )

@@ -19,7 +19,6 @@ export const LodgesProvider = ({ children }) => {
     const [ high, setHigh ] = useState("");
     const [ medium, setMedium ] = useState("");
     const [ low, setLow ] = useState("");
-    const [ available, setAvailable ] = useState(false);
 
     useEffect(() => {
         getLodges();
