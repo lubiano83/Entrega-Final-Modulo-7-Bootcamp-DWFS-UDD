@@ -3,30 +3,32 @@ import useLodges from "../../hook/useLodges"
 import Message from "../Message";
 import Boton from "../Boton";
 import SvgImage from "../SvgImage";
+import Title from "../Title";
 
 export default function YourLodges() {
 
-    const { lodgesByUserId, changeAvailable, deleteAllImageFromLodge, deleteLodgeById } = useLodges();
+    const { lodgesByUserId, changeAvailable, deleteAllImageFromLodge, deleteLodgeById, changeWifi } = useLodges();
 
     try {
         return (
-            <div className="w-full overflow-x-auto p-4">
+            <div className="flex flex-col justify-center items-center gap-4">
+                <Title>Tablero:</Title>
                 {
                     lodgesByUserId && lodgesByUserId.length > 0 ? (
-                        <table className="text-amber-950 flex flex-col justify-center items-center">
+                        <table className="text-amber-950 flex flex-col justify-center items-center shadow-sm shadow-amber-950">
                             <thead className="bg-amber-200">
                                 <tr className="border">
-                                    <th className="border border-amber-950 w-40 p-2">Imagen</th>
-                                    <th className="border border-amber-950 w-52 p-2">Hotel</th>
+                                    <th className="border border-amber-950 w-40 p-2">Imagen (5 max)</th>
+                                    <th className="border border-amber-950 w-52 p-2">Nombre Cabaña</th>
                                     <th className="border border-amber-950 w-28 p-2">Piezas</th>
                                     <th className="border border-amber-950 w-28 p-2">Baños</th>
                                     <th className="border border-amber-950 w-28 p-2">Mt2</th>
                                     <th className="border border-amber-950 w-28 p-2">Wifi</th>
-                                    <th className="border border-amber-950 w-28 p-2">Alta</th>
-                                    <th className="border border-amber-950 w-28 p-2">Media</th>
-                                    <th className="border border-amber-950 w-28 p-2">Baja</th>
+                                    <th className="border border-amber-950 w-28 p-2">T/Alta</th>
+                                    <th className="border border-amber-950 w-28 p-2">T/Media</th>
+                                    <th className="border border-amber-950 w-28 p-2">T/Baja</th>
                                     <th className="border border-amber-950 w-36 p-2">Disponible</th>
-                                    <th className="border border-amber-950 w-72 p-2">Acciones</th>
+                                    <th className="border border-amber-950 w-56 p-2">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -44,14 +46,16 @@ export default function YourLodges() {
                                             <td className="border border-amber-950 w-28 p-2">{item.bedroom}</td>
                                             <td className="border border-amber-950 w-28 p-2">{item.bathroom}</td>
                                             <td className="border border-amber-950 w-28 p-2">{item.size}</td>
-                                            <td className="border border-amber-950 w-28 p-2">{item.wifi ? "Sí" : "No"}</td>
+                                            <td className="border border-amber-950 w-28 p-2">
+                                                <input type="checkbox" checked={item.wifi} onChange={() => changeWifi(item._id, !item.wifi)} className="w-5 h-5" />
+                                            </td>
                                             <td className="border border-amber-950 w-28 p-2">{item.season.high}</td>
                                             <td className="border border-amber-950 w-28 p-2">{item.season.medium}</td>
                                             <td className="border border-amber-950 w-28 p-2">{item.season.low}</td>
                                             <td className="border border-amber-950 w-36 p-2">
                                                 <input type="checkbox" checked={item.available} onChange={() => changeAvailable(item._id, !item.available)} className="w-5 h-5" />
                                             </td>
-                                            <td className="border border-amber-950 w-72 p-2">
+                                            <td className="border border-amber-950 w-56 p-2">
                                                 <div className="flex justify-center items-center gap-2">
                                                     <div className="relative group">
                                                         <Link to={`/admin/lodges/${item._id}`}>
@@ -77,7 +81,7 @@ export default function YourLodges() {
                                                     </div>
                                                     <div className="relative group">
                                                         <SvgImage src={"/cross-svgrepo-com-red.svg"} fnc={() => deleteLodgeById(item._id)} />
-                                                        <span className="absolute -top-8 left-1/2 transform -translate-x-1/2 scale-0 group-hover:scale-100 transition-all bg-white text-amber-950 text-xs p-1 rounded-md w-25">
+                                                        <span className="absolute -top-8 left-1/2 transform -translate-x-1/2 scale-0 group-hover:scale-100 transition-all bg-white text-amber-950 text-xs p-1 rounded-md w-24">
                                                             Eliminar Lodge
                                                         </span>
                                                     </div>
