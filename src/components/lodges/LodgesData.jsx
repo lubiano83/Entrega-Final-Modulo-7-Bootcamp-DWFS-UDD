@@ -12,7 +12,7 @@ export default function LodgesData() {
             <div className="flex justify-center items-center gap-8 w-full h-full flex-wrap">
                { lodges && lodges.filter(lodge => lodge.available).length > 0 ? (
                         lodges.filter(lodge => lodge.available).map(lodge => (
-                                <div key={lodge._id} className="flex flex-col justify-center items-center gap-4 bg-amber-100 rounded-xl p-4 w-1/4 min-w-72 max-w-lg shadow-sm shadow-amber-950">
+                                <div key={lodge._id} className="flex flex-col justify-center items-center gap-4 bg-amber-100 rounded-xl p-4 w-72 shadow-xs shadow-amber-950">
                                     <div className="aspect-square w-full bg-white flex justify-center items-center">
                                         {lodge.image.length > 0 ? (
                                             <img src={lodge.image[0]} alt="imagen lodge" className="w-full bg-white aspect-square object-cover"/>
@@ -22,11 +22,10 @@ export default function LodgesData() {
                                     </div>
                                     <div className="flex flex-col justify-evenly items-center w-full gap-2">
                                         <h3 className="text-xl italic underline"><strong>{ lodge.hotel }</strong></h3>
-                                        <div className="flex justify-evenly items-start w-full flex-wrap">
+                                        <div className="flex justify-evenly items-start w-full flex-wrap gap-2">
                                             <h3><strong>Piezas: </strong>{ lodge.bedroom }</h3>
                                             <h3><strong>Baños: </strong>{ lodge.bathroom }</h3>
                                             <h3><strong>Mt2: </strong>{ lodge.size }</h3>
-                                            <h3><strong>Wifi: </strong>{ lodge.wifi ? "Sí" : "No" }</h3>
                                         </div>
                                         <Link to={`/lodges/${lodge._id}`} state={{lodge}}>
                                             <Boton>Ver</Boton>
