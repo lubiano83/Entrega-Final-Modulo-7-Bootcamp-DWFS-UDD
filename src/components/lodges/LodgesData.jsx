@@ -5,13 +5,13 @@ import Message from "../Message";
 
 export default function LodgesData() {
 
-    const { lodge } = useLodges();
+    const { lodges } = useLodges();
 
     try {
         return (
             <div className="flex justify-center items-center gap-8 w-full h-full flex-wrap">
-               { lodge && lodge.filter(item => item.available).length > 0 ? (
-                        lodge.filter(item => item.available).map(item => (
+               { lodges && lodges.filter(item => item.available).length > 0 ? (
+                        lodges.filter(item => item.available).map(item => (
                                 <div key={item._id} className="flex flex-col justify-center items-center gap-4 bg-amber-100 rounded-xl p-4 w-1/4 min-w-72 max-w-lg shadow-sm shadow-amber-950">
                                     <div className="aspect-square w-full bg-white flex justify-center items-center">
                                         {item.image.length > 0 ? (

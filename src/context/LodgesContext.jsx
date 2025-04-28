@@ -7,9 +7,9 @@ export const LodgesContext = createContext(null);
 export const LodgesProvider = ({ children }) => {
 
     const { token, getCurrentSession } = useAuth();
-    const [ lodge, setLodge ] = useState([]);
+    const [ lodges, setLodges ] = useState([]);
     const [ lodgeById, setLodgeById ] = useState({});
-    const [ lodgeUserId, setLodgeUserId ] = useState([]);
+    const [ lodgesByUserId, setLodgesByUserId ] = useState([]);
     const [ hotel, setHotel ] = useState("");
     const [ size, setSize ] = useState("");
     const [ bedroom, setBedroom ] = useState("");
@@ -22,7 +22,6 @@ export const LodgesProvider = ({ children }) => {
 
     useEffect(() => {
         getLodges();
-        getLodgeById();
         getCurrentSession();
     }, []);
 
@@ -42,15 +41,15 @@ export const LodgesProvider = ({ children }) => {
                 method: "GET"
             });
             const data = await response.json();
-            setLodge(data.payload);
+            setLodges(data.payload);
         } catch (error) {
             throw new Error("Hubo un problema al conectarse al backend..", error.message);
         }
     };
 
-    const getLodgeById = async() => {
+    const getLodgeById = async(id) => {
         try {
-            const response = await fetch(`https://entrega-final-modulo-6-bootcamp-dwfs-udd.onrender.com/api/lodges/${lodge._id}`, {
+            const response = await fetch(`https://entrega-final-modulo-6-bootcamp-dwfs-udd.onrender.com/api/lodges/${id}`, {
                 method: "GET"
             });
             const data = await response.json();
@@ -69,7 +68,7 @@ export const LodgesProvider = ({ children }) => {
                 method: "GET"
             });
             const data = await response.json();
-            setLodgeUserId(data.payload);
+            setLodgesByUserId(data.payload);
         } catch (error) {
             throw new Error("Hubo un problema al conectarse al backend..", error.message);
         }
@@ -101,13 +100,13 @@ export const LodgesProvider = ({ children }) => {
             if (response.ok) {
                 alert("Cabaña creada con éxito");
                 setHotel("");
-                setSize(0);
-                setBedroom(0);
-                setBathroom(0);
-                setCapacity(0);
-                setHigh(0);
-                setMedium(0);
-                setLow(0);
+                setSize("");
+                setBedroom("");
+                setBathroom("");
+                setCapacity("");
+                setHigh("");
+                setMedium("");
+                setLow("");
                 await getLodgesByUserId();
                 return true;
             } else {
@@ -120,9 +119,8 @@ export const LodgesProvider = ({ children }) => {
         }
     };
 
-    const updateLodgeById = async() => {
+    const updateLodgeById = async(id) => {
         try {
-            const id = lodge.id;
             const response = await fetch(`https://entrega-final-modulo-6-bootcamp-dwfs-udd.onrender.com/api/lodges/${id}`, {
                 method: "PUT",
                 headers: {
@@ -145,14 +143,14 @@ export const LodgesProvider = ({ children }) => {
             if (response.ok) {
                 alert("Cabaña modificada con éxito");
                 setHotel("");
-                setSize(0);
-                setBedroom(0);
-                setBathroom(0);
-                setCapacity(0);
-                setWifi(false);
-                setHigh(0);
-                setMedium(0);
-                setLow(0);
+                setSize("");
+                setBedroom("");
+                setBathroom("");
+                setCapacity(2);
+                setWifi("");
+                setHigh("");
+                setMedium("");
+                setLow("");
                 await getLodgesByUserId();
                 return true;
             } else {
@@ -161,7 +159,7 @@ export const LodgesProvider = ({ children }) => {
                 return false;
             }
         } catch (error) {
-            throw new Error("Hubo un problema al conectarse al backend..", error.message);
+            throw new Error(`Hubo un problema al conectarse al backend: ${error.message}`);
         }
     };
 
@@ -190,7 +188,7 @@ export const LodgesProvider = ({ children }) => {
     };    
 
     return (
-        <LodgesContext.Provider value={{ createLodge, updateLodgeById, changeAvailable, lodge, lodgeById, lodgeUserId, hotel, setHotel, size, setSize, bedroom, setBedroom, bathroom, setBathroom, capacity, setCapacity, wifi, setWifi, high, setHigh, medium, setMedium, low, setLow }}>
+        <LodgesContext.Provider value={{ createLodge, updateLodgeById, changeAvailable, getLodgeById, lodges, lodgeById, lodgesByUserId, hotel, setHotel, size, setSize, bedroom, setBedroom, bathroom, setBathroom, capacity, setCapacity, wifi, setWifi, high, setHigh, medium, setMedium, low, setLow }}>
             { children }
         </LodgesContext.Provider>
     )

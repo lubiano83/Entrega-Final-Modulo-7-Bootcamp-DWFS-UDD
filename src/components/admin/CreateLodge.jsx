@@ -7,7 +7,7 @@ import Title from "../Title";
 
 export default function CreateLodge() {
 
-    const { lodge, createLodge, hotel, setHotel, size, setSize, bedroom, setBedroom, bathroom, setBathroom, capacity, setCapacity, high, setHigh, medium, setMedium, low, setLow } = useLodges();
+    const { lodges, createLodge, hotel, setHotel, size, setSize, bedroom, setBedroom, bathroom, setBathroom, capacity, setCapacity, high, setHigh, medium, setMedium, low, setLow } = useLodges();
     const navigate = useNavigate();
     const free = 10
 
@@ -20,7 +20,7 @@ export default function CreateLodge() {
     try {
         return (
             <>
-                { lodge && lodge.length < free ? (
+                { lodges && lodges.length < free ? (
                     <form onSubmit={handleSubmit} className="bg-amber-100 rounded-xl p-4 flex flex-col justify-center items-center gap-4 min-w-72 w-1/2 shadow-sm shadow-amber-950 max-w-xl">
                         <Title>Agregar Cabaña:</Title>
                         <input type="text" name="hotel" value={hotel} onChange={(e) => setHotel(e.target.value)} placeholder="Ingresa el nombre del hospedaje.." className="border-2 border-amber-950 rounded-lg bg-white text-amber-950 px-2 py-1 w-full" />

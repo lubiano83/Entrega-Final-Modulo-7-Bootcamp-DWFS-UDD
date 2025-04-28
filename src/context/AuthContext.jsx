@@ -182,7 +182,7 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
-    const getUserById = async() => {    
+    const getUserById = async() => {
         try {
             if(!token) throw new Error("Token no encontrado..");
             const decoded = jwtDecode(token);

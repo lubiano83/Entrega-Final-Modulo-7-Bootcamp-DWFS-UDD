@@ -3,29 +3,36 @@ import { Link, useNavigate } from "react-router-dom";
 import Title from "../Title";
 import Boton from "../Boton";
 import Message from "../Message";
+import { useParams } from 'react-router-dom';
 
 export default function EditLodge() {
 
-    const { updateLodgeById, lodgeUserId, hotel, setHotel, size, setSize, bedroom, setBedroom, bathroom, setBathroom, capacity, setCapacity, wifi, setWifi, high, setHigh, medium, setMedium, low, setLow } = useLodges();
+    const { updateLodgeById, lodgesByUserId, hotel, setHotel, size, setSize, bedroom, setBedroom, bathroom, setBathroom, capacity, setCapacity, wifi, setWifi, high, setHigh, medium, setMedium, low, setLow } = useLodges();
     const navigate = useNavigate();
+    
+    const { id } = useParams();
 
     const handleSubmit = async(e) => {
         e.preventDefault();
-        const success = await updateLodgeById();
-        if(success) return navigate("/admin");
+        const success = await updateLodgeById(id);
+        if(success) return navigate("/admin/lodges");
     };
+    
     try {
         return (
             <>
-                { lodgeUserId && (
+                { lodgesByUserId && (
                     <form onSubmit={handleSubmit} className="bg-amber-100 rounded-xl p-4 flex flex-col justify-center items-center gap-4 min-w-72 w-1/2 shadow-sm shadow-amber-950 max-w-xl">
                         <Title>Modificar Cabaña:</Title>
-                        <input type="text" name="hotel" value={hotel} onChange={(e) => setHotel(e.target.value)} placeholder="Ingresa el nombre del hospedaje.." className="border-2 border-amber-950 rounded-lg bg-white text-amber-950 px-2 py-1 w-full" />
-                            <input type="number" name="size" value={size} onChange={(e) => setSize(e.target.value)} placeholder="Ingresa el tamaño en mt2.." className="border-2 border-amber-950 rounded-lg bg-white text-amber-950 px-2 py-1 w-full" />
-                            <input type="number" name="bedroom" value={bedroom} onChange={(e) => setBedroom(e.target.value)} placeholder="Ingresa el numero de piezas.." className="border-2 border-amber-950 rounded-lg bg-white text-amber-950 px-2 py-1 w-full" />
-                            <input type="number" name="bathroom" value={bathroom} onChange={(e) => setBathroom(e.target.value)} placeholder="Ingresa el numero de baños.." className="border-2 border-amber-950 rounded-lg bg-white text-amber-950 px-2 py-1 w-full" />
-                            <input type="number" name="capacity" value={capacity} onChange={(e) => setCapacity(e.target.value)} placeholder="Ingresa la capacidad.." className="border-2 border-amber-950 rounded-lg bg-white text-amber-950 px-2 py-1 w-full" />
-                            <input type="boolean" name="wifi" value={wifi} onChange={(e) => setWifi(e.target.value)} placeholder="Ingresa si tiene wifi.." className="border-2 border-amber-950 rounded-lg bg-white text-amber-950 px-2 py-1 w-full" />
+                        <input type="text" name="hotel" value={hotel} onChange={(e) => setHotel(e.target.value)} placeholder="Nombre del hospedaje.." className="border-2 border-amber-950 rounded-lg bg-white text-amber-950 px-2 py-1 w-full" />
+                            <input type="number" name="size" value={size} onChange={(e) => setSize(e.target.value)} placeholder="Tamaño en mt2.." className="border-2 border-amber-950 rounded-lg bg-white text-amber-950 px-2 py-1 w-full" />
+                            <input type="number" name="bedroom" value={bedroom} onChange={(e) => setBedroom(e.target.value)} placeholder="Numero de piezas.." className="border-2 border-amber-950 rounded-lg bg-white text-amber-950 px-2 py-1 w-full" />
+                            <input type="number" name="bathroom" value={bathroom} onChange={(e) => setBathroom(e.target.value)} placeholder="Numero de baños.." className="border-2 border-amber-950 rounded-lg bg-white text-amber-950 px-2 py-1 w-full" />
+                            <input type="number" name="capacity" value={capacity} onChange={(e) => setCapacity(e.target.value)} placeholder="Maximo de personas.." className="border-2 border-amber-950 rounded-lg bg-white text-amber-950 px-2 py-1 w-full" />
+                            <select name="wifi" value={wifi ? "true" : "false"} onChange={(e) => setWifi(e.target.value === "true")} className="border-2 border-amber-950 rounded-lg bg-white text-amber-950 px-2 py-1 w-full">
+                                <option value="true">Wifi: Si</option>
+                                <option value="false">Wifi: No</option>
+                            </select>
                             <input type="number" name="high" value={high} onChange={(e) => setHigh(e.target.value)} placeholder="Precio temporada alta.." className="border-2 border-amber-950 rounded-lg bg-white text-amber-950 px-2 py-1 w-full" />
                             <input type="number" name="medium" value={medium} onChange={(e) => setMedium(e.target.value)} placeholder="Precio temporada media.." className="border-2 border-amber-950 rounded-lg bg-white text-amber-950 px-2 py-1 w-full" />
                             <input type="number" name="low" value={low} onChange={(e) => setLow(e.target.value)} placeholder="Precio temporada baja.." className="border-2 border-amber-950 rounded-lg bg-white text-amber-950 px-2 py-1 w-full" />
@@ -33,7 +40,7 @@ export default function EditLodge() {
                                 <Link to={"/admin/lodges"}>
                                     <Boton>Volver</Boton>
                                 </Link>
-                                <Boton type="submit">Ingresar</Boton>
+                                <Boton type="submit">Modificar</Boton>
                             </div>
                     </form>
                 )}
