@@ -23,12 +23,13 @@ export default function YourLodges() {
                                     <th className="border border-amber-950 w-28 p-2">Piezas</th>
                                     <th className="border border-amber-950 w-28 p-2">Baños</th>
                                     <th className="border border-amber-950 w-28 p-2">Mt2</th>
+                                    <th className="border border-amber-950 w-28 p-2">Personas</th>
                                     <th className="border border-amber-950 w-28 p-2">Wifi</th>
                                     <th className="border border-amber-950 w-28 p-2">T/Alta</th>
                                     <th className="border border-amber-950 w-28 p-2">T/Media</th>
                                     <th className="border border-amber-950 w-28 p-2">T/Baja</th>
                                     <th className="border border-amber-950 w-36 p-2">Disponible</th>
-                                    <th className="border border-amber-950 w-56 p-2">Acciones</th>
+                                    <th className="border border-amber-950 w-48 p-2">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -46,16 +47,17 @@ export default function YourLodges() {
                                             <td className="border border-amber-950 w-28 p-2">{item.bedroom}</td>
                                             <td className="border border-amber-950 w-28 p-2">{item.bathroom}</td>
                                             <td className="border border-amber-950 w-28 p-2">{item.size}</td>
+                                            <td className="border border-amber-950 w-28 p-2">{item.capacity}</td>
                                             <td className="border border-amber-950 w-28 p-2">
                                                 <input type="checkbox" checked={item.wifi} onChange={() => changeWifi(item._id, !item.wifi)} className="w-5 h-5" />
                                             </td>
-                                            <td className="border border-amber-950 w-28 p-2">{item.season.high}</td>
-                                            <td className="border border-amber-950 w-28 p-2">{item.season.medium}</td>
-                                            <td className="border border-amber-950 w-28 p-2">{item.season.low}</td>
+                                            <td className="border border-amber-950 w-28 p-2">${item.season.high}</td>
+                                            <td className="border border-amber-950 w-28 p-2">${item.season.medium}</td>
+                                            <td className="border border-amber-950 w-28 p-2">${item.season.low}</td>
                                             <td className="border border-amber-950 w-36 p-2">
                                                 <input type="checkbox" checked={item.available} onChange={() => changeAvailable(item._id, !item.available)} className="w-5 h-5" />
                                             </td>
-                                            <td className="border border-amber-950 w-56 p-2">
+                                            <td className="border border-amber-950 w-48 p-2">
                                                 <div className="flex justify-center items-center gap-2">
                                                     <div className="relative group">
                                                         <Link to={`/admin/lodges/${item._id}`}>
