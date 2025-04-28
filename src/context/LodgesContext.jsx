@@ -202,6 +202,7 @@ export const LodgesProvider = ({ children }) => {
                 alert("Imagen actualizada con éxito");
                 setImage(null);
                 await getLodgesByUserId();
+                await getLodges();
                 return true;
             } else {
                 const error = await response.json();

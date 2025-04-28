@@ -18,7 +18,7 @@ export default function ProfileData() {
                                 <Link to={"/profile/image"} className="group relative w-full flex justify-center items-center bg-white aspect-square">
                                     <div className="w-full flex justify-center items-center aspect-square bg-white">
                                         <img src={user.image} alt="Foto de perfil" className="cursor-pointer w-full"/>
-                                        <span className="absolute text-amber-950 font-bold text-lg opacity-0 group-hover:opacity-70 transition-opacity duration-300">Cambiar..</span>
+                                        <span className="absolute inset-0 flex justify-center items-center text-amber-950 font-bold text-lg opacity-0 group-hover:opacity-80 bg-white bg-opacity-50 transition-opacity duration-300">Cambiar Imagen</span>
                                     </div>
                                 </Link>
                                 <div className="flex flex-col gap-1">

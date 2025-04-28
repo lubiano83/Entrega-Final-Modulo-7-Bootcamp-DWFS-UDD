@@ -23,16 +23,17 @@ export default function LodgeDetail() {
 
 
     return (
-        <div className="bg-amber-100 p-4 flex flex-col md:flex-row md:h-1/2 justify-center items-center gap-4 rounded-xl shadow-sm shadow-amber-950">
-                <div className="relative aspect-square w-full max-w-sm md:h-full md:w-full">
-                    <Link to={lodge.image[currentImageIndex]} target="_blank">
-                        <img src={lodge.image[currentImageIndex]} alt="Imagen del lodge" className="h-full aspect-square" />
+        <div className="bg-amber-100 p-4 flex flex-col w-72 md:w-auto md:flex-row justify-center items-center gap-4 rounded-xl shadow-sm shadow-amber-950 md:h-1/2">
+                <div className="relative max-w-sm h-full md:w-auto aspect-square">
+                    <Link to={lodge.image[currentImageIndex]} target="_blank" className="aspect-square group relative w-full h-full block">
+                        <img src={lodge.image[currentImageIndex]} alt="Imagen del lodge" className="h-full md:aspect-square" />
+                        <span className="absolute inset-0 flex justify-center items-center text-amber-950 font-bold text-lg opacity-0 group-hover:opacity-80 bg-white bg-opacity-50 transition-opacity duration-300">Agrandar Imagen</span>
                     </Link>
                     <button onClick={prevImage} className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-amber-500 text-amber-950 px-2 py-1 rounded-r"> <SvgImage src={"/arrow-sm-left-svgrepo-com.svg"} /> </button>
                     <button onClick={nextImage} className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-amber-500 text-amber-950 px-2 py-1 rounded-l"> <SvgImage src={"/arrow-sm-right-svgrepo-com.svg"} /> </button>
                 </div>
-                <div className="flex flex-col justify-between items-start gap-4 md:gap-8 h-full w-full">
-                    <div className="flex flex-col justify-between items-start text-lg h-full">
+                <div className="flex flex-col justify-between items-start gap-4 md:gap-8 h-full w-auto">
+                    <div className="flex flex-col justify-between items-start text-lg h-full w-full">
                         <p className="truncate overflow-hidden whitespace-nowrap"><strong>Id: </strong>{lodge._id}</p>
                         <p><strong>Nombre: </strong>{lodge.hotel}</p>
                         <p><strong>Piezas: </strong>{lodge.bedroom}</p>
