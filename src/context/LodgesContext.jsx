@@ -10,6 +10,7 @@ export const LodgesProvider = ({ children }) => {
     const [ lodges, setLodges ] = useState([]);
     const [ lodgeById, setLodgeById ] = useState({});
     const [ lodgesByUserId, setLodgesByUserId ] = useState([]);
+    const [ image, setImage ] = useState(null);
     const [ hotel, setHotel ] = useState("");
     const [ size, setSize ] = useState("");
     const [ bedroom, setBedroom ] = useState("");
@@ -185,10 +186,34 @@ export const LodgesProvider = ({ children }) => {
         } catch (error) {
             console.error("Hubo un problema al conectarse al backend..", error.message);
         }
-    };    
+    };
+
+    const addImageToLodge = async(id) => {
+        try {
+            const formData = new FormData();
+            formData.append("image", image);
+            const response = await fetch(`https://entrega-final-modulo-6-bootcamp-dwfs-udd.onrender.com/api/lodges/${id}`, {
+                method: "PATCH",
+                body: formData,
+                credentials: "include"
+            });
+            if (response.ok) {
+                alert("Imagen actualizada con éxito");
+                setImage(null);
+                getLodgesByUserId();
+                return true;
+            } else {
+                const error = await response.json();
+                alert(error.message);
+                return false;
+            }
+        } catch (error) {
+            console.error("Hubo un problema al conectarse al backend..", error.message);
+        }
+    };
 
     return (
-        <LodgesContext.Provider value={{ createLodge, updateLodgeById, changeAvailable, getLodgeById, lodges, lodgeById, lodgesByUserId, hotel, setHotel, size, setSize, bedroom, setBedroom, bathroom, setBathroom, capacity, setCapacity, wifi, setWifi, high, setHigh, medium, setMedium, low, setLow }}>
+        <LodgesContext.Provider value={{ createLodge, updateLodgeById, changeAvailable, getLodgeById, addImageToLodge, lodges, lodgeById, lodgesByUserId, image, setImage, hotel, setHotel, size, setSize, bedroom, setBedroom, bathroom, setBathroom, capacity, setCapacity, wifi, setWifi, high, setHigh, medium, setMedium, low, setLow }}>
             { children }
         </LodgesContext.Provider>
     )
