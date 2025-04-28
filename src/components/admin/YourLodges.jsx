@@ -6,7 +6,7 @@ import SvgImage from "../SvgImage";
 
 export default function YourLodges() {
 
-    const { lodgesByUserId, changeAvailable, deleteAllImageFromLodge } = useLodges();
+    const { lodgesByUserId, changeAvailable, deleteAllImageFromLodge, deleteLodgeById } = useLodges();
 
     try {
         return (
@@ -57,8 +57,8 @@ export default function YourLodges() {
                                                         <Link to={`/admin/lodges/${item._id}`}>
                                                             <SvgImage src={"/edit-3-svgrepo-com.svg"} />
                                                         </Link>
-                                                        <span className="absolute -top-8 left-1/2 transform -translate-x-1/2 scale-0 group-hover:scale-100 transition-all bg-white text-amber-950 text-xs p-1 rounded-lg w-16">
-                                                            Modificar
+                                                        <span className="absolute -top-8 left-1/2 transform -translate-x-1/2 scale-0 group-hover:scale-100 transition-all bg-white text-amber-950 text-xs p-1 rounded-lg w-25">
+                                                            Modificar Lodge
                                                         </span>
                                                     </div>
                                                     <div className="relative group">
@@ -73,6 +73,12 @@ export default function YourLodges() {
                                                         <SvgImage src={"/image-square-xmark-svgrepo-com.svg"} fnc={() => deleteAllImageFromLodge(item._id)} />
                                                         <span className="absolute -top-8 left-1/2 transform -translate-x-1/2 scale-0 group-hover:scale-100 transition-all bg-white text-amber-950 text-xs p-1 rounded-md w-25">
                                                             Borrar Imagenes
+                                                        </span>
+                                                    </div>
+                                                    <div className="relative group">
+                                                        <SvgImage src={"/cross-svgrepo-com-red.svg"} fnc={() => deleteLodgeById(item._id)} />
+                                                        <span className="absolute -top-8 left-1/2 transform -translate-x-1/2 scale-0 group-hover:scale-100 transition-all bg-white text-amber-950 text-xs p-1 rounded-md w-25">
+                                                            Eliminar Lodge
                                                         </span>
                                                     </div>
                                                 </div>

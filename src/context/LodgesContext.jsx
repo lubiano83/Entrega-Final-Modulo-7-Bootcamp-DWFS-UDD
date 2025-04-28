@@ -234,8 +234,30 @@ export const LodgesProvider = ({ children }) => {
         }
     };
 
+    const deleteLodgeById = async(id) => {
+        try {
+            const response = await fetch(`https://entrega-final-modulo-6-bootcamp-dwfs-udd.onrender.com/api/lodges/${id}`, {
+                method: "DELETE",
+                credentials: "include"
+            });
+            if (response.ok) {
+                alert("Lodge eliminado con éxito");
+                setImage(null);
+                await getLodgesByUserId();
+                await getLodges();
+                return true;
+            } else {
+                const error = await response.json();
+                alert(error.message);
+                return false;
+            }
+        } catch (error) {
+            console.error("Hubo un problema al conectarse al backend..", error.message);
+        }
+    };
+
     return (
-        <LodgesContext.Provider value={{ createLodge, updateLodgeById, changeAvailable, getLodgeById, addImageToLodge, deleteAllImageFromLodge, lodges, lodgeById, lodgesByUserId, image, setImage, hotel, setHotel, size, setSize, bedroom, setBedroom, bathroom, setBathroom, capacity, setCapacity, wifi, setWifi, high, setHigh, medium, setMedium, low, setLow }}>
+        <LodgesContext.Provider value={{ createLodge, updateLodgeById, changeAvailable, getLodgeById, addImageToLodge, deleteAllImageFromLodge, deleteLodgeById, lodges, lodgeById, lodgesByUserId, image, setImage, hotel, setHotel, size, setSize, bedroom, setBedroom, bathroom, setBathroom, capacity, setCapacity, wifi, setWifi, high, setHigh, medium, setMedium, low, setLow }}>
             { children }
         </LodgesContext.Provider>
     )
