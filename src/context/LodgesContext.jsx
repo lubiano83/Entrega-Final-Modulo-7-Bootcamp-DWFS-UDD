@@ -176,7 +176,7 @@ export const LodgesProvider = ({ children }) => {
             if (response.ok) {
                 alert("Disponibilidad modificada con éxito");
                 await getLodgesByUserId();
-                getLodges();
+                await getLodges();
                 return true;
             } else {
                 const error = await response.json();
@@ -200,7 +200,29 @@ export const LodgesProvider = ({ children }) => {
             if (response.ok) {
                 alert("Imagen actualizada con éxito");
                 setImage(null);
-                getLodgesByUserId();
+                await getLodgesByUserId();
+                return true;
+            } else {
+                const error = await response.json();
+                alert(error.message);
+                return false;
+            }
+        } catch (error) {
+            console.error("Hubo un problema al conectarse al backend..", error.message);
+        }
+    };
+
+    const deleteAllImageFromLodge = async(id) => {
+        try {
+            const response = await fetch(`https://entrega-final-modulo-6-bootcamp-dwfs-udd.onrender.com/api/lodges/image/${id}`, {
+                method: "DELETE",
+                credentials: "include"
+            });
+            if (response.ok) {
+                alert("Imagenes eliminadas con éxito");
+                setImage(null);
+                await getLodgesByUserId();
+                await getLodges();
                 return true;
             } else {
                 const error = await response.json();
@@ -213,7 +235,7 @@ export const LodgesProvider = ({ children }) => {
     };
 
     return (
-        <LodgesContext.Provider value={{ createLodge, updateLodgeById, changeAvailable, getLodgeById, addImageToLodge, lodges, lodgeById, lodgesByUserId, image, setImage, hotel, setHotel, size, setSize, bedroom, setBedroom, bathroom, setBathroom, capacity, setCapacity, wifi, setWifi, high, setHigh, medium, setMedium, low, setLow }}>
+        <LodgesContext.Provider value={{ createLodge, updateLodgeById, changeAvailable, getLodgeById, addImageToLodge, deleteAllImageFromLodge, lodges, lodgeById, lodgesByUserId, image, setImage, hotel, setHotel, size, setSize, bedroom, setBedroom, bathroom, setBathroom, capacity, setCapacity, wifi, setWifi, high, setHigh, medium, setMedium, low, setLow }}>
             { children }
         </LodgesContext.Provider>
     )

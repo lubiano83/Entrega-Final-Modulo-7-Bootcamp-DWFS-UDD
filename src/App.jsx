@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import { LodgesProvider } from "./context/LodgesContext";
+import Navigate from "./components/navigate/Navigate";
 // Components
 import Navbar from "./components/header/Navbar";
 import Menu from "./components/menu/menu";
@@ -23,7 +24,6 @@ import CreateLodgePage from "./pages/admin/CreateLodgePage"
 import YourLodgesPage from "./pages/admin/YourLodgesPage";
 import EditLodgePage from "./pages/admin/EditLodgePage";
 import AddImageToLodgePage from "./pages/admin/AddImageToLodgePage";
-import Navigate from "./components/navigate/Navigate";
 
 export default function App() {
 

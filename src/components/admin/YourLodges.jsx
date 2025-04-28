@@ -6,7 +6,7 @@ import SvgImage from "../SvgImage";
 
 export default function YourLodges() {
 
-    const { lodgesByUserId, changeAvailable } = useLodges();
+    const { lodgesByUserId, changeAvailable, deleteAllImageFromLodge } = useLodges();
 
     try {
         return (
@@ -35,7 +35,7 @@ export default function YourLodges() {
                                         <tr key={item._id} className="text-center bg-amber-100">
                                             <td className="border border-amber-950 w-40 p-2 gap-1 text-xl">
                                                 { item.image.length > 0 ? (
-                                                    item.image.map( (img, index) => <Link key={index} to={img} target="_blank">{index+1}, </Link> )
+                                                    item.image.map( (img, index) => <Link key={index} to={img} target="_blank">{ index === 4 ? index+1 : `${index+1},` } </Link> )
                                                 ) : (
                                                     "0"
                                                 )}
@@ -53,15 +53,28 @@ export default function YourLodges() {
                                             </td>
                                             <td className="border border-amber-950 w-72 p-2">
                                                 <div className="flex justify-center items-center gap-2">
-                                                    <Link to={`/admin/lodges/${item._id}`}>
-                                                        <SvgImage src={"/edit-3-svgrepo-com.svg"} />
-                                                    </Link>
-                                                    <Link to={`/admin/lodges/image/${item._id}`}>
-                                                       <SvgImage src={"/image-plus-svgrepo-com-green.svg"} />
-                                                    </Link>
-                                                    <Link>
-                                                        <SvgImage src={"/image-square-xmark-svgrepo-com.svg"} />
-                                                    </Link>
+                                                    <div className="relative group">
+                                                        <Link to={`/admin/lodges/${item._id}`}>
+                                                            <SvgImage src={"/edit-3-svgrepo-com.svg"} />
+                                                        </Link>
+                                                        <span className="absolute -top-8 left-1/2 transform -translate-x-1/2 scale-0 group-hover:scale-100 transition-all bg-white text-amber-950 text-xs p-1 rounded-lg w-16">
+                                                            Modificar
+                                                        </span>
+                                                    </div>
+                                                    <div className="relative group">
+                                                        <Link to={`/admin/lodges/image/${item._id}`}>
+                                                            <SvgImage src={"/image-plus-svgrepo-com-green.svg"} />
+                                                        </Link>
+                                                        <span className="absolute -top-8 left-1/2 transform -translate-x-1/2 scale-0 group-hover:scale-100 transition-all bg-white text-amber-950 text-xs p-1 rounded-md w-24">
+                                                            Agregar Imagen
+                                                        </span>
+                                                    </div>
+                                                    <div className="relative group">
+                                                        <SvgImage src={"/image-square-xmark-svgrepo-com.svg"} fnc={() => deleteAllImageFromLodge(item._id)} />
+                                                        <span className="absolute -top-8 left-1/2 transform -translate-x-1/2 scale-0 group-hover:scale-100 transition-all bg-white text-amber-950 text-xs p-1 rounded-md w-25">
+                                                            Borrar Imagenes
+                                                        </span>
+                                                    </div>
                                                 </div>
                                             </td>
                                         </tr>
