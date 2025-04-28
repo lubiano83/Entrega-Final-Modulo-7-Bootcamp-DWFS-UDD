@@ -9,7 +9,7 @@ export default function CreateLodge() {
 
     const { lodges, createLodge, hotel, setHotel, size, setSize, bedroom, setBedroom, bathroom, setBathroom, capacity, setCapacity, high, setHigh, medium, setMedium, low, setLow } = useLodges();
     const navigate = useNavigate();
-    const free = 10
+    const free = 1
 
     const handleSubmit = async(e) => {
         e.preventDefault();

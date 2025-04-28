@@ -56,7 +56,7 @@ export default function LodgeDetail() {
                 <Link to={"/lodges"}>
                     <Boton>Volver</Boton>
                 </Link>
-                <Link>
+                <Link to={`/lodges/reservation/${lodge._id}`}>
                     <Boton>Reservar</Boton>
                 </Link>
             </div>
