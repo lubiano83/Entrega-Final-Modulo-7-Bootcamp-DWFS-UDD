@@ -1,6 +1,6 @@
-export default function Title({ children }) {
+export default function Title({ children, className }) {
     return (
-        <h2 className="text-xl underline font-bold italic">
+        <h2 className={`text-xl underline font-bold italic ${className}`}>
             { children }
         </h2>
     )

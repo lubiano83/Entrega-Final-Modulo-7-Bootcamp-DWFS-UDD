@@ -46,7 +46,7 @@ export const AuthProvider = ({ children }) => {
             const data = await response.json();
             setQuantityRegistered(data.payload);
         } catch (error) {
-            throw new Error("Hubo un problema al conectarse al backend..", error.message);
+            console.error("Hubo un problema al conectarse al backend..", error.message);
         }
     };
 
@@ -58,7 +58,7 @@ export const AuthProvider = ({ children }) => {
             const data = await response.json();
             setQuantityLogged(data.payload);
         } catch (error) {
-            throw new Error("Hubo un problema al conectarse al backend..", error.message);
+            console.error("Hubo un problema al conectarse al backend..", error.message);
         }
     };
 
@@ -105,7 +105,7 @@ export const AuthProvider = ({ children }) => {
                 return false;
             }
         } catch (error) {
-            throw new Error("Hubo un problema al conectarse al backend..", error.message);
+            console.error("Hubo un problema al conectarse al backend..", error.message);
         }
     };
     
@@ -135,7 +135,7 @@ export const AuthProvider = ({ children }) => {
                 return false;
             }
         } catch (error) {
-            throw new Error("Hubo un problema al conectarse al backend..", error.message);
+            console.error("Hubo un problema al conectarse al backend..", error.message);
         }
     };
 
@@ -156,7 +156,7 @@ export const AuthProvider = ({ children }) => {
                 alert(error.message);
             }
         } catch (error) {
-            throw new Error("Hubo un problema al conectarse al backend..", error.message);
+            console.error("Hubo un problema al conectarse al backend..", error.message);
         }
     };
 
@@ -187,15 +187,20 @@ export const AuthProvider = ({ children }) => {
             if(!token) throw new Error("Token no encontrado..");
             const decoded = jwtDecode(token);
             const id = decoded.id;
+            if(!id) return console.log("El campo id es requerido..")
             const response = await fetch(`https://entrega-final-modulo-6-bootcamp-dwfs-udd.onrender.com/api/users/${id}`, {
                 method: "GET",
                 credentials: "include",
             });
-
-            const data = await response.json();
-            setUser(data.payload)
+            if(response.ok) {
+                const data = await response.json();
+                setUser(data.payload)
+            } else {
+                const error = await response.json();
+                alert(error.message);
+            }
         } catch (error) {
-            throw new Error("Hubo un problema al conectarse al backend..", error.message);
+            console.error("Hubo un problema al conectarse al backend..", error.message);
         }
     };
 
@@ -242,7 +247,7 @@ export const AuthProvider = ({ children }) => {
                 return false;
             }
         } catch (error) {
-            throw new Error("Hubo un problema al conectarse al backend..", error.message);
+            console.error("Hubo un problema al conectarse al backend..", error.message);
         }
     };
 

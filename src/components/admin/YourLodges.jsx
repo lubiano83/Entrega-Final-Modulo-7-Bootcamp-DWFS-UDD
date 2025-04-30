@@ -11,11 +11,12 @@ export default function YourLodges() {
 
     try {
         return (
-            <div className="hidden xl:flex flex-col justify-center items-center gap-4">
-                <Title>Tablero:</Title>
+            <div className="flex flex-col justify-center items-center gap-4">
+                <Message className="flex xl:hidden">Vista no disponible en dispositivos moviles..</Message>
+                <Title className="hidden xl:flex">Tablero:</Title>
                 {
                     lodgesByUserId && lodgesByUserId.length > 0 ? (
-                        <table className="text-amber-950 flex flex-col justify-center items-center shadow-sm shadow-amber-950">
+                        <table className="text-amber-950 hidden xl:flex flex-col justify-center items-center shadow-sm shadow-amber-950">
                             <thead className="bg-amber-200">
                                 <tr className="border">
                                     <th className="border border-amber-950 w-37 p-2">Imagen (5 max)</th>
