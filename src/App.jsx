@@ -38,10 +38,10 @@ export default function App() {
         <BrowserRouter>
           <div className="min-h-screen grid grid-rows-[auto_1fr_auto] font-serif">
             <Navbar />
-            <div className="flex flex-col w-full bg-amber-50">
-              <Navigate>
+            <div className="flex flex-col 2xl:flex-row w-full bg-amber-50">
+              {/* <Navigate> */}
                 <Menu />
-              </Navigate>
+              {/* </Navigate> */}
               <div className="flex w-full h-full">
                 <Routes>
                   {/* Inicio */}

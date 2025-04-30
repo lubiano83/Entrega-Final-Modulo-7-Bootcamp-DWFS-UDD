@@ -23,10 +23,10 @@ export default function LodgeDetail() {
 
 
     return (
-        <div className="bg-amber-100 p-4 flex flex-col w-72 md:w-auto md:flex-row justify-center items-center gap-4 rounded-xl shadow-sm shadow-amber-950 md:h-1/2">
-                <div className="relative max-w-sm h-full md:w-auto aspect-square">
-                    <Link to={lodge.image[currentImageIndex]} target="_blank" className="aspect-square group relative w-full h-full block">
-                        <img src={lodge.image[currentImageIndex]} alt="Imagen del lodge" className="h-full md:aspect-square" />
+        <div className="bg-amber-100 p-4 flex flex-col w-2/3 min-w-72 h-auto lg:w-auto xl:flex-row justify-center items-center gap-4 rounded-xl shadow-sm shadow-amber-950">
+                <div className="relative aspect-video min-w-56 max-h-md lg:h-100">
+                    <Link to={lodge.image[currentImageIndex]} target="_blank" className="aspect-video group relative h-full block w-full">
+                        <img src={lodge.image[currentImageIndex]} alt="Imagen del lodge" className="h-full w-full" />
                         <span className="absolute inset-0 flex justify-center items-center text-amber-950 font-bold text-lg opacity-0 group-hover:opacity-80 bg-white bg-opacity-50 transition-opacity duration-300">Agrandar Imagen</span>
                     </Link>
                     <button onClick={prevImage} className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-amber-500 text-amber-950 px-2 py-1 rounded-r"> <SvgImage src={"/arrow-sm-left-svgrepo-com.svg"} /> </button>

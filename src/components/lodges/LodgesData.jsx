@@ -21,7 +21,7 @@ export default function LodgesData() {
                                         )}
                                     </div>
                                     <div className="flex flex-col justify-evenly items-center w-full gap-2">
-                                        <h3 className="text-xl italic underline"><strong>{ lodge.hotel }</strong></h3>
+                                        <h3 className="text-xl italic underline text-center"><strong>{ lodge.hotel }</strong></h3>
                                         <div className="flex justify-evenly items-start w-full flex-wrap gap-2">
                                             <h3><strong>Piezas: </strong>{ lodge.bedroom }</h3>
                                             <h3><strong>Baños: </strong>{ lodge.bathroom }</h3>

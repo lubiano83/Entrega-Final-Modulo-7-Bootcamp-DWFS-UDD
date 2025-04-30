@@ -14,7 +14,7 @@ export default function Navigate({ children }) {
     };
 
     return (
-        <div className="bg-amber-500 text-white flex justify-between items-center p-1 w-full">
+        <div className="bg-amber-500 text-white flex justify-between items-center w-full">
             <div onClick={handleGoBack} className="pl-4">
                 <SvgImage src={"/arrow-sm-left-svgrepo-com.svg"} />
             </div>
