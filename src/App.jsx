@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import { LodgesProvider } from "./context/LodgesContext";
-import Navigate from "./components/navigate/Navigate";
+import { ReservationsProvider } from "./context/reservationsContext";
 // Components
 import Navbar from "./components/header/Navbar";
 import Menu from "./components/menu/menu";
@@ -25,7 +25,7 @@ import CreateLodgePage from "./pages/admin/CreateLodgePage"
 import YourLodgesPage from "./pages/admin/YourLodgesPage";
 import EditLodgePage from "./pages/admin/EditLodgePage";
 import AddImageToLodgePage from "./pages/admin/AddImageToLodgePage";
-import { ReservationsProvider } from "./context/reservationsContext";
+import YourReservationsPage from "./pages/admin/YourReservationsPage";
 
 export default function App() {
 
@@ -65,6 +65,7 @@ export default function App() {
                     <Route path="/admin/lodges" element={ <YourLodgesPage /> } />
                     <Route path="/admin/lodges/:id" element={ <EditLodgePage /> } />
                     <Route path="/admin/lodges/image/:id" element={ <AddImageToLodgePage /> } />
+                    <Route path="/admin/reservations" element={ <YourReservationsPage /> } />
                   </Routes>
                 </div>
               </div>

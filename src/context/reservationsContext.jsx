@@ -1,12 +1,30 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+import useAuth from "../hook/useAuth";
+import { jwtDecode } from "jwt-decode";
 
 export const ReservationsContext = createContext(null);
 
 export const ReservationsProvider = ({ children }) => {
 
+    const { token, getCurrentSession } = useAuth();
+    const [ reservationsByUserId, setReservationsByUserId ] = useState([]);
     const [ people, setPeople ] = useState("");
     const [ arrive, setArrive ] = useState("");
     const [ leave, setLeave ] = useState("");
+
+    useEffect(() => {
+        getCurrentSession();
+    }, []);
+
+    useEffect(() => {
+        if (!token) return;
+      
+        const fetchUser = async () => {
+          await getReservationsByUserId();
+        };
+      
+        fetchUser();
+    }, [token]);
 
     const createReservation = async(lodgeId, userId) => {
         try {
@@ -39,8 +57,23 @@ export const ReservationsProvider = ({ children }) => {
         }
     };
 
+    const getReservationsByUserId = async() => {
+        try {
+            if(!token) throw new Error("Token no encontrado..");
+            const decoded = jwtDecode(token);
+            const userId = decoded.id;
+            const response = await fetch(`https://entrega-final-modulo-6-bootcamp-dwfs-udd.onrender.com/api/reservations/user/${userId}`, {
+                method: "GET",
+            });
+            const data = await response.json();
+            setReservationsByUserId(data.payload);
+        } catch (error) {
+            console.error("Hubo un problema al conectarse al backend..", error.message);
+        }
+    };
+
     return (
-        <ReservationsContext.Provider value={{ createReservation, people, setPeople, arrive, setArrive, leave, setLeave }} >
+        <ReservationsContext.Provider value={{ createReservation, reservationsByUserId, people, setPeople, arrive, setArrive, leave, setLeave }} >
             { children }
         </ReservationsContext.Provider>
     )

@@ -3,10 +3,9 @@ import useAuth from "../../hook/useAuth";
 import Boton from "../Boton";
 import Title from "../Title";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 
 export default function Register() {
-    const { logged, registerUser, first_name, setFirst_name, last_name, setLast_name, phone, setPhone, email, setEmail, password, setPassword, country, setCountry, state, setState, city, setCity, street, setStreet, number, setNumber } = useAuth();
+    const { registerUser, first_name, setFirst_name, last_name, setLast_name, phone, setPhone, email, setEmail, password, setPassword, country, setCountry, state, setState, city, setCity, street, setStreet, number, setNumber } = useAuth();
     const navigate = useNavigate();
 
     const handleSubmit = async(e) => {
@@ -14,12 +13,6 @@ export default function Register() {
         const success = await registerUser();
         if(success) return navigate("/login");
     };
-
-    useEffect(() => {
-        if (logged) {
-            navigate("/");
-        }
-    }, [logged, navigate]);
 
     return (
         <form onSubmit={handleSubmit} className="bg-amber-100 rounded-xl p-4 flex flex-col justify-center items-center gap-4 min-w-72 w-1/2 shadow-sm shadow-amber-950 max-w-xl">

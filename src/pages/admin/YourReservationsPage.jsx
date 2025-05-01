@@ -1,10 +1,12 @@
 import { useNavigate } from "react-router-dom";
-import ProfileImage from "../../components/user/ProfileImage";
+import YourReservations from "../../components/admin/YourReservations";
 import useAuth from "../../hook/useAuth";
+import useReservations from "../../hook/useReservations";
 import { useEffect } from "react";
 
-export default function ProfileImagePage() {
+export default function YourReservationsPage() {
 
+    const { reservationsByUserId } = useReservations();
     const { logged } = useAuth();
     const navigate = useNavigate();
 
@@ -14,9 +16,11 @@ export default function ProfileImagePage() {
         }
     }, [logged, navigate]);
 
+    console.log(reservationsByUserId);
+
     return (
         <div className="text-amber-950 h-full w-full flex flex-col justify-center items-center p-8">
-            <ProfileImage />
+            <YourReservations />
         </div>
     )
 };

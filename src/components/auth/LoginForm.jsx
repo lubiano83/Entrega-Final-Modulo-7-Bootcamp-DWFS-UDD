@@ -3,11 +3,10 @@ import Title from "../Title";
 import Boton from "../Boton";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 
 export default function LoginForm() {
 
-    const { logged, loginUser, email, setEmail, password, setPassword } = useAuth();
+    const { loginUser, email, setEmail, password, setPassword } = useAuth();
     const navigate = useNavigate();
 
     const handleSubmit = async(e) => {
@@ -15,12 +14,6 @@ export default function LoginForm() {
         const success = await loginUser();
         if(success) return navigate("/");
     };
-
-    useEffect(() => {
-        if (logged) {
-            navigate("/");
-        }
-    }, [logged, navigate]);
 
     return (
         <form onSubmit={handleSubmit} className="bg-amber-100 rounded-xl p-4 flex flex-col justify-center items-center gap-4 min-w-72 w-1/2 shadow-sm shadow-amber-950 max-w-xl">
