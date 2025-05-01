@@ -46,7 +46,7 @@ export default function YourReservations() {
                                                         <SvgImage src={"/finish-svgrepo-com.svg"} />
                                                     </Link>
                                                     <span className="absolute -top-8 left-1/2 transform -translate-x-1/2 scale-0 group-hover:scale-100 transition-all bg-white text-amber-950 text-xs p-1 rounded-lg w-28">
-                                                        Reserva Finalizada
+                                                        Finalizar Reserva
                                                     </span>
                                                 </div>
                                             </div>

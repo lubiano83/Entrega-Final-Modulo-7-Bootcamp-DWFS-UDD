@@ -29,7 +29,7 @@ export default function AdminPage() {
                     <Link to={"/admin/reservations"}>
                         <div className="bg-amber-100 px-4 py-2 rounded-xl shadow-sm shadow-amber-950 font-bold">Tus Reservas</div>
                     </Link>
-                    <Link to={"/"}>
+                    <Link to={"/admin/registers"}>
                         <div className="bg-amber-100 px-4 py-2 rounded-xl shadow-sm shadow-amber-950 font-bold">Tus Registros</div>
                     </Link>
                 </div>

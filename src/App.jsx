@@ -27,6 +27,7 @@ import EditLodgePage from "./pages/admin/EditLodgePage";
 import AddImageToLodgePage from "./pages/admin/AddImageToLodgePage";
 import YourReservationsPage from "./pages/admin/YourReservationsPage";
 import ReservationFinishPage from "./pages/admin/ReservationFinishPage";
+import YourRegistersPage from "./pages/admin/YourRegistersPage";
 
 export default function App() {
 
@@ -68,6 +69,7 @@ export default function App() {
                     <Route path="/admin/lodges/image/:id" element={ <AddImageToLodgePage /> } />
                     <Route path="/admin/reservations" element={ <YourReservationsPage /> } />
                     <Route path="/admin/reservations/finish/:id" element={ <ReservationFinishPage /> } />
+                    <Route path="/admin/registers" element={ <YourRegistersPage /> } />
                   </Routes>
                 </div>
               </div>
