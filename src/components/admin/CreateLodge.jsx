@@ -18,7 +18,9 @@ export default function CreateLodge() {
 
     try {
         return (
-            <form onSubmit={handleSubmit} className="bg-amber-100 rounded-xl p-4 flex flex-col justify-center items-center gap-4 min-w-72 w-1/2 shadow-sm shadow-amber-950 max-w-xl">
+            <>
+            <Message className="flex xl:hidden">Vista no disponible en dispositivos moviles..</Message>
+            <form onSubmit={handleSubmit} className="bg-amber-100 rounded-xl p-4 flex-col justify-center items-center gap-4 min-w-72 w-1/2 shadow-sm shadow-amber-950 max-w-xl hidden xl:flex">
                 <Title>Agregar Cabaña:</Title>
                 <input type="text" name="hotel" value={hotel} onChange={(e) => setHotel(e.target.value)} placeholder="Nombre de la cabaña.." className="border-2 border-amber-950 rounded-lg bg-white text-amber-950 px-2 py-1 w-full" />
                 <input type="number" name="size" value={size} onChange={(e) => setSize(e.target.value)} placeholder="Tamaño en mt2.." className="border-2 border-amber-950 rounded-lg bg-white text-amber-950 px-2 py-1 w-full" />
@@ -35,6 +37,7 @@ export default function CreateLodge() {
                     <Boton type="submit">Ingresar</Boton>
                 </div>
             </form>
+            </>
         )
     } catch (error) {
         console.log(error.mssage);

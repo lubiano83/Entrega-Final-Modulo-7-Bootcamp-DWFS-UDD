@@ -96,7 +96,7 @@ export default function YourLodges() {
                             </tbody>
                         </table>
                     ) : (
-                        <Message>No hay cabañas disponibles...</Message>
+                        <Message className={"hidden xl:flex"}>No hay cabañas disponibles...</Message>
                     )
                 }
             </div>

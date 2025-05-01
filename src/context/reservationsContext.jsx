@@ -72,8 +72,31 @@ export const ReservationsProvider = ({ children }) => {
         }
     };
 
+    const isAlreadyPaid = async(id, newPaid) => {
+        try {
+            const response = await fetch(`https://entrega-final-modulo-6-bootcamp-dwfs-udd.onrender.com/api/reservations/${id}`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ paid: newPaid })
+            });
+            if (response.ok) {
+                alert("Reserva Finalizada con éxito");
+                await getReservationsByUserId();
+                return true;
+            } else {
+                const error = await response.json();
+                alert(error.message);
+                return false;
+            }
+        } catch (error) {
+            console.error("Hubo un problema al conectarse al backend..", error.message);
+        }
+    };
+
     return (
-        <ReservationsContext.Provider value={{ createReservation, reservationsByUserId, people, setPeople, arrive, setArrive, leave, setLeave }} >
+        <ReservationsContext.Provider value={{ createReservation, reservationsByUserId, isAlreadyPaid, people, setPeople, arrive, setArrive, leave, setLeave }} >
             { children }
         </ReservationsContext.Provider>
     )
