@@ -1,17 +1,21 @@
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import Message from "../Message";
 import useReservations from "../../hook/useReservations";
+import Title from "../Title";
+import Boton from "../Boton";
+import { useState } from "react";
 
-export default function ReservationFinish({ id }) {
+export default function ReservationFinish() {
 
     const { isAlreadyPaid } = useReservations();
     const navigate = useNavigate();
     const location = useLocation();
     const item = location.state.item;
+    const [paid, setPaid] = useState(item.paid);
 
     const handleSubmit = async(e) => {
         e.preventDefault();
-        const success = await isAlreadyPaid(id);
+        const success = await isAlreadyPaid(item._id, paid);
         if(success) return navigate("/admin/reservations");
     };
 
@@ -20,14 +24,15 @@ export default function ReservationFinish({ id }) {
             <form onSubmit={handleSubmit} className="bg-amber-100 rounded-xl p-4 xl:flex flex-col justify-center items-center gap-4 min-w-72 w-1/2 shadow-sm shadow-amber-950 max-w-xl hidden">
                 <Message className="flex xl:hidden">Vista no disponible en dispositivos moviles..</Message>
                 <Title>Reserva Finalizada:</Title>
-                <div className="border border-amber-950 w-27 p-2">
-                    <input type="checkbox" checked={item.paid} onChange={() => isAlreadyPaid(item._id, !item.paid)} className="w-5 h-5" />
+                <div className="flex justify-center items-center gap-2 text-xl">
+                    <p>Finalizar Reserva:</p>
+                    <input type="checkbox" onChange={() => setPaid(!paid)} className="w-5 h-5" />
                 </div>
                 <div className="flex justify-center items-center gap-2">
-                    <Link to={"/admin/lodges"}>
+                    <Link to={"/admin/reservations"}>
                         <Boton>Volver</Boton>
                     </Link>
-                    <Boton type="submit">Modificar</Boton>
+                    <Boton type="submit">Finalizar</Boton>
                 </div>
             </form>
         </div>
