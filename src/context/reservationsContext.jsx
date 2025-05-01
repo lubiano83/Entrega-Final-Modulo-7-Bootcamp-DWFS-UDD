@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 
 export const ReservationsContext = createContext(null);
 
@@ -8,13 +8,9 @@ export const ReservationsProvider = ({ children }) => {
     const [ arrive, setArrive ] = useState("");
     const [ leave, setLeave ] = useState("");
 
-    useEffect(() => {
-        createReservations();
-    }, []);
-
-    const createReservations = async(userId, lodgeId) => {
+    const createReservation = async(lodgeId, userId) => {
         try {
-            if (!document.cookie.includes(import.meta.env.VITE_COOKIE_NAME)) return;
+            if(!lodgeId || !userId) return;
             const response = await fetch(`https://entrega-final-modulo-6-bootcamp-dwfs-udd.onrender.com/api/reservations/${lodgeId}/${userId}`, {
                 method: "POST",
                 credentials: "include",
@@ -34,6 +30,8 @@ export const ReservationsProvider = ({ children }) => {
                 setLeave("");
                 return true;
             } else {
+                const error = await response.json();
+                alert(error.message);
                 return false;
             }
         } catch (error) {
@@ -42,7 +40,7 @@ export const ReservationsProvider = ({ children }) => {
     };
 
     return (
-        <ReservationsContext.Provider value={{  }} >
+        <ReservationsContext.Provider value={{ createReservation, people, setPeople, arrive, setArrive, leave, setLeave }} >
             { children }
         </ReservationsContext.Provider>
     )

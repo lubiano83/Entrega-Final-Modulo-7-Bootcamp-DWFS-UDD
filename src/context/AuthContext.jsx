@@ -187,7 +187,7 @@ export const AuthProvider = ({ children }) => {
             if(!token) throw new Error("Token no encontrado..");
             const decoded = jwtDecode(token);
             const id = decoded.id;
-            if(!id) return console.log("El campo id es requerido..")
+            if(!id) return;
             const response = await fetch(`https://entrega-final-modulo-6-bootcamp-dwfs-udd.onrender.com/api/users/${id}`, {
                 method: "GET",
                 credentials: "include",
@@ -209,6 +209,7 @@ export const AuthProvider = ({ children }) => {
             if(!token) throw new Error("Token no encontrado..");
             const decoded = jwtDecode(token);
             const id = decoded.id;
+            if(!id) return;
             const response = await fetch(`https://entrega-final-modulo-6-bootcamp-dwfs-udd.onrender.com/api/users/${id}`, {
                 method: "PUT",
                 credentials: "include",
@@ -256,6 +257,7 @@ export const AuthProvider = ({ children }) => {
             if(!token) throw new Error("Token no encontrado..");
             const decoded = jwtDecode(token);
             const id = decoded.id;
+            if(!id) return;
             const formData = new FormData();
             formData.append("image", image);
             const response = await fetch(`https://entrega-final-modulo-6-bootcamp-dwfs-udd.onrender.com/api/users/image/${id}`, {

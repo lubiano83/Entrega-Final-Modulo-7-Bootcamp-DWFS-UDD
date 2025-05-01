@@ -18,7 +18,7 @@ import ProfileImagePage from "./pages/user/ProfileImagePage";
 // Lodges
 import LodgesPage from "./pages/lodges/LodgesPage";
 import LodgeDetailPage from "./pages/lodges/LodgeDetailPage";
-import ReservationPage from "./pages/lodges/ReservationPage";
+import ReservationsPage from "./pages/lodges/ReservationsPage";
 // Admin
 import AdminPage from "./pages/admin/AdminPage";
 import CreateLodgePage from "./pages/admin/CreateLodgePage"
@@ -58,7 +58,7 @@ export default function App() {
                     {/* Lodges */}
                     <Route path="/lodges" element={ <LodgesPage /> } />
                     <Route path="/lodges/:id" element={ <LodgeDetailPage /> } />
-                    <Route path="/lodges/reservation/:lodgeId/:userId" element={ <ReservationPage /> } />
+                    <Route path="/lodges/reservation/:lodgeId/:userId" element={ <ReservationsPage /> } />
                     {/* Admin */}
                     <Route path="/admin" element={ <AdminPage /> } />
                     <Route path="/admin/lodges/create" element={ <CreateLodgePage /> } />

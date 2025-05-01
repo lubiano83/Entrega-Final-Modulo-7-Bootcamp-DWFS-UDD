@@ -37,8 +37,8 @@ export default function LodgeDetail() {
                         <img src={lodge.image[currentImageIndex]} alt="Imagen del lodge" className="w-full aspect-video" />
                         <span className="absolute inset-0 flex justify-center items-center text-amber-950 font-bold text-lg opacity-0 group-hover:opacity-80 bg-white bg-opacity-50 transition-opacity duration-300">Agrandar Imagen</span>
                     </Link>
-                    <button onClick={prevImage} className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-amber-500 text-amber-950 px-2 py-1 rounded-r"> <SvgImage src={"/arrow-sm-left-svgrepo-com.svg"} /> </button>
-                    <button onClick={nextImage} className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-amber-500 text-amber-950 px-2 py-1 rounded-l"> <SvgImage src={"/arrow-sm-right-svgrepo-com.svg"} /> </button>
+                    <button onClick={prevImage} className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-amber-700 text-amber-950 px-2 py-1 rounded-r"> <SvgImage src={"/arrow-sm-left-svgrepo-com.svg"} /> </button>
+                    <button onClick={nextImage} className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-amber-700 text-amber-950 px-2 py-1 rounded-l"> <SvgImage src={"/arrow-sm-right-svgrepo-com.svg"} /> </button>
                 </div>
                 <div className="flex flex-col justify-between items-start gap-4 w-full h-auto">
                     <div className="w-full">
