@@ -21,10 +21,10 @@ export default function ReservationFinish() {
 
     return (
         <div className="flex flex-col justify-center items-center w-full">
+            <Message className="flex xl:hidden">Vista no disponible en dispositivos moviles..</Message>
             <form onSubmit={handleSubmit} className="bg-amber-100 rounded-xl p-4 xl:flex flex-col justify-center items-center gap-4 min-w-72 w-1/2 shadow-sm shadow-amber-950 max-w-xl hidden">
-                <Message className="flex xl:hidden">Vista no disponible en dispositivos moviles..</Message>
                 <Title>Finalizar Reserva</Title>
-                <div className="flex justify-center items-center gap-2">
+                <div className="flex justify-center items-center gap-2 text-xl">
                     <p>Reserva:</p>
                     <input type="checkbox" onChange={() => setPaid(!paid)} className="w-5 h-5" />
                 </div>
