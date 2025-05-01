@@ -12,7 +12,7 @@ export default function YourReservations() {
     return (
         <div className="flex flex-col justify-center items-center gap-4">
         <Message className="flex xl:hidden">Vista no disponible en dispositivos moviles..</Message>
-        <Title className="hidden xl:flex">Tablero:</Title>
+        <Title className="hidden xl:flex">Reservas:</Title>
         {
             reservationsByUserId && reservationsByUserId.length > 0 ? (
                 <table className="text-amber-950 hidden xl:flex flex-col justify-center items-center shadow-sm shadow-amber-950">
@@ -25,6 +25,7 @@ export default function YourReservations() {
                             <th className="border border-amber-950 w-24 p-2">Personas</th>
                             <th className="border border-amber-950 w-24 p-2">Precio</th>
                             <th className="border border-amber-950 w-20 p-2">Pagado</th>
+                            <th className="border border-amber-950 w-44 p-2">Contacto</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,6 +39,11 @@ export default function YourReservations() {
                                     <td className="border border-amber-950 w-24 p-2">{item.people}</td>
                                     <td className="border border-amber-950 w-24 p-2">${item.price}</td>
                                     <td className="border border-amber-950 w-20 p-2">{item.paid ? "Si" : "No"}</td>
+                                    <td className="border border-amber-950 w-44 p-2 truncate max-w-[11rem]">
+                                    <a href={`mailto:${item.contact}`} className="hover:text-amber-950 text-center">
+                                        {item.contact}
+                                    </a>
+                                    </td>
                                 </tr>
                             ))
                         }
