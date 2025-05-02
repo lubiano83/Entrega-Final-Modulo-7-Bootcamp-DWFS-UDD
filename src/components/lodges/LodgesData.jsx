@@ -38,14 +38,6 @@ export default function LodgesData() {
             </div>
         )
     } catch (error) {
-        console.log(error.message);
-        return (
-            <div className="flex flex-col justify-center items-center gap-4">
-                <Message>Ups, hubo un Error...</Message>
-                <Link to={"/"}>
-                    <Boton>Volver</Boton>
-                </Link>
-            </div>
-        )
+        <ErrorMessage error={error} />
     }
 };

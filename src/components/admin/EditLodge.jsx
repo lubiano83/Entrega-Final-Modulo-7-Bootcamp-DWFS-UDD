@@ -3,14 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 import Title from "../Title";
 import Boton from "../Boton";
 import Message from "../Message";
-import { useParams } from 'react-router-dom';
 
-export default function EditLodge() {
+export default function EditLodge({ id }) {
 
     const { updateLodgeById, lodgesByUserId, hotel, setHotel, size, setSize, bedroom, setBedroom, bathroom, setBathroom, capacity, setCapacity, high, setHigh, medium, setMedium, low, setLow } = useLodges();
     const navigate = useNavigate();
-    
-    const { id } = useParams();
 
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -43,12 +40,6 @@ export default function EditLodge() {
             </>
         )
     } catch (error) {
-        console.log(error.mssage);
-        <div className="flex flex-col justify-center items-center gap-4">
-            <Message>Ups, hubo un Error...</Message>
-            <Link to={"/admin"}>
-                <Boton>Volver</Boton>
-            </Link>
-        </div>
+        <ErrorMessage error={error} />
     }
 };

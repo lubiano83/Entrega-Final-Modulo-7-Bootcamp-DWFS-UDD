@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import EditLodge from "../../components/admin/EditLodge";
 import useAuth from "../../hook/useAuth";
 import { useEffect } from "react";
@@ -6,6 +6,7 @@ import { useEffect } from "react";
 export default function EditLodgePage() {
 
     const { logged } = useAuth();
+    const { id } = useParams();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -16,7 +17,7 @@ export default function EditLodgePage() {
 
     return (
         <div className="text-amber-950 h-full w-full flex flex-col justify-center items-center p-8">
-            <EditLodge />
+            <EditLodge id={id} />
         </div>
     )
 };

@@ -1,4 +1,4 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import ReservationFinish from "../../components/admin/ReservationFinish";
 import Boton from "../../components/Boton";
 import useAuth from "../../hook/useAuth";
@@ -8,7 +8,8 @@ export default function ReservationFinishPage() {
 
     const { logged } = useAuth();
     const navigate = useNavigate();
-    const { id } = useParams();
+    const location = useLocation();
+    const item = location.state.item;
 
     useEffect(() => {
         if (!logged) {
@@ -18,7 +19,7 @@ export default function ReservationFinishPage() {
 
     return (
         <div className="text-amber-950 h-full w-full flex flex-col justify-center items-center p-8 gap-4">
-            <ReservationFinish id={id} />
+            <ReservationFinish item={item} />
             <Link to={"/admin/reservations"} className="flex xl:hidden">
                 <Boton>Volver</Boton>
             </Link>

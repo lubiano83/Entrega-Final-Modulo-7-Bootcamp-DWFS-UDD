@@ -11,7 +11,6 @@ export default function LoginPage() {
     useEffect(() => {
         if (logged) {
             navigate("/");
-            alert("Primero debes iniciar sesion.")
         }
     }, [logged, navigate]);
 
