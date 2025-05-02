@@ -1,4 +1,3 @@
-
 export default function Message({ children, className }) {
 
   return (

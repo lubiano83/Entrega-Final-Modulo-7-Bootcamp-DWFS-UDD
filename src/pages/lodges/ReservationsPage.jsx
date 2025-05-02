@@ -9,8 +9,6 @@ export default function ReservationsPage() {
     const { logged } = useAuth();
     const navigate = useNavigate();
 
-    console.log(lodgeId)
-
     useEffect(() => {
         if (!logged) {
             navigate(`/lodges/${lodgeId}`);
