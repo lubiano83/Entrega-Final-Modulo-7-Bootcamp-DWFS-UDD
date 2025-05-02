@@ -2,8 +2,7 @@ import useRecords from "../../hook/useRecords";
 import moment from "moment";
 import Message from "../Message";
 import Title from "../Title";
-import { Link } from "react-router-dom";
-import Boton from "../Boton";
+import ErrorMessage from "../ErrorMessage";
 
 export default function YourRecords() {
 
@@ -55,6 +54,6 @@ export default function YourRecords() {
             </div>
         )
     } catch (error) {
-        <ErrorMessage error={error} />
+        return <ErrorMessage error={error} />
     }
 };

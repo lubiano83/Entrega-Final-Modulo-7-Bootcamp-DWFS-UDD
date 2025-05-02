@@ -3,7 +3,6 @@ import Title from "../../components/Title";
 import useAuth from "../../hook/useAuth";
 import { useEffect } from "react";
 
-
 export default function AdminPage() {
 
     const { logged } = useAuth();

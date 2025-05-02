@@ -3,6 +3,7 @@ import Title from "../Title";
 import Boton from "../Boton";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import ErrorMessage from "../ErrorMessage";
 
 export default function LoginForm() {
 
@@ -30,6 +31,6 @@ export default function LoginForm() {
             </form>
         )
     } catch (error) {
-        <ErrorMessage error={error} />
+        return <ErrorMessage error={error} />
     }
 };

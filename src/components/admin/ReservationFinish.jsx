@@ -4,6 +4,7 @@ import useReservations from "../../hook/useReservations";
 import Title from "../Title";
 import Boton from "../Boton";
 import { useState } from "react";
+import ErrorMessage from "../ErrorMessage";
 
 export default function ReservationFinish({ item }) {
 
@@ -38,6 +39,6 @@ export default function ReservationFinish({ item }) {
             </div>
         )
     } catch (error) {
-        <ErrorMessage error={error} />
+        return <ErrorMessage error={error} />
     }
 };

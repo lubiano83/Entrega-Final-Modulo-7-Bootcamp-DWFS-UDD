@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import useLodges from "../../hook/useLodges";
 import Boton from "../Boton";
 import Message from "../Message";
+import ErrorMessage from "../ErrorMessage";
 
 export default function LodgesData() {
 
@@ -10,7 +11,7 @@ export default function LodgesData() {
     try {
         return (
             <div className="flex justify-center items-center gap-8 w-full h-full flex-wrap">
-               { lodges && lodges.filter(lodge => lodge.available).length > 0 ? (
+                { lodges && lodges.filter(lodge => lodge.available).length > 0 ? (
                         lodges.filter(lodge => lodge.available).map(lodge => (
                                 <div key={lodge._id} className="flex flex-col justify-center items-center gap-4 bg-amber-100 rounded-xl p-4 w-72 shadow-xs shadow-amber-950">
                                     <div className="w-full aspect-square bg-white flex justify-center items-center overflow-hidden">
@@ -38,6 +39,6 @@ export default function LodgesData() {
             </div>
         )
     } catch (error) {
-        <ErrorMessage error={error} />
+        return <ErrorMessage error={error} />
     }
 };

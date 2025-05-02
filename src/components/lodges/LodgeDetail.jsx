@@ -4,6 +4,7 @@ import SvgImage from "../SvgImage";
 import Boton from "../Boton";
 import Message from "../Message";
 import useAuth from "../../hook/useAuth";
+import ErrorMessage from "../ErrorMessage";
 
 export default function LodgeDetail({ lodge }) {
 
@@ -70,6 +71,6 @@ export default function LodgeDetail({ lodge }) {
             </div>
         )
     } catch (error) {
-        <ErrorMessage error={error} />
+        return <ErrorMessage error={error} />
     }
 };

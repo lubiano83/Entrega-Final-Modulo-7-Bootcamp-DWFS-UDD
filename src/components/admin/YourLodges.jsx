@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import useLodges from "../../hook/useLodges"
 import Message from "../Message";
-import Boton from "../Boton";
 import SvgImage from "../SvgImage";
 import Title from "../Title";
+import ErrorMessage from "../ErrorMessage";
 
 export default function YourLodges() {
 
@@ -102,6 +102,6 @@ export default function YourLodges() {
             </div>
         )
     } catch (error) {
-        <ErrorMessage error={error} />
+        return <ErrorMessage error={error} />
     }
 };

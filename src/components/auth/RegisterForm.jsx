@@ -3,6 +3,7 @@ import useAuth from "../../hook/useAuth";
 import Boton from "../Boton";
 import Title from "../Title";
 import { useNavigate } from "react-router-dom";
+import ErrorMessage from "../ErrorMessage";
 
 export default function Register() {
     const { registerUser, first_name, setFirst_name, last_name, setLast_name, phone, setPhone, email, setEmail, password, setPassword, country, setCountry, state, setState, city, setCity, street, setStreet, number, setNumber } = useAuth();
@@ -37,6 +38,6 @@ export default function Register() {
             </form>
         );
     } catch (error) {
-        <ErrorMessage error={error} />
+        return <ErrorMessage error={error} />
     }
 }

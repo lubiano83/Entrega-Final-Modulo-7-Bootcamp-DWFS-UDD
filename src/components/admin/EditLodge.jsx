@@ -2,7 +2,7 @@ import useLodges from "../../hook/useLodges";
 import { Link, useNavigate } from "react-router-dom";
 import Title from "../Title";
 import Boton from "../Boton";
-import Message from "../Message";
+import ErrorMessage from "../ErrorMessage";
 
 export default function EditLodge({ id }) {
 
@@ -40,6 +40,6 @@ export default function EditLodge({ id }) {
             </>
         )
     } catch (error) {
-        <ErrorMessage error={error} />
+        return <ErrorMessage error={error} />
     }
 };

@@ -4,7 +4,7 @@ import Message from "../Message";
 import Title from "../Title";
 import moment from "moment";
 import SvgImage from "../SvgImage";
-import Boton from "../Boton";
+import ErrorMessage from "../ErrorMessage";
 
 export default function YourReservations() {
 
@@ -65,6 +65,6 @@ export default function YourReservations() {
             </div>
         )
     } catch (error) {
-        <ErrorMessage error={error} />
+        return <ErrorMessage error={error} />
     }
 };

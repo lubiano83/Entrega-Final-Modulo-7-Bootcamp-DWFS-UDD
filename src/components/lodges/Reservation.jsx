@@ -2,6 +2,7 @@ import Title from "../Title";
 import useReservations from "../../hook/useReservations";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import Boton from "../Boton";
+import ErrorMessage from "../ErrorMessage";
 
 export default function Reservation({ lodgeId, userId }) {
     
@@ -33,6 +34,6 @@ export default function Reservation({ lodgeId, userId }) {
             </form>
         )
     } catch (error) {
-        <ErrorMessage error={error} />
+        return <ErrorMessage error={error} />
     }
 };

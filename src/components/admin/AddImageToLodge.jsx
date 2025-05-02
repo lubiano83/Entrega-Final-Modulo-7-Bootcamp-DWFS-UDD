@@ -34,6 +34,6 @@ export default function AddImageToLodge({ id }) {
             </div>
         )
     } catch (error) {
-        <ErrorMessage error={error} />
+        return <ErrorMessage error={error} />
     }
 };
