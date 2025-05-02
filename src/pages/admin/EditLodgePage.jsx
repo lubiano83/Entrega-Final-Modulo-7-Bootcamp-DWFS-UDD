@@ -3,7 +3,7 @@ import EditLodge from "../../components/admin/EditLodge";
 import useAuth from "../../hook/useAuth";
 import { useEffect } from "react";
 
-export default function EditLodgePage() {
+export default function EditLodgePage({ isDarkMode }) {
 
     const { logged } = useAuth();
     const { id } = useParams();
@@ -16,8 +16,8 @@ export default function EditLodgePage() {
     }, [logged, navigate]);
 
     return (
-        <div className="text-amber-950 h-full w-full flex flex-col justify-center items-center p-8">
-            <EditLodge id={id} />
+        <div className={`${isDarkMode ? "text-amber-950" : "text-green-950"} h-full w-full flex flex-col justify-center items-center p-8 gap-4`}>
+            <EditLodge id={id} isDarkMode={isDarkMode} />
         </div>
     )
 };

@@ -3,7 +3,7 @@ import EditProfile from "../../components/user/EditProfile";
 import useAuth from "../../hook/useAuth";
 import { useEffect } from "react";
 
-export default function EditProfilePage() {
+export default function EditProfilePage({ isDarkMode }) {
 
     const { logged } = useAuth();
     const navigate = useNavigate();
@@ -15,8 +15,8 @@ export default function EditProfilePage() {
     }, [logged, navigate]);
 
     return (
-        <div className="text-amber-950 h-full w-full flex flex-col justify-center items-center p-8">
-            <EditProfile />
+        <div className={`${isDarkMode ? "text-amber-950" : "text-green-950"} h-full w-full flex flex-col justify-center items-center p-8 gap-4`}>
+            <EditProfile isDarkMode={isDarkMode} />
         </div>
     )
 };

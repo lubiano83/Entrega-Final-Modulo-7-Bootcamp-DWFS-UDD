@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import useAuth from "../../hook/useAuth";
 import { useEffect } from "react";
 
-export default function ReservationsPage() {
+export default function ReservationsPage({ isDarkMode }) {
 
     const { lodgeId, userId } = useParams();
     const { logged } = useAuth();
@@ -17,8 +17,8 @@ export default function ReservationsPage() {
     }, [logged, navigate]);
 
     return (
-        <div className="text-amber-950 h-full w-full flex flex-col justify-center items-center p-8">
-            <Reservation lodgeId={lodgeId} userId={userId} />
+        <div className={`${isDarkMode ? "text-amber-950" : "text-green-950"} h-full w-full flex flex-col justify-center items-center p-8 gap-4`}>
+            <Reservation lodgeId={lodgeId} userId={userId} isDarkMode={isDarkMode} />
         </div>
     )
 };

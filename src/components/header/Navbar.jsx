@@ -3,14 +3,14 @@ import SvgImage from "../SvgImage";
 import useAuth from "../../hook/useAuth";
 import { Link } from "react-router-dom";
 
-export default function Navbar() {
+export default function Navbar({ toggleDarkMode, isDarkMode }) {
 
     const { user, logged } = useAuth();
 
     return (
-        <div className="flex justify-evenly items-center p-4 bg-amber-700 gap-2">
-            <Logo />
-            <SvgImage src={"/sun-4-svgrepo-com.svg"} />
+        <div className={`flex justify-evenly items-center p-4 ${isDarkMode ? "bg-amber-700" : "bg-green-700" } gap-2`}>
+            <Logo isDarkMode={isDarkMode} />
+            <SvgImage src={"/sun-4-svgrepo-com.svg"} fnc={() => toggleDarkMode()}/>
             { !logged ?
                 <SvgImage src={"/user-circle-svgrepo-com-white.svg"} fnc={() => alert("Primero debes iniciar sesion.")}/>
                 :

@@ -4,7 +4,7 @@ import useAuth from "../../hook/useAuth";
 import { useEffect } from "react";
 import Boton from "../../components/Boton";
 
-export default function AddImageToLodgePage() {
+export default function AddImageToLodgePage({ isDarkMode }) {
 
     const { logged } = useAuth();
     const { id } = useParams();
@@ -17,10 +17,10 @@ export default function AddImageToLodgePage() {
     }, [logged, navigate]);
 
     return (
-        <div className="text-amber-950 h-full w-full flex flex-col justify-center items-center p-8 text-center gap-4">
-            <AddImageToLodge id={id} />
+        <div className={`${isDarkMode ? "text-amber-950" : "text-green-950"} h-full w-full flex flex-col justify-center items-center p-8 gap-4`}>
+            <AddImageToLodge id={id} isDarkMode={isDarkMode} />
             <Link to={"/admin"} className="flex xl:hidden">
-                <Boton>Volver</Boton>
+                <Boton isDarkMode={isDarkMode} >Volver</Boton>
             </Link>
         </div>
     )

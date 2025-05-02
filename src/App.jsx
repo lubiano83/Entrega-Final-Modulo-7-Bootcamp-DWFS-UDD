@@ -3,6 +3,7 @@ import { AuthProvider } from "./context/AuthContext";
 import { LodgesProvider } from "./context/LodgesContext";
 import { ReservationsProvider } from "./context/reservationsContext";
 import { RecordsProvider } from "./context/RecordsContext";
+import useDarkMode from "./hook/useDarkMode";
 // Components
 import Navbar from "./components/header/Navbar";
 import Menu from "./components/menu/menu";
@@ -32,6 +33,7 @@ import YourRecordsPage from "./pages/admin/YourRecordsPage";
 
 export default function App() {
 
+  const { isDarkMode, toggleDarkMode } = useDarkMode();
   const email = "lastrancaslodges@gmail.com";
   const year = new Date().getFullYear();
   const derechos = `© ${year} Todos los derechos reservados`;
@@ -43,39 +45,37 @@ export default function App() {
           <RecordsProvider>
             <BrowserRouter>
               <div className="min-h-screen grid grid-rows-[auto_1fr_auto] font-serif">
-                <Navbar />
+                <Navbar toggleDarkMode={toggleDarkMode} isDarkMode={isDarkMode} />
                 <div className="flex flex-col 2xl:flex-row w-full bg-amber-50">
-                  {/* <Navigate> */}
-                    <Menu />
-                  {/* </Navigate> */}
+                  <Menu isDarkMode={isDarkMode} />
                   <div className="flex w-full h-full">
                     <Routes>
                       {/* Inicio */}
-                      <Route path="/" element={ <LodgesPage /> } />
-                      <Route path="/about" element={ <AboutPage /> } />
+                      <Route path="/" element={ <LodgesPage isDarkMode={isDarkMode} /> } />
+                      <Route path="/about" element={ <AboutPage isDarkMode={isDarkMode} /> } />
                       {/* Auth */}
-                      <Route path="/register" element={ <RegisterPage /> } />
-                      <Route path="/login" element={ <LoginPage /> } />
+                      <Route path="/register" element={ <RegisterPage isDarkMode={isDarkMode} /> } />
+                      <Route path="/login" element={ <LoginPage isDarkMode={isDarkMode} /> } />
                       {/* User */}
-                      <Route path="/profile" element={ <ProfilePage /> } />
-                      <Route path="/profile/edit" element={ <EditProfilePage /> } />
-                      <Route path="/profile/image" element={ <ProfileImagePage /> } />
+                      <Route path="/profile" element={ <ProfilePage isDarkMode={isDarkMode} /> } />
+                      <Route path="/profile/edit" element={ <EditProfilePage isDarkMode={isDarkMode} /> } />
+                      <Route path="/profile/image" element={ <ProfileImagePage isDarkMode={isDarkMode} /> } />
                       {/* Lodges */}
-                      <Route path="/lodges/:id" element={ <LodgeDetailPage /> } />
-                      <Route path="/lodges/reservation/:lodgeId/:userId" element={ <ReservationsPage /> } />
+                      <Route path="/lodges/:id" element={ <LodgeDetailPage isDarkMode={isDarkMode} /> } />
+                      <Route path="/lodges/reservation/:lodgeId/:userId" element={ <ReservationsPage isDarkMode={isDarkMode} /> } />
                       {/* Admin */}
-                      <Route path="/admin" element={ <AdminPage /> } />
-                      <Route path="/admin/lodges/create" element={ <CreateLodgePage /> } />
-                      <Route path="/admin/lodges" element={ <YourLodgesPage /> } />
-                      <Route path="/admin/lodges/:id" element={ <EditLodgePage /> } />
-                      <Route path="/admin/lodges/image/:id" element={ <AddImageToLodgePage /> } />
-                      <Route path="/admin/reservations" element={ <YourReservationsPage /> } />
-                      <Route path="/admin/reservations/finish/:id" element={ <ReservationFinishPage /> } />
-                      <Route path="/admin/records" element={ <YourRecordsPage /> } />
+                      <Route path="/admin" element={ <AdminPage isDarkMode={isDarkMode} /> } />
+                      <Route path="/admin/lodges/create" element={ <CreateLodgePage isDarkMode={isDarkMode} /> } />
+                      <Route path="/admin/lodges" element={ <YourLodgesPage isDarkMode={isDarkMode} /> } />
+                      <Route path="/admin/lodges/:id" element={ <EditLodgePage isDarkMode={isDarkMode} /> } />
+                      <Route path="/admin/lodges/image/:id" element={ <AddImageToLodgePage isDarkMode={isDarkMode} /> } />
+                      <Route path="/admin/reservations" element={ <YourReservationsPage isDarkMode={isDarkMode} /> } />
+                      <Route path="/admin/reservations/finish/:id" element={ <ReservationFinishPage isDarkMode={isDarkMode} /> } />
+                      <Route path="/admin/records" element={ <YourRecordsPage isDarkMode={isDarkMode} /> } />
                     </Routes>
                   </div>
                 </div>
-                <Footer derechos={derechos} email={email} />
+                <Footer derechos={derechos} email={email} toggleDarkMode={toggleDarkMode} isDarkMode={isDarkMode} />
               </div>
             </BrowserRouter>
           </RecordsProvider>

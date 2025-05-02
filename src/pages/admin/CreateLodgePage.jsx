@@ -4,7 +4,7 @@ import useAuth from "../../hook/useAuth";
 import { useEffect } from "react";
 import Boton from "../../components/Boton";
 
-export default function CreateLodgePage() {
+export default function CreateLodgePage({ isDarkMode }) {
 
     const { logged } = useAuth();
     const navigate = useNavigate();
@@ -16,10 +16,10 @@ export default function CreateLodgePage() {
     }, [logged, navigate]);
 
     return (
-        <div className="text-amber-950 h-full w-full flex flex-col justify-center items-center p-8 gap-4">
-            <CreateLodge />
+        <div className={`${isDarkMode ? "text-amber-950" : "text-green-950"} h-full w-full flex flex-col justify-center items-center p-8 gap-4`}>
+            <CreateLodge isDarkMode={isDarkMode} />
             <Link to={"/admin"} className="flex xl:hidden">
-                <Boton>Volver</Boton>
+                <Boton isDarkMode={isDarkMode} >Volver</Boton>
             </Link>
         </div>
     )

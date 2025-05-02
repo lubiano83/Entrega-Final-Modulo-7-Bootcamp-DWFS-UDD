@@ -4,7 +4,7 @@ import Boton from "../../components/Boton";
 import useAuth from "../../hook/useAuth";
 import { useEffect } from "react";
 
-export default function ReservationFinishPage() {
+export default function ReservationFinishPage({ isDarkMode }) {
 
     const { logged } = useAuth();
     const navigate = useNavigate();
@@ -18,10 +18,10 @@ export default function ReservationFinishPage() {
     }, [logged, navigate]);
 
     return (
-        <div className="text-amber-950 h-full w-full flex flex-col justify-center items-center p-8 gap-4">
-            <ReservationFinish item={item} />
+        <div className={`${isDarkMode ? "text-amber-950" : "text-green-950"} h-full w-full flex flex-col justify-center items-center p-8 gap-4`}>
+            <ReservationFinish item={item} isDarkMode={isDarkMode} />
             <Link to={"/admin/reservations"} className="flex xl:hidden">
-                <Boton>Volver</Boton>
+                <Boton isDarkMode={isDarkMode} >Volver</Boton>
             </Link>
         </div>
     )

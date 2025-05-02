@@ -6,7 +6,7 @@ import Boton from "../Boton";
 import { useState } from "react";
 import ErrorMessage from "../ErrorMessage";
 
-export default function ReservationFinish({ item }) {
+export default function ReservationFinish({ item, isDarkMode }) {
 
     const { isAlreadyPaid } = useReservations();
     const navigate = useNavigate();
@@ -22,23 +22,23 @@ export default function ReservationFinish({ item }) {
     try {
         return (
             <div className="flex flex-col justify-center items-center w-full">
-                <Message className="flex xl:hidden">Vista no disponible en dispositivos moviles..</Message>
-                <form onSubmit={handleSubmit} className="bg-amber-100 rounded-xl p-4 xl:flex flex-col justify-center items-center gap-4 min-w-72 w-1/2 shadow-sm shadow-amber-950 max-w-xl hidden">
-                    <Title>Finalizar Reserva</Title>
+                <Message isDarkMode={isDarkMode} className="flex xl:hidden">Vista no disponible en dispositivos moviles..</Message>
+                <form onSubmit={handleSubmit} className={`${isDarkMode ? "bg-amber-100 shadow-amber-950" : "bg-green-100 shadow-green-950"} rounded-xl p-4 xl:flex flex-col justify-center items-center gap-4 min-w-72 w-1/2 shadow-sm max-w-xl hidden`}>
+                    <Title isDarkMode={isDarkMode} >Finalizar Reserva</Title>
                     <div className="flex justify-center items-center gap-2 text-xl">
                         <p>Reserva:</p>
                         <input type="checkbox" onChange={() => setPaid(!paid)} className="w-5 h-5" />
                     </div>
                     <div className="flex justify-center items-center gap-2">
                         <Link to={"/admin/reservations"}>
-                            <Boton>Volver</Boton>
+                            <Boton isDarkMode={isDarkMode} >Volver</Boton>
                         </Link>
-                        <Boton type="submit">Registrar</Boton>
+                        <Boton isDarkMode={isDarkMode} type="submit">Registrar</Boton>
                     </div>
                 </form>
             </div>
         )
     } catch (error) {
-        return <ErrorMessage error={error} />
+        return <ErrorMessage isDarkMode={isDarkMode} error={error} />
     }
 };

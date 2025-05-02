@@ -3,7 +3,7 @@ import ProfileData from "../../components/user/ProfileData";
 import useAuth from "../../hook/useAuth";
 import { useEffect } from "react";
 
-export default function ProfilePage() {
+export default function ProfilePage({ isDarkMode }) {
 
     const { logged } = useAuth();
     const navigate = useNavigate();
@@ -15,8 +15,8 @@ export default function ProfilePage() {
     }, [logged, navigate]);
 
     return (
-        <div className="text-amber-950 h-full w-full flex flex-col justify-center items-center p-8">
-            <ProfileData />
+        <div className={`${isDarkMode ? "text-amber-950" : "text-green-950"} h-full w-full flex flex-col justify-center items-center p-8 gap-4`}>
+            <ProfileData isDarkMode={isDarkMode} />
         </div>
     )
 };

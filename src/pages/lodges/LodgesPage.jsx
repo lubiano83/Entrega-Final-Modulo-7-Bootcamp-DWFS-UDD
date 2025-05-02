@@ -1,10 +1,10 @@
 import LodgesData from "../../components/lodges/LodgesData";
 
-export default function LodgesPage() {
+export default function LodgesPage({ isDarkMode }) {
 
     return (
-        <div className="text-amber-950 h-full w-full flex flex-col justify-center items-center p-8">
-            <LodgesData />
+        <div className={`${isDarkMode ? "text-amber-950" : "text-green-950"} h-full w-full flex flex-col justify-center items-center p-8 gap-4`}>
+            <LodgesData isDarkMode={isDarkMode} />
         </div>
     )
 };
