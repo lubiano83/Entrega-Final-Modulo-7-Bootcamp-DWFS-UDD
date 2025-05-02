@@ -2,13 +2,10 @@ import useRecords from "../../hook/useRecords";
 import moment from "moment";
 import Message from "../Message";
 import Title from "../Title";
-import { Link } from "react-router-dom";
-import SvgImage from "../SvgImage";
 
 export default function YourRecords() {
 
     const { recordsByUserId } = useRecords();
-    console.log(recordsByUserId);
 
     return (
         <div className="flex flex-col justify-center items-center gap-4">
