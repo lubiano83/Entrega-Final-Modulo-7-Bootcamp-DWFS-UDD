@@ -1,6 +1,6 @@
 import Title from "./Title";
 
-export default function Inicio() {
+export default function About() {
 
     return (
         <div className="w-1/2 flex flex-col justify-center items-center gap-4 bg-amber-100 p-4 rounded-2xl shadow-sm shadow-amber-950 max-w-3xl min-w-72">

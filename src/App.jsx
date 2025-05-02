@@ -9,6 +9,7 @@ import Menu from "./components/menu/menu";
 import Footer from "./components/footer/Footer";
 // Inicio
 import InicioPage from "./pages/InicioPage";
+import AboutPage from "./pages/AboutPage";
 // Auth
 import RegisterPage from "./pages/auth/RegisterPage";
 import LoginPage from "./pages/auth/LoginPage";
@@ -17,7 +18,6 @@ import ProfilePage from "./pages/user/ProfilePage";
 import EditProfilePage from "./pages/user/EditProfilePage";
 import ProfileImagePage from "./pages/user/ProfileImagePage";
 // Lodges
-import LodgesPage from "./pages/lodges/LodgesPage";
 import LodgeDetailPage from "./pages/lodges/LodgeDetailPage";
 import ReservationsPage from "./pages/lodges/ReservationsPage";
 // Admin
@@ -52,6 +52,7 @@ export default function App() {
                     <Routes>
                       {/* Inicio */}
                       <Route path="/" element={ <InicioPage /> } />
+                      <Route path="/about" element={ <AboutPage /> } />
                       {/* Auth */}
                       <Route path="/register" element={ <RegisterPage /> } />
                       <Route path="/login" element={ <LoginPage /> } />
@@ -60,7 +61,6 @@ export default function App() {
                       <Route path="/profile/edit" element={ <EditProfilePage /> } />
                       <Route path="/profile/image" element={ <ProfileImagePage /> } />
                       {/* Lodges */}
-                      <Route path="/lodges" element={ <LodgesPage /> } />
                       <Route path="/lodges/:id" element={ <LodgeDetailPage /> } />
                       <Route path="/lodges/reservation/:lodgeId/:userId" element={ <ReservationsPage /> } />
                       {/* Admin */}

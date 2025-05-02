@@ -53,7 +53,7 @@ export default function LodgeDetail({ lodge }) {
                     <p><strong>Temporada Baja: </strong>{lodge.season.low}</p>
                 </div>
                 <div className="flex justify-center items-center gap-2 w-full">
-                    <Link to={"/lodges"}>
+                    <Link to={"/"}>
                         <Boton>Volver</Boton>
                     </Link>
                     { 

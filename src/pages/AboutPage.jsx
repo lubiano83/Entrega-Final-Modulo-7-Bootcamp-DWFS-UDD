@@ -1,10 +1,9 @@
-import LodgesData from "../../components/lodges/LodgesData";
+import About from "../components/About";
 
-export default function LodgesPage() {
-
+export default function AboutPage() {
     return (
         <div className="text-amber-950 h-full w-full flex flex-col justify-center items-center p-8">
-            <LodgesData />
+            <About />
         </div>
     )
 };
