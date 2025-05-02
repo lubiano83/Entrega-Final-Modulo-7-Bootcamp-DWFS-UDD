@@ -19,12 +19,13 @@ export default function YourRecords() {
                     <table className="text-amber-950 hidden xl:flex flex-col justify-center items-center shadow-sm shadow-amber-950">
                         <thead className="bg-amber-200">
                             <tr className="border">
-                                <th className="border border-amber-950 w-56 p-2">Lodge Id</th>
-                                <th className="border border-amber-950 w-56 p-2">User Id</th>
-                                <th className="border border-amber-950 w-28 p-2">Empieza</th>
-                                <th className="border border-amber-950 w-28 p-2">Termina</th>
+                                <th className="border border-amber-950 w-56 p-2">Lodge</th>
+                                <th className="border border-amber-950 w-56 p-2">User</th>
                                 <th className="border border-amber-950 w-24 p-2">Pais</th>
                                 <th className="border border-amber-950 w-24 p-2">Ciudad</th>
+                                <th className="border border-amber-950 w-28 p-2">Empieza</th>
+                                <th className="border border-amber-950 w-28 p-2">Termina</th>
+                                <th className="border border-amber-950 w-28 p-2">Capacidad</th>
                                 <th className="border border-amber-950 w-24 p-2">Personas</th>
                                 <th className="border border-amber-950 w-24 p-2">Precio</th>
                             </tr>
@@ -33,12 +34,13 @@ export default function YourRecords() {
                             {
                                 recordsByUserId.map(item => (
                                     <tr key={item._id} className="text-center bg-amber-100">
-                                        <td className="border border-amber-950 w-56 p-2">{item.lodge._id}</td>
-                                        <td className="border border-amber-950 w-56 p-2">{item.user._id}</td>
-                                        <td className="border border-amber-950 w-28 p-2">{moment(item.arrive).format("YYYY/MM/DD")}</td>
-                                        <td className="border border-amber-950 w-28 p-2">{moment(item.leave).format("YYYY/MM/DD")}</td>
+                                        <td className="border border-amber-950 w-56 p-2">{item.lodge.hotel}</td>
+                                        <td className="border border-amber-950 w-56 p-2">{item.user.email}</td>
                                         <td className="border border-amber-950 w-24 p-2">{item.user.address.country}</td>
                                         <td className="border border-amber-950 w-24 p-2">{item.user.address.city}</td>
+                                        <td className="border border-amber-950 w-28 p-2">{moment(item.arrive).format("YYYY/MM/DD")}</td>
+                                        <td className="border border-amber-950 w-28 p-2">{moment(item.leave).format("YYYY/MM/DD")}</td>
+                                        <td className="border border-amber-950 w-28 p-2">{item.lodge.capacity}</td>
                                         <td className="border border-amber-950 w-24 p-2">{item.people}</td>
                                         <td className="border border-amber-950 w-24 p-2">${item.price}</td>
                                     </tr>
