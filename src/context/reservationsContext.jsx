@@ -62,6 +62,7 @@ export const ReservationsProvider = ({ children }) => {
             if(!token) throw new Error("Token no encontrado..");
             const decoded = jwtDecode(token);
             const userId = decoded.id;
+            if(!userId) return;
             const response = await fetch(`https://entrega-final-modulo-6-bootcamp-dwfs-udd.onrender.com/api/reservations/user/${userId}`, {
                 method: "GET",
             });
