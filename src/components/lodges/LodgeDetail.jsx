@@ -1,15 +1,13 @@
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import SvgImage from "../SvgImage";
 import Boton from "../Boton";
 import Message from "../Message";
 import useAuth from "../../hook/useAuth";
 
-export default function LodgeDetail() {
+export default function LodgeDetail({ lodge }) {
 
     const { logged } = useAuth();
-    const location = useLocation();
-    const lodge = location.state.lodge;
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
     const nextImage = () => {
@@ -23,8 +21,6 @@ export default function LodgeDetail() {
             prevIndex === 0 ? lodge.image.length - 1 : prevIndex - 1
         );
     };
-
-    console.log("userId", lodge.userId)
 
     return (
         <div className="bg-amber-100 p-4 flex flex-col min-w-72 w-full max-w-2xl justify-center items-center gap-4 rounded-xl shadow-sm shadow-amber-950">
@@ -60,10 +56,14 @@ export default function LodgeDetail() {
                     <Link to={"/lodges"}>
                         <Boton>Volver</Boton>
                     </Link>
-                    { !logged ? "" :
-                    <Link to={`/lodges/reservation/${lodge._id}/${lodge.userId}`} state={{lodge}} >
-                        <Boton>Reservar</Boton>
-                    </Link> }
+                    { 
+                        !logged ? 
+                        <Boton onClick={() => alert("Primero debes iniciar sesion.")}>Reservar</Boton>
+                        :
+                        <Link to={`/lodges/reservation/${lodge._id}/${lodge.userId}`} state={{lodge}} >
+                            <Boton>Reservar</Boton>
+                        </Link>
+                    }
                 </div>
             </div>
         </div>
