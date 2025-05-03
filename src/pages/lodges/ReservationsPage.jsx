@@ -11,8 +11,8 @@ export default function ReservationsPage({ isDarkMode }) {
 
     useEffect(() => {
         if (!logged) {
-            navigate(`/lodges/${lodgeId}`);
             alert("Primero debes iniciar sesion.")
+            navigate(`/lodges/${lodgeId}`);
         }
     }, [logged, navigate]);
 
