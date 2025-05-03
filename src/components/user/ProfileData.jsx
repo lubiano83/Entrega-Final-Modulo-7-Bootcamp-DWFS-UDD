@@ -59,6 +59,7 @@ export default function ProfileData({ isDarkMode }) {
                 </>
         )
     } catch (error) {
-         return <ErrorMessage isDarkMode={isDarkMode} error={error} />
+        console.log(error.message);
+        return <ErrorMessage isDarkMode={isDarkMode} />
     }
 };

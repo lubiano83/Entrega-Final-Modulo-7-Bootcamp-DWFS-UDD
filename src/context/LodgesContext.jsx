@@ -28,11 +28,11 @@ export const LodgesProvider = ({ children }) => {
 
     useEffect(() => {
         if (!token) return;
-      
+    
         const fetchUser = async () => {
-          await getLodgesByUserId();
+            await getLodgesByUserId();
         };
-      
+    
         fetchUser();
     }, [token]);
 
@@ -43,6 +43,7 @@ export const LodgesProvider = ({ children }) => {
             });
             const data = await response.json();
             setLodges(data.payload);
+            return lodgeById;
         } catch (error) {
             throw new Error("Hubo un problema al conectarse al backend..", error.message);
         }

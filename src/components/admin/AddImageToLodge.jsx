@@ -34,6 +34,7 @@ export default function AddImageToLodge({ id, isDarkMode }) {
             </div>
         )
     } catch (error) {
-        return <ErrorMessage isDarkMode={isDarkMode} error={error} />
+        console.log(error.message);
+        return <ErrorMessage isDarkMode={isDarkMode} />
     }
 };

@@ -29,6 +29,7 @@ export default function ProfileImage({ isDarkMode }) {
             </form>
         )
     } catch (error) {
-         return <ErrorMessage isDarkMode={isDarkMode} error={error} />
+        console.log(error.message);
+        return <ErrorMessage isDarkMode={isDarkMode} />
     }
 };

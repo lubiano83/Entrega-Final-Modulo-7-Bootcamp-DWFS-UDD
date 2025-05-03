@@ -34,6 +34,7 @@ export default function Reservation({ lodgeId, userId, isDarkMode }) {
             </form>
         )
     } catch (error) {
-        return <ErrorMessage isDarkMode={isDarkMode} error={error} />
+        console.log(error.message);
+        return <ErrorMessage isDarkMode={isDarkMode} />
     }
 };

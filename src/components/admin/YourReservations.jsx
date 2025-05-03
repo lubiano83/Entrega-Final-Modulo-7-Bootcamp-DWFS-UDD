@@ -65,6 +65,7 @@ export default function YourReservations({ isDarkMode }) {
             </div>
         )
     } catch (error) {
-        return <ErrorMessage isDarkMode={isDarkMode} error={error} />
+        console.log(error.message);
+        return <ErrorMessage isDarkMode={isDarkMode} />
     }
 };
