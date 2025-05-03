@@ -21,13 +21,13 @@ export default function LodgeDetail({ id, isDarkMode }) {
 
     const nextImage = () => {
         setCurrentImageIndex((prevIndex) =>
-            prevIndex === lodgeById.image.length - 1 ? 0 : prevIndex + 1
+            prevIndex === lodgeById?.image?.length - 1 ? 0 : prevIndex + 1
         );
     };
 
     const prevImage = () => {
         setCurrentImageIndex((prevIndex) =>
-            prevIndex === 0 ? lodgeById.image.length - 1 : prevIndex - 1
+            prevIndex === 0 ? lodgeById?.image?.length - 1 : prevIndex - 1
         );
     };
 
@@ -83,7 +83,6 @@ export default function LodgeDetail({ id, isDarkMode }) {
             </>
         )
     } catch (error) {
-        console.log(error.message);
-        return <ErrorMessage isDarkMode={isDarkMode} />
+        return <ErrorMessage isDarkMode={isDarkMode} error={error} />
     }
 };

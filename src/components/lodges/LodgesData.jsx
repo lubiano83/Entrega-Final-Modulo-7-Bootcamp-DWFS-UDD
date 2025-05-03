@@ -41,7 +41,6 @@ export default function LodgesData({ isDarkMode }) {
             </div>
         )
     } catch (error) {
-        console.log(error.message);
-        return <ErrorMessage isDarkMode={isDarkMode} />
+       return <ErrorMessage isDarkMode={isDarkMode} error={error} />
     }
 };

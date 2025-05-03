@@ -23,7 +23,7 @@ export default function LoginForm({ isDarkMode }) {
                 <input type="text" name="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Ingresa tu email.." className={`border-2 ${isDarkMode ? "border-amber-950 text-amber-950" : "border-green-950 text-green-950"} rounded-lg bg-white px-2 py-1 w-full`} />
                 <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Ingresa tu contraseña.." className={`border-2 ${isDarkMode ? "border-amber-950 text-amber-950" : "border-green-950 text-green-950"} rounded-lg bg-white px-2 py-1 w-full`} />
                 <div className="flex justify-center items-center gap-2">
-                    <Link isDarkMode={isDarkMode} to={"/register"}>
+                    <Link to={"/register"}>
                         <Boton isDarkMode={isDarkMode} >Register</Boton>
                     </Link>
                     <Boton isDarkMode={isDarkMode} type="submit">Ingresar</Boton>
@@ -31,7 +31,6 @@ export default function LoginForm({ isDarkMode }) {
             </form>
         )
     } catch (error) {
-        console.log(error.message);
-        return <ErrorMessage isDarkMode={isDarkMode} />
+        return <ErrorMessage isDarkMode={isDarkMode} error={error} />
     }
 };

@@ -36,7 +36,6 @@ export default function EditProfile({ isDarkMode }) {
             </form>
         )
     } catch (error) {
-        console.log(error.message);
-        return <ErrorMessage isDarkMode={isDarkMode} />
+        return <ErrorMessage isDarkMode={isDarkMode} error={error} />
     }
 };

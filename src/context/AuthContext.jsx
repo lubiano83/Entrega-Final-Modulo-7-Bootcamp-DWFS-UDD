@@ -162,7 +162,6 @@ export const AuthProvider = ({ children }) => {
 
     const getCurrentSession = async () => {
         try {
-            if(!token) return;
             const response = await fetch("https://entrega-final-modulo-6-bootcamp-dwfs-udd.onrender.com/api/sessions/current/user", {
                 method: "GET",
                 credentials: "include"
