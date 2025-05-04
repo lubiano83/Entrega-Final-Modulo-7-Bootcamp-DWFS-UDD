@@ -13,7 +13,7 @@ export default function YourLodges({ isDarkMode }) {
         return <Message isDarkMode={isDarkMode} >Cargando...</Message>
     };
 
-    if(lodgesByUserId.length > 0) {
+    if(lodgesByUserId.length === 0) {
         return <Message isDarkMode={isDarkMode} className={"hidden xl:flex"}>No hay cabañas disponibles...</Message>
     };
 
