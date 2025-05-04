@@ -31,6 +31,6 @@ export default function Reservation({ lodgeId, userId, isDarkMode }) {
             </form>
         )
     } catch (error) {
-        return <ErrorMessage error={error} isDarkMode={isDarkMode} />
+        return <ErrorMessage url={`/lodges/${lodgeId}`} error={error} isDarkMode={isDarkMode} />
     }
 };

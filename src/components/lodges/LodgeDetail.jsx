@@ -83,6 +83,6 @@ export default function LodgeDetail({ id, isDarkMode }) {
             </div>
         )
     } catch (error) {
-        return <ErrorMessage error={error} isDarkMode={isDarkMode} />
+        return <ErrorMessage url={"/"} error={error} isDarkMode={isDarkMode} />
     }
 };

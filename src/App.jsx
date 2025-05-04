@@ -10,6 +10,7 @@ import Menu from "./components/menu/menu";
 import Footer from "./components/footer/Footer";
 // Inicio
 import AboutPage from "./pages/AboutPage";
+import NotFoundPage from "./pages/NotFoundPage";
 // Auth
 import RegisterPage from "./pages/auth/RegisterPage";
 import LoginPage from "./pages/auth/LoginPage";
@@ -53,6 +54,7 @@ export default function App() {
                       {/* Inicio */}
                       <Route path="/" element={ <LodgesPage isDarkMode={isDarkMode} /> } />
                       <Route path="/about" element={ <AboutPage isDarkMode={isDarkMode} /> } />
+                      <Route path="*" element={ <NotFoundPage isDarkMode={isDarkMode} /> } />
                       {/* Auth */}
                       <Route path="/register" element={ <RegisterPage isDarkMode={isDarkMode} /> } />
                       <Route path="/login" element={ <LoginPage isDarkMode={isDarkMode} /> } />
