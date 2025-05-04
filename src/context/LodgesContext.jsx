@@ -200,7 +200,7 @@ export const LodgesProvider = ({ children }) => {
                 credentials: "include"
             });
             if (response.ok) {
-                alert("Imagen actualizada con éxito");
+                alert("Imagen agregada con éxito");
                 setImage(null);
                 await getLodgesByUserId();
                 await getLodges();
