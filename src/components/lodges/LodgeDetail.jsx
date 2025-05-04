@@ -10,7 +10,7 @@ import ErrorMessage from "../ErrorMessage";
 
 export default function LodgeDetail({ id, isDarkMode }) {
 
-    const { logged } = useAuth();
+    const { logged, user } = useAuth();
     const { getLodgeById, lodgeById } = useLodges();
     const { capitalizeEachWord } = useCapitalize();
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -19,7 +19,7 @@ export default function LodgeDetail({ id, isDarkMode }) {
         getLodgeById(id);
     }, [id]);
 
-    if (!lodgeById || !Array.isArray(lodgeById.image) || lodgeById.image.length === 0) {
+    if (!lodgeById || !user || !Array.isArray(lodgeById.image) || lodgeById.image.length === 0) {
         return <Message isDarkMode={isDarkMode}>Cargando...</Message>;
     }
 
@@ -74,7 +74,7 @@ export default function LodgeDetail({ id, isDarkMode }) {
                             !logged ? 
                             <Boton isDarkMode={isDarkMode} onClick={() => alert("Primero debes iniciar sesion.")}>Reservar</Boton>
                             :
-                            <Link to={`/lodges/reservation/${lodgeById._id}/${lodgeById.userId}`} state={{lodgeById}} >
+                            <Link to={`/lodges/reservation/${lodgeById._id}/${user._id}`} state={{lodgeById}} >
                                 <Boton isDarkMode={isDarkMode} >Reservar</Boton>
                             </Link>
                         }
