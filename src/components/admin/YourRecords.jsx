@@ -13,7 +13,7 @@ export default function YourRecords({ isDarkMode }) {
     };
 
     if(recordsByUserId.length === 0) {
-        return <Message isDarkMode={isDarkMode} className={"hidden xl:flex"}>No hay reservas disponibles...</Message>
+        return <Message isDarkMode={isDarkMode} className={"hidden xl:flex"}>No hay registros disponibles...</Message>
     };
 
     try {
