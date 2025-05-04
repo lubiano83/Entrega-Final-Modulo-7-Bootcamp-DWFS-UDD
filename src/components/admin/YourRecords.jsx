@@ -12,7 +12,7 @@ export default function YourRecords({ isDarkMode }) {
         return <Message isDarkMode={isDarkMode} >Cargando...</Message>
     };
 
-    if(recordsByUserId.length > 0) {
+    if(recordsByUserId.length === 0) {
         return <Message isDarkMode={isDarkMode} className={"hidden xl:flex"}>No hay reservas disponibles...</Message>
     };
 
