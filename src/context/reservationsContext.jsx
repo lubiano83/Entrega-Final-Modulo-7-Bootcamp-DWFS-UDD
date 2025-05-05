@@ -23,6 +23,7 @@ export const ReservationsProvider = ({ children }) => {
       
         const fetchUser = async () => {
           await getReservationsByUserId();
+          await getRecordsByUserId();
         };
       
         fetchUser();

@@ -16,6 +16,8 @@ export default function YourRecords({ isDarkMode }) {
         return <Message isDarkMode={isDarkMode} >No hay registros disponibles...</Message>
     };
 
+    const totalPrice = recordsByUserId.reduce((sum, record) => sum + (record.price || 0), 0);
+
     try {
         return (
             <div className="flex flex-col justify-center items-center gap-4">
@@ -53,6 +55,7 @@ export default function YourRecords({ isDarkMode }) {
                         }
                     </tbody>
                 </table>
+                <p className={`${isDarkMode ? "text-amber-950" : "text-green-950"}`}><strong>Total:</strong> ${totalPrice} </p>
             </div>
         )
     } catch (error) {

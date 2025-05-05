@@ -40,7 +40,7 @@ export const RecordsProvider = ({ children }) => {
     };
 
     return (
-        <RecordsContext.Provider value={{ recordsByUserId }} >
+        <RecordsContext.Provider value={{ getRecordsByUserId, recordsByUserId }} >
             { children }
         </RecordsContext.Provider>
     )

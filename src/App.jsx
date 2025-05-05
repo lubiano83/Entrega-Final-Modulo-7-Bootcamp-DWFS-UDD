@@ -42,8 +42,8 @@ export default function App() {
   return (
     <AuthProvider>
       <LodgesProvider>
-        <ReservationsProvider>
-          <RecordsProvider>
+        <RecordsProvider>
+          <ReservationsProvider>
             <BrowserRouter>
               <div className="min-h-screen grid grid-rows-[auto_1fr_auto] font-serif">
                 <Navbar toggleDarkMode={toggleDarkMode} isDarkMode={isDarkMode} />
@@ -80,8 +80,8 @@ export default function App() {
                 <Footer derechos={derechos} email={email} toggleDarkMode={toggleDarkMode} isDarkMode={isDarkMode} />
               </div>
             </BrowserRouter>
-          </RecordsProvider>
-        </ReservationsProvider>
+          </ReservationsProvider>
+        </RecordsProvider>
       </LodgesProvider>
     </AuthProvider>
   )
