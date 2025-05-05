@@ -8,8 +8,8 @@ export const ReservationsContext = createContext(null);
 export const ReservationsProvider = ({ children }) => {
 
     const { token, getCurrentSession } = useAuth();
-    const [ reservationsByUserId, setReservationsByUserId ] = useState([]);
     const { getRecordsByUserId } = useRecords();
+    const [ reservationsByUserId, setReservationsByUserId ] = useState([]);
     const [ people, setPeople ] = useState("");
     const [ arrive, setArrive ] = useState("");
     const [ leave, setLeave ] = useState("");
@@ -23,7 +23,6 @@ export const ReservationsProvider = ({ children }) => {
       
         const fetchUser = async () => {
           await getReservationsByUserId();
-          await getRecordsByUserId();
         };
       
         fetchUser();

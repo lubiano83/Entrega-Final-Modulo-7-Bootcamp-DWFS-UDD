@@ -7,7 +7,7 @@ export const RecordsContext = createContext(null);
 export const RecordsProvider = ({ children }) => {
 
     const { token, getCurrentSession } = useAuth();
-    const [ recordsByUserId, setRecordsByUserId ] = useState([]);
+    const [ recordsByUserId, setRecordsByUserId ] = useState(null);
 
     useEffect(() => {
         getCurrentSession();
