@@ -19,7 +19,7 @@ export default function LodgeDetail({ id, isDarkMode }) {
         getLodgeById(id);
     }, [id]);
 
-    if (!lodgeById || !user || !Array.isArray(lodgeById.image) || lodgeById.image.length === 0) {
+    if (!lodgeById || !Array.isArray(lodgeById.image) || lodgeById.image.length === 0) {
         return <Message isDarkMode={isDarkMode}>Cargando...</Message>;
     }
 
@@ -65,6 +65,9 @@ export default function LodgeDetail({ id, isDarkMode }) {
                         <p><strong>Temporada Alta: </strong>${lodgeById.season.high}</p>
                         <p><strong>Temporada Media: </strong>${lodgeById.season.medium}</p>
                         <p><strong>Temporada Baja: </strong>{lodgeById.season.low}</p>
+                        <Link to={`${lodgeById.mapUrl}`} target="_blank">
+                            <p><strong>Ubicación: </strong>{lodgeById.mapUrl ? "Google Maps" : "Sin ubicacion"}</p>
+                        </Link>
                     </div>
                     <div className="flex justify-center items-center gap-2 w-full">
                         <Link to={"/"}>
@@ -74,7 +77,7 @@ export default function LodgeDetail({ id, isDarkMode }) {
                             !logged ? 
                             <Boton isDarkMode={isDarkMode} onClick={() => alert("Primero debes iniciar sesion.")}>Reservar</Boton>
                             :
-                            <Link to={`/lodges/reservation/${lodgeById._id}/${user._id}`} state={{lodgeById}} >
+                            <Link to={`/lodges/reservation/${lodgeById._id}/${user?._id}`} state={{lodgeById}} >
                                 <Boton isDarkMode={isDarkMode} >Reservar</Boton>
                             </Link>
                         }

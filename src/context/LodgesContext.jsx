@@ -20,6 +20,7 @@ export const LodgesProvider = ({ children }) => {
     const [ high, setHigh ] = useState("");
     const [ medium, setMedium ] = useState("");
     const [ low, setLow ] = useState("");
+    const [ url, setUrl ] = useState("");
 
     useEffect(() => {
         getLodges();
@@ -139,7 +140,8 @@ export const LodgesProvider = ({ children }) => {
                         high,
                         medium,
                         low
-                    }
+                    },
+                    url
                 })
             });
             if (response.ok) {
@@ -153,6 +155,7 @@ export const LodgesProvider = ({ children }) => {
                 setHigh("");
                 setMedium("");
                 setLow("");
+                setUrl("");
                 await getLodgesByUserId();
                 await getLodges();
                 return true;
@@ -284,7 +287,7 @@ export const LodgesProvider = ({ children }) => {
     };
 
     return (
-        <LodgesContext.Provider value={{ createLodge, updateLodgeById, changeAvailable, getLodgeById, addImageToLodge, deleteAllImageFromLodge, deleteLodgeById, changeWifi, lodges, lodgeById, lodgesByUserId, image, setImage, hotel, setHotel, size, setSize, bedroom, setBedroom, bathroom, setBathroom, capacity, setCapacity, wifi, setWifi, high, setHigh, medium, setMedium, low, setLow }}>
+        <LodgesContext.Provider value={{ createLodge, updateLodgeById, changeAvailable, getLodgeById, addImageToLodge, deleteAllImageFromLodge, deleteLodgeById, changeWifi, lodges, lodgeById, lodgesByUserId, image, setImage, hotel, setHotel, size, setSize, bedroom, setBedroom, bathroom, setBathroom, capacity, setCapacity, wifi, setWifi, high, setHigh, medium, setMedium, low, setLow, url, setUrl }}>
             { children }
         </LodgesContext.Provider>
     )
