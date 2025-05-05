@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import useAuth from "../hook/useAuth";
 import { jwtDecode } from "jwt-decode";
+import useRecords from "../hook/useRecords";
 
 export const ReservationsContext = createContext(null);
 
@@ -8,6 +9,7 @@ export const ReservationsProvider = ({ children }) => {
 
     const { token, getCurrentSession } = useAuth();
     const [ reservationsByUserId, setReservationsByUserId ] = useState([]);
+    const { getRecordsByUserId } = useRecords();
     const [ people, setPeople ] = useState("");
     const [ arrive, setArrive ] = useState("");
     const [ leave, setLeave ] = useState("");
@@ -85,6 +87,7 @@ export const ReservationsProvider = ({ children }) => {
             if (response.ok) {
                 alert("Reserva Finalizada con éxito");
                 await getReservationsByUserId();
+                await getRecordsByUserId();
                 return true;
             } else {
                 const error = await response.json();
