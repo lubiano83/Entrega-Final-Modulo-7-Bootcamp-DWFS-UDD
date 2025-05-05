@@ -3,6 +3,7 @@ import moment from "moment";
 import Message from "../Message";
 import Title from "../Title";
 import ErrorMessage from "../ErrorMessage";
+import { Link } from "react-router-dom";
 
 export default function YourRecords({ isDarkMode }) {
 
@@ -41,8 +42,16 @@ export default function YourRecords({ isDarkMode }) {
                         {
                             recordsByUserId.map(item => (
                                 <tr key={item._id} className={`text-center ${isDarkMode ? "bg-amber-100" : "bg-green-100"}`}>
-                                    <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-56 p-2`}>{item.lodge.hotel}</td>
-                                    <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-56 p-2`}>{item.user.email}</td>
+                                    <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-56 p-2`}>
+                                        <Link to={`/lodges/${item.lodge._id}`}>
+                                            {item.lodge.hotel}
+                                        </Link>
+                                    </td>
+                                    <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-56 p-2`}>
+                                        <Link to={`mailto:${item.user.email}`}>
+                                            {item.user.email}
+                                        </Link>
+                                    </td>
                                     <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-24 p-2`}>{item.user.address.country}</td>
                                     <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-24 p-2`}>{item.user.address.city}</td>
                                     <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-28 p-2`}>{moment(item.arrive).format("YYYY/MM/DD")}</td>
