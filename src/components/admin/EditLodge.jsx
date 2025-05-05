@@ -7,7 +7,7 @@ import Message from "../Message";
 
 export default function EditLodge({ id, isDarkMode }) {
 
-    const { updateLodgeById, lodgesByUserId, hotel, setHotel, size, setSize, bedroom, setBedroom, bathroom, setBathroom, capacity, setCapacity, high, setHigh, medium, setMedium, low, setLow, url, setUrl } = useLodges();
+    const { updateLodgeById, lodgesByUserId, hotel, setHotel, size, setSize, bedroom, setBedroom, bathroom, setBathroom, capacity, setCapacity, high, setHigh, medium, setMedium, low, setLow, mapUrl, setMapUrl } = useLodges();
     const navigate = useNavigate();
 
     const handleSubmit = async(e) => {
@@ -32,7 +32,7 @@ export default function EditLodge({ id, isDarkMode }) {
                 <input type="number" name="high" value={high} onChange={(e) => setHigh(e.target.value)} placeholder="Precio temporada alta.." className={`border-2 ${isDarkMode ? "border-amber-950 text-amber-950" : "border-green-950 text-green-950"} rounded-lg bg-white px-2 py-1 w-full`} />
                 <input type="number" name="medium" value={medium} onChange={(e) => setMedium(e.target.value)} placeholder="Precio temporada media.." className={`border-2 ${isDarkMode ? "border-amber-950 text-amber-950" : "border-green-950 text-green-950"} rounded-lg bg-white px-2 py-1 w-full`} />
                 <input type="number" name="low" value={low} onChange={(e) => setLow(e.target.value)} placeholder="Precio temporada baja.." className={`border-2 ${isDarkMode ? "border-amber-950 text-amber-950" : "border-green-950 text-green-950"} rounded-lg bg-white px-2 py-1 w-full`} />
-                <input type="text" name="url" value={url} onChange={(e) => setUrl(e.target.value)} placeholder="Ubicacion GoogleMaps.." className={`border-2 ${isDarkMode ? "border-amber-950 text-amber-950" : "border-green-950 text-green-950"} rounded-lg bg-white px-2 py-1 w-full`} />
+                <input type="text" name="mapUrl" value={mapUrl} onChange={(e) => setMapUrl(e.target.value)} placeholder="Ubicacion GoogleMaps.." className={`border-2 ${isDarkMode ? "border-amber-950 text-amber-950" : "border-green-950 text-green-950"} rounded-lg bg-white px-2 py-1 w-full`} />
                 <div className="flex justify-center items-center gap-2">
                     <Link to={"/admin/lodges"}>
                         <Boton isDarkMode={isDarkMode} >Volver</Boton>
