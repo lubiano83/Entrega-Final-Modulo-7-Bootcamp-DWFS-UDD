@@ -52,8 +52,7 @@ export default function App() {
                   <div className="flex w-full h-full">
                     <Routes>
                       {/* Inicio */}
-                      <Route path="/" element={ <LodgesPage isDarkMode={isDarkMode} /> } />
-                      <Route path="/about" element={ <AboutPage isDarkMode={isDarkMode} /> } />
+                      <Route path="/" element={ <AboutPage isDarkMode={isDarkMode} /> } />
                       <Route path="*" element={ <NotFoundPage isDarkMode={isDarkMode} /> } />
                       {/* Auth */}
                       <Route path="/register" element={ <RegisterPage isDarkMode={isDarkMode} /> } />
@@ -63,6 +62,7 @@ export default function App() {
                       <Route path="/profile/edit" element={ <EditProfilePage isDarkMode={isDarkMode} /> } />
                       <Route path="/profile/image" element={ <ProfileImagePage isDarkMode={isDarkMode} /> } />
                       {/* Lodges */}
+                      <Route path="/lodges" element={ <LodgesPage isDarkMode={isDarkMode} /> } />
                       <Route path="/lodges/:id" element={ <LodgeDetailPage isDarkMode={isDarkMode} /> } />
                       <Route path="/lodges/reservation/:lodgeId/:userId" element={ <ReservationsPage isDarkMode={isDarkMode} /> } />
                       {/* Admin */}
