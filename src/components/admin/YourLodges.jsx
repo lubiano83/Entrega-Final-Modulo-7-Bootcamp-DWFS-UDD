@@ -52,7 +52,11 @@ export default function YourLodges({ isDarkMode }) {
                                             "0"
                                         )}
                                     </td>
-                                    <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-48 p-2 truncate max-w-[12rem]`}>{item.hotel}</td>
+                                    <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-48 p-2 truncate max-w-[12rem]`}>
+                                        <Link to={`/lodges/${item._id}`} className="hover:underline">
+                                            {item.hotel}
+                                        </Link>
+                                    </td>
                                     <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-18 p-2`}>{item.bedroom}</td>
                                     <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-18 p-2`}>{item.bathroom}</td>
                                     <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-15 p-2`}>{item.size}</td>
