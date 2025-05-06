@@ -2,14 +2,16 @@ import { Link } from "react-router-dom";
 import Message from "./Message";
 import Boton from "./Boton";
 
-export default function ErrorMessage({ isDarkMode, error, url }) {
-    console.log(error?.message)
+export default function ErrorMessage({ isDarkMode, error, path }) {
+    const { pathname } = new URL(path);
+    const origin = decodeURIComponent(pathname.split("/").pop());
+    console.log(`${origin}: ${error?.message}`)
     return (
         <div className="flex flex-col justify-center items-center gap-4">
             <Message isDarkMode={isDarkMode}>
                 Ups, hubo un Error..
             </Message>
-            <Link to={url}>
+            <Link to={"/"}>
                 <Boton isDarkMode={isDarkMode} >Volver</Boton>
             </Link>
         </div>

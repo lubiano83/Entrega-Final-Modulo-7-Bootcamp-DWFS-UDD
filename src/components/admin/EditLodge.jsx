@@ -42,6 +42,9 @@ export default function EditLodge({ id, isDarkMode }) {
             </form>
         )
     } catch (error) {
-        return <ErrorMessage isDarkMode={isDarkMode} error={error} />
+        const path = import.meta.url;
+        return (
+            <ErrorMessage isDarkMode={isDarkMode} path={path} error={error} />
+        )
     }
 };

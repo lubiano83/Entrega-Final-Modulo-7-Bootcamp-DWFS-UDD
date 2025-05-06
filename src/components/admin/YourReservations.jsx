@@ -5,6 +5,7 @@ import Title from "../Title";
 import moment from "moment";
 import SvgImage from "../SvgImage";
 import ErrorMessage from "../ErrorMessage";
+import Boton from "../Boton";
 
 export default function YourReservations({ isDarkMode }) {
 
@@ -15,7 +16,14 @@ export default function YourReservations({ isDarkMode }) {
     };
 
     if(reservationsByUserId.length === 0) {
-        return <Message isDarkMode={isDarkMode} >No hay reservas disponibles...</Message>
+        return (
+            <>
+                <Message isDarkMode={isDarkMode} >No hay reservas disponibles...</Message>
+                <Link to={"/admin"}>
+                    <Boton isDarkMode={isDarkMode}>Volver</Boton>
+                </Link>
+            </>
+        )
     }
 
     try {
@@ -72,9 +80,15 @@ export default function YourReservations({ isDarkMode }) {
                         }
                     </tbody>
                 </table>
+                <Link to={"/admin"}>
+                    <Boton isDarkMode={isDarkMode} >Volver</Boton>
+                </Link>
             </div>
         )
     } catch (error) {
-        return <ErrorMessage isDarkMode={isDarkMode} error={error} />
+        const path = import.meta.url;
+        return (
+            <ErrorMessage isDarkMode={isDarkMode} path={path} error={error} />
+        )
     }
 };

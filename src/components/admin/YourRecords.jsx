@@ -4,6 +4,7 @@ import Message from "../Message";
 import Title from "../Title";
 import ErrorMessage from "../ErrorMessage";
 import { Link } from "react-router-dom";
+import Boton from "../Boton";
 
 export default function YourRecords({ isDarkMode }) {
 
@@ -14,7 +15,14 @@ export default function YourRecords({ isDarkMode }) {
     };
 
     if(recordsByUserId.length === 0) {
-        return <Message isDarkMode={isDarkMode} >No hay registros disponibles...</Message>
+        return (
+            <>
+                <Message isDarkMode={isDarkMode} >No hay reservas disponibles...</Message>
+                <Link to={"/admin"}>
+                    <Boton isDarkMode={isDarkMode}>Volver</Boton>
+                </Link>
+            </>
+        )
     };
 
     const totalPrice = recordsByUserId.reduce((sum, record) => sum + (record.price || 0), 0);
@@ -65,9 +73,15 @@ export default function YourRecords({ isDarkMode }) {
                     </tbody>
                 </table>
                 <p className={`${isDarkMode ? "text-amber-950" : "text-green-950"}`}><strong>Total:</strong> ${totalPrice} </p>
+                <Link to={"/admin"}>
+                    <Boton isDarkMode={isDarkMode} >Volver</Boton>
+                </Link>
             </div>
         )
     } catch (error) {
-        return <ErrorMessage isDarkMode={isDarkMode} error={error} />
+        const path = import.meta.url;
+        return (
+            <ErrorMessage isDarkMode={isDarkMode} path={path} error={error} />
+        )
     }
 };

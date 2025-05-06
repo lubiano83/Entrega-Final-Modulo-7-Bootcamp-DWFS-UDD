@@ -4,6 +4,7 @@ import Message from "../Message";
 import SvgImage from "../SvgImage";
 import Title from "../Title";
 import ErrorMessage from "../ErrorMessage";
+import Boton from "../Boton";
 
 export default function YourLodges({ isDarkMode }) {
 
@@ -16,7 +17,14 @@ export default function YourLodges({ isDarkMode }) {
     };
 
     if(lodgesByUserId.length === 0) {
-        return <Message isDarkMode={isDarkMode} >No hay cabañas disponibles...</Message>
+        return (
+            <>
+                <Message isDarkMode={isDarkMode} >No hay reservas disponibles...</Message>
+                <Link to={"/admin"}>
+                    <Boton isDarkMode={isDarkMode}>Volver</Boton>
+                </Link>
+            </>
+        )
     };
 
     try {
@@ -107,9 +115,15 @@ export default function YourLodges({ isDarkMode }) {
                         }
                     </tbody>
                 </table>
+                <Link to={"/admin"}>
+                    <Boton isDarkMode={isDarkMode} >Volver</Boton>
+                </Link>
             </div>
         )
     } catch (error) {
-        return <ErrorMessage isDarkMode={isDarkMode} error={error} />
+        const path = import.meta.url;
+        return (
+            <ErrorMessage isDarkMode={isDarkMode} path={path} error={error} />
+        )
     }
 };

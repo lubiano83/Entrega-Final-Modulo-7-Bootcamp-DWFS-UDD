@@ -34,6 +34,9 @@ export default function AddImageToLodge({ id, isDarkMode }) {
             </div>
         )
     } catch (error) {
-        return <ErrorMessage isDarkMode={isDarkMode} error={error} />
+        const path = import.meta.url;
+        return (
+            <ErrorMessage isDarkMode={isDarkMode} path={path} error={error} />
+        )
     }
 };
