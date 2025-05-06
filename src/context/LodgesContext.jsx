@@ -141,7 +141,6 @@ export const LodgesProvider = ({ children }) => {
                         medium,
                         low
                     },
-                    mapUrl
                 })
             });
             if (response.ok) {
@@ -155,7 +154,6 @@ export const LodgesProvider = ({ children }) => {
                 setHigh("");
                 setMedium("");
                 setLow("");
-                setMapUrl("");
                 await getLodgesByUserId();
                 await getLodges();
                 return true;
@@ -166,6 +164,31 @@ export const LodgesProvider = ({ children }) => {
             }
         } catch (error) {
             throw new Error(`Hubo un problema al conectarse al backend: ${error.message}`);
+        }
+    };
+
+    const changeLocation = async(id) => {
+        try {
+            const response = await fetch(`https://entrega-final-modulo-6-bootcamp-dwfs-udd.onrender.com/api/lodges/location/${id}`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ mapUrl })
+            });
+            if (response.ok) {
+                alert("Ubicacion modificada con éxito");
+                setMapUrl("");
+                await getLodgesByUserId();
+                await getLodges();
+                return true;
+            } else {
+                const error = await response.json();
+                alert(error.message);
+                return false;
+            }
+        } catch (error) {
+            console.error("Hubo un problema al conectarse al backend..", error.message);
         }
     };
 
@@ -287,7 +310,7 @@ export const LodgesProvider = ({ children }) => {
     };
 
     return (
-        <LodgesContext.Provider value={{ createLodge, updateLodgeById, changeAvailable, getLodgeById, addImageToLodge, deleteAllImageFromLodge, deleteLodgeById, changeWifi, lodges, lodgeById, lodgesByUserId, image, setImage, hotel, setHotel, size, setSize, bedroom, setBedroom, bathroom, setBathroom, capacity, setCapacity, wifi, setWifi, high, setHigh, medium, setMedium, low, setLow, mapUrl, setMapUrl }}>
+        <LodgesContext.Provider value={{ createLodge, updateLodgeById, changeAvailable, changeLocation, getLodgeById, addImageToLodge, deleteAllImageFromLodge, deleteLodgeById, changeWifi, lodges, lodgeById, lodgesByUserId, image, setImage, hotel, setHotel, size, setSize, bedroom, setBedroom, bathroom, setBathroom, capacity, setCapacity, wifi, setWifi, high, setHigh, medium, setMedium, low, setLow, mapUrl, setMapUrl }}>
             { children }
         </LodgesContext.Provider>
     )

@@ -89,6 +89,14 @@ export default function YourLodges({ isDarkMode }) {
                                                 </span>
                                             </div>
                                             <div className="relative group">
+                                                <Link to={`/admin/location/${item._id}`}>
+                                                    <SvgImage src={"/location-plus-svgrepo-com.svg"} />
+                                                </Link>
+                                                <span className={`absolute -top-8 left-1/2 transform -translate-x-1/2 scale-0 group-hover:scale-100 transition-all bg-white ${isDarkMode ? "text-amber-950" : "text-green-950"} text-xs p-1 rounded-md w-30`}>
+                                                    Establecer Ubicación
+                                                </span>
+                                            </div>
+                                            <div className="relative group">
                                                 <Link to={`/admin/lodges/image/${item._id}`}>
                                                     <SvgImage src={"/image-plus-svgrepo-com-green.svg"} />
                                                 </Link>

@@ -31,6 +31,7 @@ import AddImageToLodgePage from "./pages/admin/AddImageToLodgePage";
 import YourReservationsPage from "./pages/admin/YourReservationsPage";
 import ReservationFinishPage from "./pages/admin/ReservationFinishPage";
 import YourRecordsPage from "./pages/admin/YourRecordsPage";
+import MapLocationPage from "./pages/admin/MapLocationPage";
 
 export default function App() {
 
@@ -74,6 +75,7 @@ export default function App() {
                       <Route path="/admin/reservations" element={ <YourReservationsPage isDarkMode={isDarkMode} /> } />
                       <Route path="/admin/reservations/finish/:id" element={ <ReservationFinishPage isDarkMode={isDarkMode} /> } />
                       <Route path="/admin/records" element={ <YourRecordsPage isDarkMode={isDarkMode} /> } />
+                      <Route path="/admin/location/:id" element={ <MapLocationPage isDarkMode={isDarkMode} /> } />
                     </Routes>
                   </div>
                 </div>
