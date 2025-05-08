@@ -5,6 +5,7 @@ import Title from "../Title";
 import ErrorMessage from "../ErrorMessage";
 import { Link } from "react-router-dom";
 import Boton from "../Boton";
+import DataAnalysis from "./DataAnalysis";
 
 export default function YourRecords({ isDarkMode }) {
 
@@ -25,13 +26,11 @@ export default function YourRecords({ isDarkMode }) {
         )
     };
 
-    const totalPrice = recordsByUserId.reduce((sum, record) => sum + (record.price || 0), 0);
-
     try {
         return (
             <div className="flex flex-col justify-center items-center gap-4">
                 <Message isDarkMode={isDarkMode} className="flex xl:hidden">Vista no disponible en dispositivos moviles..</Message>
-                <Title isDarkMode={isDarkMode} className={"hidden xl:flex"}>Reservas:</Title>
+                <Title isDarkMode={isDarkMode} className={"hidden xl:flex"}>Registros:</Title>
                 <table className={`${isDarkMode ? "text-amber-950 shadow-amber-950" : "text-green-950 shadow-green-950"} hidden xl:flex flex-col justify-center items-center shadow-sm`}>
                     <thead className={`${isDarkMode ? "bg-amber-200" : "bg-green-200"}`}>
                         <tr className="border">
@@ -72,7 +71,7 @@ export default function YourRecords({ isDarkMode }) {
                         }
                     </tbody>
                 </table>
-                <p className={`${isDarkMode ? "text-amber-950" : "text-green-950"}`}><strong>Total:</strong> ${totalPrice} </p>
+                <DataAnalysis isDarkMode={isDarkMode} recordsByUserId={recordsByUserId} />
                 <Link to={"/admin"}>
                     <Boton isDarkMode={isDarkMode} >Volver</Boton>
                 </Link>
