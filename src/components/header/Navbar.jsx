@@ -8,7 +8,7 @@ export default function Navbar({ toggleDarkMode, isDarkMode }) {
     const { user, logged } = useAuth();
 
     return (
-        <div className={`flex justify-evenly items-center p-4 ${isDarkMode ? "bg-amber-700" : "bg-green-700" } gap-2`}>
+        <div className={`flex justify-evenly items-center p-3 ${isDarkMode ? "bg-amber-700" : "bg-green-700" } gap-2`}>
             <Logo isDarkMode={isDarkMode} />
             <SvgImage src={"/sun-svgrepo-com-white.svg"} fnc={() => toggleDarkMode()} />
             { !logged ?
