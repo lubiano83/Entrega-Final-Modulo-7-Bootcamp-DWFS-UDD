@@ -7,6 +7,7 @@ import useAuth from "../../hook/useAuth";
 import useLodges from "../../hook/useLodges";
 import useCapitalize from "../../hook/useCapitalize";
 import ErrorMessage from "../ErrorMessage";
+import GoBack from "../GoBack";
 
 export default function LodgeDetail({ id, isDarkMode }) {
 
@@ -70,9 +71,7 @@ export default function LodgeDetail({ id, isDarkMode }) {
                         </Link>
                     </div>
                     <div className="flex justify-center items-center gap-2 w-full">
-                        <Link to={"/"}>
-                            <Boton isDarkMode={isDarkMode} >Volver</Boton>
-                        </Link>
+                        <GoBack isDarkMode={isDarkMode} path={"/"} />
                         { 
                             !logged ? 
                             <Boton isDarkMode={isDarkMode} onClick={() => alert("Primero debes iniciar sesion.")}>Reservar</Boton>

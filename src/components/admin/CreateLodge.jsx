@@ -1,10 +1,10 @@
-import { Link } from "react-router-dom";
 import useLodges from "../../hook/useLodges";
 import Boton from "../Boton";
 import Message from "../Message";
 import { useNavigate } from "react-router-dom";
 import Title from "../Title";
 import ErrorMessage from "../ErrorMessage";
+import GoBack from "../GoBack";
 
 export default function CreateLodge({ isDarkMode }) {
 
@@ -32,9 +32,7 @@ export default function CreateLodge({ isDarkMode }) {
                     <input type="number" name="medium" value={medium} onChange={(e) => setMedium(e.target.value)} placeholder="Precio temporada media.." className={`border-2 ${isDarkMode ? "border-amber-950 text-amber-950" : "border-green-950 text-green-950"} rounded-lg bg-white px-2 py-1 w-full`} />
                     <input type="number" name="low" value={low} onChange={(e) => setLow(e.target.value)} placeholder="Precio temporada baja.." className={`border-2 ${isDarkMode ? "border-amber-950 text-amber-950" : "border-green-950 text-green-950"} rounded-lg bg-white px-2 py-1 w-full`} />
                     <div className="flex justify-center items-center gap-2">
-                        <Link to={"/admin"}>
-                            <Boton isDarkMode={isDarkMode} >Volver</Boton>
-                        </Link>
+                        <GoBack isDarkMode={isDarkMode} path={"/admin"} />
                         <Boton isDarkMode={isDarkMode} type="submit">Ingresar</Boton>
                     </div>
                 </form>

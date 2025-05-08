@@ -31,6 +31,9 @@ export default function AdminPage({ isDarkMode }) {
                     <Link to={"/admin/records"}>
                         <div className={`${isDarkMode ? "bg-amber-100 shadow-amber-950" : "bg-green-100 shadow-green-950"} px-4 py-2 rounded-xl shadow-sm font-bold`}>Tus Registros</div>
                     </Link>
+                    <Link to={"/admin/analytics"}>
+                        <div className={`${isDarkMode ? "bg-amber-100 shadow-amber-950" : "bg-green-100 shadow-green-950"} px-4 py-2 rounded-xl shadow-sm font-bold`}>Analsis de Datos</div>
+                    </Link>
                 </div>
             </div>
         </div>

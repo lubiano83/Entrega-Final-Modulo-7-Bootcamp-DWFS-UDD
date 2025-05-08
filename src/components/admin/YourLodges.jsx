@@ -4,25 +4,19 @@ import Message from "../Message";
 import SvgImage from "../SvgImage";
 import Title from "../Title";
 import ErrorMessage from "../ErrorMessage";
-import Boton from "../Boton";
+import GoBack from "../GoBack";
 
 export default function YourLodges({ isDarkMode }) {
 
     const { lodgesByUserId, changeAvailable, deleteAllImageFromLodge, deleteLodgeById, changeWifi } = useLodges();
 
-    console.log(lodgesByUserId)
-
-    if(!lodgesByUserId) {
-        return <Message isDarkMode={isDarkMode} >Cargando...</Message>
-    };
+    if(!lodgesByUserId) return <Message isDarkMode={isDarkMode} >Cargando...</Message>
 
     if(lodgesByUserId.length === 0) {
         return (
             <>
                 <Message isDarkMode={isDarkMode} >No hay reservas disponibles...</Message>
-                <Link to={"/admin"}>
-                    <Boton isDarkMode={isDarkMode}>Volver</Boton>
-                </Link>
+                <GoBack isDarkMode={isDarkMode} path={"/admin"} />
             </>
         )
     };
@@ -123,9 +117,7 @@ export default function YourLodges({ isDarkMode }) {
                         }
                     </tbody>
                 </table>
-                <Link to={"/admin"}>
-                    <Boton isDarkMode={isDarkMode} >Volver</Boton>
-                </Link>
+                <GoBack isDarkMode={isDarkMode} path={"/admin"} />
             </div>
         )
     } catch (error) {

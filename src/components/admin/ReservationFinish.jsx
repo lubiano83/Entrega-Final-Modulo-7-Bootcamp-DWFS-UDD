@@ -1,10 +1,11 @@
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Message from "../Message";
 import useReservations from "../../hook/useReservations";
 import Title from "../Title";
 import Boton from "../Boton";
 import { useState } from "react";
 import ErrorMessage from "../ErrorMessage";
+import GoBack from "../GoBack";
 
 export default function ReservationFinish({ item, isDarkMode }) {
 
@@ -30,9 +31,7 @@ export default function ReservationFinish({ item, isDarkMode }) {
                         <input type="checkbox" onChange={() => setPaid(!paid)} className="w-5 h-5" />
                     </div>
                     <div className="flex justify-center items-center gap-2">
-                        <Link to={"/admin/reservations"}>
-                            <Boton isDarkMode={isDarkMode} >Volver</Boton>
-                        </Link>
+                        <GoBack isDarkMode={isDarkMode} path={"/admin/reservations"} />
                         <Boton isDarkMode={isDarkMode} type="submit">Registrar</Boton>
                     </div>
                 </form>

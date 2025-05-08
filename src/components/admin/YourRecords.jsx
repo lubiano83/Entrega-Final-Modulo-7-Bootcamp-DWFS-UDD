@@ -4,24 +4,19 @@ import Message from "../Message";
 import Title from "../Title";
 import ErrorMessage from "../ErrorMessage";
 import { Link } from "react-router-dom";
-import Boton from "../Boton";
-import DataAnalysis from "./DataAnalysis";
+import GoBack from "../GoBack";
 
 export default function YourRecords({ isDarkMode }) {
 
     const { recordsByUserId } = useRecords();
 
-    if(!recordsByUserId) {
-        return <Message isDarkMode={isDarkMode} >Cargando...</Message>
-    };
+    if(!recordsByUserId) return <Message isDarkMode={isDarkMode} >Cargando...</Message>
 
     if(recordsByUserId.length === 0) {
         return (
             <>
                 <Message isDarkMode={isDarkMode} >No hay reservas disponibles...</Message>
-                <Link to={"/admin"}>
-                    <Boton isDarkMode={isDarkMode}>Volver</Boton>
-                </Link>
+                <GoBack isDarkMode={isDarkMode} path={"/admin"} />
             </>
         )
     };
@@ -71,10 +66,7 @@ export default function YourRecords({ isDarkMode }) {
                         }
                     </tbody>
                 </table>
-                <DataAnalysis isDarkMode={isDarkMode} recordsByUserId={recordsByUserId} />
-                <Link to={"/admin"}>
-                    <Boton isDarkMode={isDarkMode} >Volver</Boton>
-                </Link>
+                <GoBack isDarkMode={isDarkMode} path={"/admin"} />
             </div>
         )
     } catch (error) {

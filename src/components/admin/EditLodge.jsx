@@ -1,23 +1,22 @@
 import useLodges from "../../hook/useLodges";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Title from "../Title";
 import Boton from "../Boton";
 import ErrorMessage from "../ErrorMessage";
 import Message from "../Message";
+import GoBack from "../GoBack";
 
 export default function EditLodge({ id, isDarkMode }) {
 
     const { updateLodgeById, lodgesByUserId, hotel, setHotel, size, setSize, bedroom, setBedroom, bathroom, setBathroom, capacity, setCapacity, high, setHigh, medium, setMedium, low, setLow } = useLodges();
     const navigate = useNavigate();
 
+    if(!lodgesByUserId) return <Message isDarkMode={isDarkMode} >Cargando...</Message>
+
     const handleSubmit = async(e) => {
         e.preventDefault();
         const success = await updateLodgeById(id);
         if(success) return navigate("/admin/lodges");
-    };
-
-    if(!lodgesByUserId) {
-        return <Message isDarkMode={isDarkMode} >Cargando...</Message>
     };
     
     try {
@@ -33,9 +32,7 @@ export default function EditLodge({ id, isDarkMode }) {
                 <input type="number" name="medium" value={medium} onChange={(e) => setMedium(e.target.value)} placeholder="Precio temporada media.." className={`border-2 ${isDarkMode ? "border-amber-950 text-amber-950" : "border-green-950 text-green-950"} rounded-lg bg-white px-2 py-1 w-full`} />
                 <input type="number" name="low" value={low} onChange={(e) => setLow(e.target.value)} placeholder="Precio temporada baja.." className={`border-2 ${isDarkMode ? "border-amber-950 text-amber-950" : "border-green-950 text-green-950"} rounded-lg bg-white px-2 py-1 w-full`} />
                 <div className="flex justify-center items-center gap-2">
-                    <Link to={"/admin/lodges"}>
-                        <Boton isDarkMode={isDarkMode} >Volver</Boton>
-                    </Link>
+                    <GoBack isDarkMode={isDarkMode} path={"/admin/lodges"} />
                     <Boton isDarkMode={isDarkMode} type="submit">Modificar</Boton>
                 </div>
             </form>

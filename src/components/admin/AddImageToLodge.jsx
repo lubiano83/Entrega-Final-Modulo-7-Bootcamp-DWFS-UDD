@@ -1,10 +1,10 @@
 import useLodges from "../../hook/useLodges";
-import { Link } from "react-router-dom";
 import Title from "../Title";
 import Boton from "../Boton";
 import { useNavigate } from "react-router-dom";
 import Message from "../Message";
 import ErrorMessage from "../ErrorMessage";
+import GoBack from "../GoBack";
 
 export default function AddImageToLodge({ id, isDarkMode }) {
 
@@ -25,9 +25,7 @@ export default function AddImageToLodge({ id, isDarkMode }) {
                     <Title isDarkMode={isDarkMode} >Agregar Imagen:</Title>
                     <input type="file" name="image" accept="image/*" onChange={(e) => setImage(e.target.files[0])} placeholder="Selecciona una imagen..." className={`border-2 ${isDarkMode ? "border-amber-950" : "border-green-950"} rounded-lg bg-white text-amber-950 px-2 py-1 w-full`} />
                     <div className="flex justify-center items-center gap-2">
-                        <Link to={"/admin/lodges"}>
-                            <Boton isDarkMode={isDarkMode} >Volver</Boton>
-                        </Link>
+                        <GoBack isDarkMode={isDarkMode} path={"/admin/lodges"} />
                         <Boton isDarkMode={isDarkMode} type="submit">Modificar</Boton>
                     </div>
                 </form>

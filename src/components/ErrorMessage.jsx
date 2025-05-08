@@ -1,6 +1,5 @@
-import { Link } from "react-router-dom";
 import Message from "./Message";
-import Boton from "./Boton";
+import GoBack from "./GoBack";
 
 export default function ErrorMessage({ isDarkMode, error, path }) {
     const { pathname } = new URL(path);
@@ -11,9 +10,7 @@ export default function ErrorMessage({ isDarkMode, error, path }) {
             <Message isDarkMode={isDarkMode}>
                 Ups, hubo un Error..
             </Message>
-            <Link to={"/"}>
-                <Boton isDarkMode={isDarkMode} >Volver</Boton>
-            </Link>
+            <GoBack isDarkMode={isDarkMode} path={"/"} />
         </div>
     )
 };

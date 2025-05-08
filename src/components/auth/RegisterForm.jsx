@@ -4,6 +4,7 @@ import Boton from "../Boton";
 import Title from "../Title";
 import { useNavigate } from "react-router-dom";
 import ErrorMessage from "../ErrorMessage";
+import GoBack from "../GoBack";
 
 export default function Register({ isDarkMode }) {
     const { registerUser, first_name, setFirst_name, last_name, setLast_name, phone, setPhone, email, setEmail, password, setPassword, country, setCountry, state, setState, city, setCity, street, setStreet, number, setNumber } = useAuth();
@@ -30,9 +31,7 @@ export default function Register({ isDarkMode }) {
                 <input type="text" name="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Ingresa tu email.." className={`border-2 ${isDarkMode ? "border-amber-950" : "border-green-950"} rounded-lg bg-white text-amber-950 px-2 py-1 w-full`} />
                 <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Ingresa tu contraseña.." className={`border-2 ${isDarkMode ? "border-amber-950" : "border-green-950"} rounded-lg bg-white text-amber-950 px-2 py-1 w-full`} />
                 <div className="flex justify-center items-center gap-2">
-                    <Link to={"/login"}>
-                        <Boton isDarkMode={isDarkMode}>Login</Boton>
-                    </Link>
+                    <GoBack isDarkMode={isDarkMode} path={"/login"} />
                     <Boton isDarkMode={isDarkMode} type="submit">Registrar</Boton>
                 </div>
             </form>

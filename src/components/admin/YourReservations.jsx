@@ -5,23 +5,19 @@ import Title from "../Title";
 import moment from "moment";
 import SvgImage from "../SvgImage";
 import ErrorMessage from "../ErrorMessage";
-import Boton from "../Boton";
+import GoBack from "../GoBack";
 
 export default function YourReservations({ isDarkMode }) {
 
     const { reservationsByUserId } = useReservations();
 
-    if(!reservationsByUserId) {
-        return <Message isDarkMode={isDarkMode} >Cargando...</Message>
-    };
+    if(!reservationsByUserId) return <Message isDarkMode={isDarkMode} >Cargando...</Message>
 
     if(reservationsByUserId.length === 0) {
         return (
             <>
                 <Message isDarkMode={isDarkMode} >No hay reservas disponibles...</Message>
-                <Link to={"/admin"}>
-                    <Boton isDarkMode={isDarkMode}>Volver</Boton>
-                </Link>
+                <GoBack isDarkMode={isDarkMode} path={"/admin"} />
             </>
         )
     }
@@ -80,9 +76,7 @@ export default function YourReservations({ isDarkMode }) {
                         }
                     </tbody>
                 </table>
-                <Link to={"/admin"}>
-                    <Boton isDarkMode={isDarkMode} >Volver</Boton>
-                </Link>
+                <GoBack isDarkMode={isDarkMode} path={"/admin"} />
             </div>
         )
     } catch (error) {

@@ -3,6 +3,7 @@ import useReservations from "../../hook/useReservations";
 import { Link, useNavigate } from "react-router-dom";
 import Boton from "../Boton";
 import ErrorMessage from "../ErrorMessage";
+import GoBack from "../GoBack";
 
 export default function Reservation({ lodgeId, userId, isDarkMode }) {
     
@@ -23,9 +24,7 @@ export default function Reservation({ lodgeId, userId, isDarkMode }) {
                 <input type="text" name="arrive" value={arrive} onChange={(e) => setArrive(e.target.value)} placeholder="Fecha de llegada.. (YYYY-MM-DD)" className={`border-2 ${isDarkMode ? "border-amber-950 text-amber-950" : "border-green-950 text-green-950"} rounded-lg bg-white px-2 py-1 w-full`} />
                 <input type="text" name="leave" value={leave} onChange={(e) => setLeave(e.target.value)} placeholder="Fecha de salida.. (YYYY-MM-DD)" className={`border-2 ${isDarkMode ? "border-amber-950 text-amber-950" : "border-green-950 text-green-950"} rounded-lg bg-white px-2 py-1 w-full`} />
                 <div className="flex justify-center items-center gap-2">
-                    <Link to={`/lodges/${lodgeId}`}>
-                        <Boton isDarkMode={isDarkMode} >Volver</Boton>
-                    </Link>
+                    <GoBack isDarkMode={isDarkMode} path={`/lodges/${lodgeId}`} />
                     <Boton isDarkMode={isDarkMode} type="submit">Registrar</Boton>
                 </div>
             </form>

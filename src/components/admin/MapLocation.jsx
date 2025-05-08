@@ -1,9 +1,10 @@
 import useLodges from "../../hook/useLodges";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ErrorMessage from "../ErrorMessage";
 import Message from "../Message";
 import Title from "../Title";
 import Boton from "../Boton";
+import GoBack from "../GoBack";
 
 export default function MapLocation({ isDarkMode, id }) {
 
@@ -24,9 +25,7 @@ export default function MapLocation({ isDarkMode, id }) {
                     <Title isDarkMode={isDarkMode} >Agregar Ubicación:</Title>
                     <input type="text" name="mapUrl" value={mapUrl} onChange={(e) => setMapUrl(e.target.value)} placeholder="Ubicacion de Google Maps.." className={`border-2 ${isDarkMode ? "border-amber-950 text-amber-950" : "border-green-950 text-green-950"} rounded-lg bg-white px-2 py-1 w-full`} />
                     <div className="flex justify-center items-center gap-2">
-                        <Link to={"/admin/lodges"}>
-                            <Boton isDarkMode={isDarkMode} >Volver</Boton>
-                        </Link>
+                        <GoBack isDarkMode={isDarkMode} path={"/admin/lodges"} />
                         <Boton isDarkMode={isDarkMode} type="submit">Modificar</Boton>
                     </div>
                 </form>
