@@ -5,14 +5,15 @@ import YourRecords from "../../components/admin/YourRecords";
 
 export default function YourRecordsPage({ isDarkMode }) {
 
-    const { logged } = useAuth();
+    const { logged, token, setLogged } = useAuth();
     const navigate = useNavigate();
 
     useEffect(() => {
-            if (!logged) {
-                navigate("/");
-            }
-        }, [logged, navigate]);
+        if (!logged || !token) {
+            setLogged(false);
+            navigate("/");
+        }
+    }, [logged, navigate]);
 
     return (
         <div className={`${isDarkMode ? "text-amber-950" : "text-green-950"} h-full w-full flex flex-col justify-center items-center p-8 gap-4`}>

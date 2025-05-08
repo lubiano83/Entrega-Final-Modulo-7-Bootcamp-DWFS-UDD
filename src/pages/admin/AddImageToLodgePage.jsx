@@ -6,12 +6,13 @@ import Boton from "../../components/Boton";
 
 export default function AddImageToLodgePage({ isDarkMode }) {
 
-    const { logged } = useAuth();
+    const { logged, token, setLogged } = useAuth();
     const { id } = useParams();
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!logged) {
+        if (!logged || !token) {
+            setLogged(false);
             navigate("/");
         }
     }, [logged, navigate]);

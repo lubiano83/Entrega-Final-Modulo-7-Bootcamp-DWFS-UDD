@@ -6,14 +6,13 @@ import { useEffect } from "react";
 export default function ReservationsPage({ isDarkMode }) {
 
     const { lodgeId, userId } = useParams();
-    console.log(userId)
-    const { logged } = useAuth();
+    const { logged, token, setLogged } = useAuth();
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!logged) {
-            alert("Primero debes iniciar sesion.");
-            navigate(`/lodges/${lodgeId}`);
+        if (!logged || !token) {
+            setLogged(false);
+            navigate("/");
         }
     }, [logged, navigate]);
 

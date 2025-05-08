@@ -5,12 +5,13 @@ import { useEffect } from "react";
 
 export default function EditLodgePage({ isDarkMode }) {
 
-    const { logged } = useAuth();
     const { id } = useParams();
+    const { logged, token, setLogged } = useAuth();
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!logged) {
+        if (!logged || !token) {
+            setLogged(false);
             navigate("/");
         }
     }, [logged, navigate]);

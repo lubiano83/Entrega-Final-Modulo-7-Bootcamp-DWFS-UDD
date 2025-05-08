@@ -5,11 +5,13 @@ import { useEffect } from "react";
 
 export default function AdminPage({ isDarkMode }) {
 
-    const { logged } = useAuth();
+    
+    const { logged, token, setLogged } = useAuth();
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!logged) {
+        if (!logged || !token) {
+            setLogged(false);
             navigate("/");
         }
     }, [logged, navigate]);

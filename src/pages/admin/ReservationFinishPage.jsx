@@ -6,13 +6,14 @@ import { useEffect } from "react";
 
 export default function ReservationFinishPage({ isDarkMode }) {
 
-    const { logged } = useAuth();
-    const navigate = useNavigate();
     const location = useLocation();
     const item = location.state.item;
+    const { logged, token, setLogged } = useAuth();
+    const navigate = useNavigate();
 
     useEffect(() => {
-        if (!logged) {
+        if (!logged || !token) {
+            setLogged(false);
             navigate("/");
         }
     }, [logged, navigate]);

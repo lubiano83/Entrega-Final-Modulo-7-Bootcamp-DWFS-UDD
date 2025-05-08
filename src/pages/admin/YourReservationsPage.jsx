@@ -5,11 +5,12 @@ import { useEffect } from "react";
 
 export default function YourReservationsPage({ isDarkMode }) {
 
-    const { logged } = useAuth();
+    const { logged, token, setLogged } = useAuth();
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!logged) {
+        if (!logged || !token) {
+            setLogged(false);
             navigate("/");
         }
     }, [logged, navigate]);

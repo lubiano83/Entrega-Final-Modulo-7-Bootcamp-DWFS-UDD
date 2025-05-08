@@ -7,11 +7,12 @@ import { useNavigate } from "react-router-dom";
 export default function DataAnalysisPage({ isDarkMode }) {
 
     const { recordsByUserId } = useRecords();
-    const { logged } = useAuth();
+    const { logged, token, setLogged } = useAuth();
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!logged) {
+        if (!logged || !token) {
+            setLogged(false);
             navigate("/");
         }
     }, [logged, navigate]);
