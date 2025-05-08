@@ -38,9 +38,9 @@ export default function ReservationFinish({ item, isDarkMode }) {
             </div>
         )
     } catch (error) {
-        const path = import.meta.url;
+        const url = import.meta.url;
         return (
-            <ErrorMessage isDarkMode={isDarkMode} path={path} error={error} />
+            <ErrorMessage isDarkMode={isDarkMode} path={"/admin/reservations"} error={error} url={url} />
         )
     }
 };

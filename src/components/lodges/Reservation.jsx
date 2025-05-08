@@ -30,6 +30,7 @@ export default function Reservation({ lodgeId, userId, isDarkMode }) {
             </form>
         )
     } catch (error) {
-        return <ErrorMessage url={`/lodges/${lodgeId}`} error={error} isDarkMode={isDarkMode} />
+        const url = import.meta.url;
+        return <ErrorMessage path={`/lodges/${lodgeId}`} error={error} isDarkMode={isDarkMode} url={url} />
     }
 };

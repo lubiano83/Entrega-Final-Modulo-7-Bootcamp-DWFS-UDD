@@ -1,5 +1,6 @@
 import GoBack from "../GoBack";
 import Message from "../Message";
+import Title from "../Title";
 
 export default function DataAnalysis({ isDarkMode, recordsByUserId }) {
 
@@ -19,6 +20,8 @@ export default function DataAnalysis({ isDarkMode, recordsByUserId }) {
     try {
         return (
             <div className="flex flex-col justify-center items-center gap-4">
+                <Title isDarkMode={isDarkMode} className={"hidden xl:flex"}>Analisis de Datos:</Title>
+                <Message isDarkMode={isDarkMode} className="flex xl:hidden">Vista no disponible en dispositivos moviles..</Message>
                 <table className={`${isDarkMode ? "text-amber-950 shadow-amber-950" : "text-green-950 shadow-green-950"} hidden xl:flex flex-col justify-center items-center shadow-sm`}>
                     <thead className={`${isDarkMode ? "bg-amber-200" : "bg-green-200"}`}>
                         <tr className="border">
@@ -45,9 +48,9 @@ export default function DataAnalysis({ isDarkMode, recordsByUserId }) {
             </div>
         )
     } catch (error) {
-        const path = import.meta.url;
+        const url = import.meta.url;
         return (
-            <ErrorMessage isDarkMode={isDarkMode} path={path} error={error} />
+            <ErrorMessage isDarkMode={isDarkMode} path={"/admin"} error={error} url={url} />
         )
     }
 };

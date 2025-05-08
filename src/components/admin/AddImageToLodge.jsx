@@ -32,9 +32,9 @@ export default function AddImageToLodge({ id, isDarkMode }) {
             </div>
         )
     } catch (error) {
-        const path = import.meta.url;
+        const url = import.meta.url;
         return (
-            <ErrorMessage isDarkMode={isDarkMode} path={path} error={error} />
+            <ErrorMessage isDarkMode={isDarkMode} path={"/admin/lodges"} error={error} url={url} />
         )
     }
 };

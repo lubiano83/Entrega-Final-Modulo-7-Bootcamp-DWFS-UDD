@@ -71,7 +71,7 @@ export default function LodgeDetail({ id, isDarkMode }) {
                         </Link>
                     </div>
                     <div className="flex justify-center items-center gap-2 w-full">
-                        <GoBack isDarkMode={isDarkMode} path={"/"} />
+                        <GoBack isDarkMode={isDarkMode} path={"/lodges"} />
                         { 
                             !logged ? 
                             <Boton isDarkMode={isDarkMode} onClick={() => alert("Primero debes iniciar sesion.")}>Reservar</Boton>
@@ -85,6 +85,7 @@ export default function LodgeDetail({ id, isDarkMode }) {
             </div>
         )
     } catch (error) {
-        return <ErrorMessage url={"/"} error={error} isDarkMode={isDarkMode} />
+        const url = import.meta.url;
+        return <ErrorMessage path={"/lodges"} error={error} isDarkMode={isDarkMode} url={url} />
     }
 };

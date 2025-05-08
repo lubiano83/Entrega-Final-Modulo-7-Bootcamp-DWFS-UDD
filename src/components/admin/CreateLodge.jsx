@@ -39,9 +39,9 @@ export default function CreateLodge({ isDarkMode }) {
             </>
         )        
     } catch (error) {
-        const path = import.meta.url;
+        const url = import.meta.url;
         return (
-            <ErrorMessage isDarkMode={isDarkMode} path={path} error={error} />
+            <ErrorMessage isDarkMode={isDarkMode} path={"/admin"} error={error} url={url} />
         )
     }
 };
