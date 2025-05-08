@@ -9,7 +9,7 @@ export default function DataAnalysis({ isDarkMode, recordsByUserId }) {
     const totalPrice = recordsByUserId.reduce((sum, record) => sum + (record.price || 0), 0);
     const relationCapacity = recordsByUserId.reduce((sum, record) => sum + (record.lodge.capacity || 0), 0);
     const relationPersons = recordsByUserId.reduce((sum, record) => sum + (record.people || 0), 0);
-    const capPerRatio = relationCapacity / relationPersons;
+    const capPerRatio = relationPersons / relationCapacity;
     const capPerPercent = (capPerRatio * 100).toFixed(0) + '%';
     const totalDays = recordsByUserId.reduce((sum, { arrive, leave }) => {
         const MS_PER_DAY = 1000 * 60 * 60 * 24;
