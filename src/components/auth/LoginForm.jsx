@@ -12,7 +12,7 @@ export default function LoginForm({ isDarkMode }) {
     const handleSubmit = async(e) => {
         e.preventDefault();
         const success = await loginUser();
-        if(success) return navigate("/");
+        if(success) return navigate("/lodges");
     };
 
     try {

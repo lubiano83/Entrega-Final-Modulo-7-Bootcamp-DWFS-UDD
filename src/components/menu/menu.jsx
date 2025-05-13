@@ -9,7 +9,7 @@ export default function Menu({ isDarkMode }) {
 
     const handleLogout = () => {
         logoutUser();
-        navigate("/");
+        navigate("/lodges");
     };
 
     return (
