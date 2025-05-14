@@ -1,14 +1,11 @@
-import { Link } from "react-router-dom";
-import Boton from "./Boton";
 import Message from "./Message";
+import GoBack from "./GoBack";
 
-export default function NotFound({ isDarkMode, url }) {
+export default function NotFound({ isDarkMode }) {
     return (
         <div className="flex flex-col justify-center items-center gap-4">
             <Message isDarkMode={isDarkMode}>Esa pagina no esta disponible..</Message>
-            <Link to={url}>
-                <Boton isDarkMode={isDarkMode}>Inicio</Boton>
-            </Link>
+            <GoBack path={"/"} isDarkMode={isDarkMode} />
         </div>
     )
 };
