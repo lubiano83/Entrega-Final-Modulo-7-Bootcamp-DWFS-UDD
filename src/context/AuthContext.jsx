@@ -26,7 +26,7 @@ export const AuthProvider = ({ children }) => {
         usersRegistered();
         usersLogged();
         getCurrentSession();
-    }, [token, logged]);
+    }, []);
 
     useEffect(() => {
         if (!token) return;
@@ -114,80 +114,26 @@ export const AuthProvider = ({ children }) => {
             const response = await fetch("https://entrega-final-modulo-6-bootcamp-dwfs-udd.onrender.com/api/sessions/login", {
                 method: "POST",
                 credentials: "include",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    email,
-                    password,
-                })
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, password })
             });
-    
-            if (!response.ok) {
-                setLogged(false);
-                const error = await response.json();
-                alert(error.message);
-                return false;
-            }
-
-            // Aquí no asumimos que estás logeado aún
-            const current = await getCurrentSession(); // Esta función debe hacer el fetch con credentials: 'include'
-
-            if (current?.token) {
+            
+            if (response.ok) {
+                alert("Login realizado con éxito");
                 setEmail("");
                 setPassword("");
                 setLogged(true);
-                alert("Login realizado con éxito");
                 return true;
             } else {
-                alert("No se pudo establecer la sesión. Intenta nuevamente.");
                 setLogged(false);
+                const error = await response.json();
+                alert(error.message);
                 return false;
             }
         } catch (error) {
             console.error("Hubo un problema al conectarse al backend..", error.message);
         }
     };
-
-    // const loginUser = async () => {
-    //     try {
-    //         const response = await fetch("https://entrega-final-modulo-6-bootcamp-dwfs-udd.onrender.com/api/sessions/login", {
-    //             method: "POST",
-    //             credentials: "include",
-    //             headers: {
-    //                 "Content-Type": "application/json"
-    //             },
-    //             body: JSON.stringify({ email, password })
-    //         });
-
-    //         if (!response.ok) {
-    //             setLogged(false);
-    //             const error = await response.json();
-    //             alert(error.message);
-    //             return false;
-    //         }
-
-    //         // Aquí no asumimos que estás logeado aún
-    //         const current = await getCurrentSession(); // Esta función debe hacer el fetch con credentials: 'include'
-
-    //         if (current?.logged) {
-    //             setEmail("");
-    //             setPassword("");
-    //             setLogged(true);
-    //             alert("Login realizado con éxito");
-    //             return true;
-    //         } else {
-    //             alert("No se pudo establecer la sesión. Intenta nuevamente.");
-    //             setLogged(false);
-    //             return false;
-    //         }
-
-    //     } catch (error) {
-    //         console.error("Hubo un problema al conectarse al backend..", error.message);
-    //         alert("Error de conexión.");
-    //         return false;
-    //     }
-    // };
 
     const logoutUser = async() => {
         try {
