@@ -119,12 +119,10 @@ export const AuthProvider = ({ children }) => {
             });
             
             if (response.ok) {
-                const userLogged = await getCurrentSession();
-                setToken(userLogged.token)
+                await getCurrentSession();
                 alert("Login realizado con éxito");
                 setEmail("");
                 setPassword("");
-                setLogged(true);
                 return true;
             } else {
                 setLogged(false);
@@ -162,7 +160,7 @@ export const AuthProvider = ({ children }) => {
         try {
             const response = await fetch("https://entrega-final-modulo-6-bootcamp-dwfs-udd.onrender.com/api/sessions/current/user", {
                 method: "GET",
-                credentials: "include"
+                credentials: "include",
             });
     
             if (response.ok) {
