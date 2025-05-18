@@ -11,7 +11,7 @@ export default function AddImageToLodgePage({ isDarkMode }) {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!logged || !token) {
+        if (!token) {
             setLogged(false);
             navigate("/");
         }

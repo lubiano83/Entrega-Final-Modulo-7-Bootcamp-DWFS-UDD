@@ -9,7 +9,7 @@ export default function YourRecordsPage({ isDarkMode }) {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!logged || !token) {
+        if (!token) {
             setLogged(false);
             navigate("/");
         }

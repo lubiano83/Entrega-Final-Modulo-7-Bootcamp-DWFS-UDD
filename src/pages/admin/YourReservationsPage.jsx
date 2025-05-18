@@ -9,7 +9,7 @@ export default function YourReservationsPage({ isDarkMode }) {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!logged || !token) {
+        if (!token) {
             setLogged(false);
             navigate("/");
         }
