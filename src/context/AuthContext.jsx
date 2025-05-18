@@ -167,11 +167,9 @@ export const AuthProvider = ({ children }) => {
                 const data = await response.json();
                 setLogged(true);
                 setToken(data.token);
-                return data;
             } else {
                 setToken(null);
                 setLogged(false);
-                return null;
             }
         } catch (error) {
             console.log("Error al verificar la sesión:", error.message);
