@@ -10,7 +10,7 @@ export default function CreateLodgePage({ isDarkMode }) {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!token) {
+        if (!logged || !token) {
             setLogged(false);
             navigate("/");
         }

@@ -119,6 +119,8 @@ export const AuthProvider = ({ children }) => {
             });
             
             if (response.ok) {
+                const userLogged = await getCurrentSession();
+                setToken(userLogged.token)
                 alert("Login realizado con éxito");
                 setEmail("");
                 setPassword("");
