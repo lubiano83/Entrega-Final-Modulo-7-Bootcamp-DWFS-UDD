@@ -123,17 +123,25 @@ export const AuthProvider = ({ children }) => {
                 })
             });
     
-            if (response.ok) {
-                setEmail("");
-                setPassword("");
-                setLogged(true);
-                await getCurrentSession();
-                alert("Login realizado con éxito");
-                return true;
-            } else {
+            if (!response.ok) {
                 setLogged(false);
                 const error = await response.json();
                 alert(error.message);
+                return false;
+            }
+
+            // Aquí no asumimos que estás logeado aún
+            const current = await getCurrentSession(); // Esta función debe hacer el fetch con credentials: 'include'
+
+            if (current?.token) {
+                setEmail("");
+                setPassword("");
+                setLogged(true);
+                alert("Login realizado con éxito");
+                return true;
+            } else {
+                alert("No se pudo establecer la sesión. Intenta nuevamente.");
+                setLogged(false);
                 return false;
             }
         } catch (error) {
