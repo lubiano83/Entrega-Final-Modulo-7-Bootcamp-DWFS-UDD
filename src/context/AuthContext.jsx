@@ -119,7 +119,9 @@ export const AuthProvider = ({ children }) => {
             });
             
             if (response.ok) {
-                await getCurrentSession();
+                const userLogged = await getCurrentSession();
+                setToken(userLogged.token);
+                setLogged(true);
                 alert("Login realizado con éxito");
                 setEmail("");
                 setPassword("");
@@ -167,9 +169,11 @@ export const AuthProvider = ({ children }) => {
                 const data = await response.json();
                 setLogged(true);
                 setToken(data.token);
+                return data;
             } else {
                 setToken(null);
                 setLogged(false);
+                return null;
             }
         } catch (error) {
             console.log("Error al verificar la sesión:", error.message);
