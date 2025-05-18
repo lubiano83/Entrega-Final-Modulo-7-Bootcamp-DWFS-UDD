@@ -1,5 +1,5 @@
-[[redirects]]
-  from = "/api/*"
-  to = "https://entrega-final-modulo-6-bootcamp-dwfs-udd.onrender.com/api/:splat"
-  status = 200
-  force = true
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "https://las-trancas-lodges.netlify.app"
+    Access-Control-Allow-Credentials = "true"

@@ -1,3 +1,0 @@
-/api/*
-  Access-Control-Allow-Origin: https://las-trancas-lodges.netlify.app
-  Access-Control-Allow-Credentials: true
