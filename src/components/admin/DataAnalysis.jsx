@@ -17,6 +17,15 @@ export default function DataAnalysis({ isDarkMode, recordsByUserId }) {
         return sum + Math.floor(diff);
     }, 0);
 
+    if(recordsByUserId.length === 0) {
+        return (
+            <>
+                <Message isDarkMode={isDarkMode} >No hay reservas disponibles...</Message>
+                <GoBack isDarkMode={isDarkMode} path={"/admin"} />
+            </>
+        )
+    }
+
     try {
         return (
             <div className="flex flex-col justify-center items-center gap-4">
