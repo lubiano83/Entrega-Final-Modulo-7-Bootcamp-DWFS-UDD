@@ -15,7 +15,7 @@ export default function YourLodges({ isDarkMode }) {
     if(lodgesByUserId.length === 0) {
         return (
             <>
-                <Message isDarkMode={isDarkMode} >No hay reservas disponibles...</Message>
+                <Message isDarkMode={isDarkMode} >No hay cabañas disponibles...</Message>
                 <GoBack isDarkMode={isDarkMode} path={"/admin"} />
             </>
         )
