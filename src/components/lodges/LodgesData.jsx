@@ -6,9 +6,9 @@ import useCapitalize from "../../hook/useCapitalize";
 import ErrorMessage from "../ErrorMessage";
 
 export default function LodgesData({ isDarkMode }) {
+    
     const { lodges } = useLodges();
     const { capitalizeEachWord } = useCapitalize();
-
     if (!lodges || !Array.isArray(lodges)) return <Message isDarkMode={isDarkMode}>Cargando...</Message>;
     const lodgesAvailable = lodges.filter(lodge => lodge.available);
     if(!lodgesAvailable) return <Message isDarkMode={isDarkMode} >Cargando...</Message>

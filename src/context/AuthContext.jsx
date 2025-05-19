@@ -25,8 +25,7 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         usersRegistered();
         usersLogged();
-        getCurrentSession();
-    }, [token, logged]);
+    }, []);
 
     useEffect(() => {
         if (!token) return;
@@ -119,6 +118,7 @@ export const AuthProvider = ({ children }) => {
             });
             
             if (response.ok) {
+                await getCurrentSession();
                 alert("Login realizado con éxito");
                 setEmail("");
                 setPassword("");
