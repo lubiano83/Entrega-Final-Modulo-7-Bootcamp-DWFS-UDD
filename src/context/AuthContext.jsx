@@ -120,6 +120,7 @@ export const AuthProvider = ({ children }) => {
             
             if (response.ok) {
                 await getCurrentSession();
+                if(!token) alert("Token no encontrado..")
                 alert("Login realizado con éxito");
                 setEmail("");
                 setPassword("");
