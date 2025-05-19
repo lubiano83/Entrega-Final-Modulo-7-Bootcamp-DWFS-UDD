@@ -27,7 +27,7 @@ export default function YourLodges({ isDarkMode }) {
         return (
             <div className="flex flex-col justify-center items-center gap-4">
                 <Message isDarkMode={isDarkMode} className="flex xl:hidden">Vista no disponible en dispositivos moviles..</Message>
-                <Title isDarkMode={isDarkMode} className={"hidden xl:flex"} >Tablero:</Title>
+                <Title isDarkMode={isDarkMode} className={"hidden xl:flex"} >Cabañas:</Title>
                 <table className={`${isDarkMode ? "text-amber-950 shadow-amber-950" : "text-green-950 shadow-green-950"} hidden xl:flex flex-col justify-center items-center shadow-sm`}>
                     <thead className={`${isDarkMode ? "bg-amber-200" : "bg-green-200"}`}>
                         <tr className="border">

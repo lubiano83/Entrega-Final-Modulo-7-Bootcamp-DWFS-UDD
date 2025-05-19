@@ -41,7 +41,7 @@ export default function DataAnalysis({ isDarkMode, recordsByUserId }) {
                             <th className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-28 p-2`}>Dias/Prom</th>
                             <th className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-28 p-2`}>Ocupación</th>
                             <th className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-32 p-2`}>Precio/Prom</th>
-                            <th className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-22 p-2`}>Total</th>
+                            <th className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-44 p-2`}>Total</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -51,7 +51,7 @@ export default function DataAnalysis({ isDarkMode, recordsByUserId }) {
                             <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-28 p-2`}>{totalDays/recordsByUserId.length}</td>
                             <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-28 p-2`}>{capPerPercent}</td>
                             <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-32 p-2`}>${setPrice(totalPrice/recordsByUserId.length)}</td>
-                            <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-22 p-2`}>${setPrice(totalPrice)}</td>
+                            <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-44 p-2`}>${setPrice(totalPrice)}</td>
                         </tr>
                     </tbody>
                 </table>

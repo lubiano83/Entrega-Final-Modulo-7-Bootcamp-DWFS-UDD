@@ -146,10 +146,12 @@ export const AuthProvider = ({ children }) => {
                 alert("Logout realizado con éxito");
                 setLogged(false);
                 setToken(null);
-                setUser(null);     
+                setUser(null);
+                return true;   
             } else {
                 const error = await response.json();
                 alert(error.message);
+                return false;
             }
         } catch (error) {
             console.error("Hubo un problema al conectarse al backend..", error.message);
