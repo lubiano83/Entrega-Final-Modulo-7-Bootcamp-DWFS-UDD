@@ -26,7 +26,7 @@ export const AuthProvider = ({ children }) => {
         usersRegistered();
         usersLogged();
         getCurrentSession();
-    }, []);
+    }, [token, logged]);
 
     useEffect(() => {
         if (!token) return;
@@ -119,8 +119,6 @@ export const AuthProvider = ({ children }) => {
             });
             
             if (response.ok) {
-                await getCurrentSession();
-                if(!token) alert("Token no encontrado..")
                 alert("Login realizado con éxito");
                 setEmail("");
                 setPassword("");
