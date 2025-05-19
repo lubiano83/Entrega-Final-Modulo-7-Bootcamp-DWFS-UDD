@@ -20,7 +20,7 @@ export default function DataAnalysis({ isDarkMode, recordsByUserId }) {
     if(recordsByUserId.length === 0) {
         return (
             <>
-                <Message isDarkMode={isDarkMode} >No hay reservas disponibles...</Message>
+                <Message isDarkMode={isDarkMode} >No hay analisis disponibles...</Message>
                 <GoBack isDarkMode={isDarkMode} path={"/admin"} />
             </>
         )
