@@ -36,7 +36,7 @@ export default function YourLodges({ isDarkMode }) {
                             <th className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-15 p-2`}>Mt2</th>
                             <th className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-24 p-2`}>Personas</th>
                             <th className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-16 p-2`}>Wifi</th>
-                            <th className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-19 p-2`}>T/Alta</th>
+                            <th className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-21 p-2`}>T/Alta</th>
                             <th className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-22 p-2`}>T/Media</th>
                             <th className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-19 p-2`}>T/Baja</th>
                             <th className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-27 p-2`}>Disponible</th>
@@ -66,7 +66,7 @@ export default function YourLodges({ isDarkMode }) {
                                     <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-16 p-2`}>
                                         <input type="checkbox" checked={item.wifi} onChange={() => changeWifi(item._id, !item.wifi)} className="w-5 h-5" />
                                     </td>
-                                    <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-19 p-2`}>${item.season.high}</td>
+                                    <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-21 p-2`}>${item.season.high}</td>
                                     <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-22 p-2`}>${item.season.medium}</td>
                                     <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-19 p-2`}>${item.season.low}</td>
                                     <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-27 p-2`}>

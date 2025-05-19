@@ -22,9 +22,7 @@ export default function ProfileData({ isDarkMode }) {
         )
     };
 
-    if(!user) {
-        return <Message isDarkMode={isDarkMode}>Cargando...</Message>
-    };
+    if(!user) return <Message isDarkMode={isDarkMode}>Cargando...</Message>
 
     try {
         return (

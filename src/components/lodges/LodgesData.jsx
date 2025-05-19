@@ -9,19 +9,10 @@ export default function LodgesData({ isDarkMode }) {
     const { lodges } = useLodges();
     const { capitalizeEachWord } = useCapitalize();
 
-    if (!lodges || !Array.isArray(lodges)) {
-        return <Message isDarkMode={isDarkMode}>Cargando...</Message>;
-    }
-
+    if (!lodges || !Array.isArray(lodges)) return <Message isDarkMode={isDarkMode}>Cargando...</Message>;
     const lodgesAvailable = lodges.filter(lodge => lodge.available);
-
-    if(!lodgesAvailable) {
-        return <Message isDarkMode={isDarkMode} >Cargando...</Message>
-    };
-
-    if (lodgesAvailable.length === 0) {
-        return <Message isDarkMode={isDarkMode}>No hay cabañas disponibles...</Message>;
-    }
+    if(!lodgesAvailable) return <Message isDarkMode={isDarkMode} >Cargando...</Message>
+    if (lodgesAvailable.length === 0) return <Message isDarkMode={isDarkMode}>No hay cabañas disponibles...</Message>;
 
     try {
         return (
@@ -30,11 +21,7 @@ export default function LodgesData({ isDarkMode }) {
                     <div key={lodge._id} className={`flex flex-col justify-center items-center gap-4 ${isDarkMode ? "bg-amber-100 shadow-amber-950" : "bg-green-100 shadow-green-950"} rounded-xl p-4 w-72 shadow-xs`}>
                         <div className="w-full aspect-square bg-white flex justify-center items-center overflow-hidden">
                             {Array.isArray(lodge.image) && lodge.image.length > 0 ? (
-                                <img
-                                    src={lodge.image[0]}
-                                    alt="imagen lodge"
-                                    className="w-full h-full object-cover bg-white"
-                                />
+                                <img src={lodge.image[0]} alt="imagen lodge" className="w-full aspect-square object-cover bg-white" />
                             ) : (
                                 <Message isDarkMode={isDarkMode}>Sin Imagen..</Message>
                             )}

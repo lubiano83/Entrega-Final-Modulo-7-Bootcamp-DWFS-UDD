@@ -20,28 +20,16 @@ export default function LodgeDetail({ id, isDarkMode }) {
         getLodgeById(id);
     }, [id]);
 
-    if (!lodgeById || !Array.isArray(lodgeById.image) || lodgeById.image.length === 0) {
-        return <Message isDarkMode={isDarkMode}>Cargando...</Message>;
-    }
-
-    const nextImage = () => {
-        setCurrentImageIndex((prevIndex) =>
-            prevIndex === lodgeById.image.length - 1 ? 0 : prevIndex + 1
-        );
-    };
-
-    const prevImage = () => {
-        setCurrentImageIndex((prevIndex) =>
-            prevIndex === 0 ? lodgeById.image.length - 1 : prevIndex - 1
-        );
-    };
+    if (!lodgeById || !Array.isArray(lodgeById.image) || lodgeById.image.length === 0) return <Message isDarkMode={isDarkMode}>Cargando...</Message>;
+    const nextImage = () => { setCurrentImageIndex((prevIndex) => prevIndex === lodgeById.image.length - 1 ? 0 : prevIndex + 1 )};
+    const prevImage = () => { setCurrentImageIndex((prevIndex) => prevIndex === 0 ? lodgeById.image.length - 1 : prevIndex - 1 )};
       
     try {
         return (
             <div className={`${isDarkMode ? "bg-amber-100 shadow-amber-950" : "bg-green-100 shadow-green-950"} p-4 flex flex-col min-w-72 w-full max-w-2xl justify-center items-center gap-4 rounded-xl shadow-sm`}>
                 <div className="relative min-w-56 w-full">
                     <Link to={lodgeById.image[currentImageIndex]} target="_blank" className="relative w-full group">
-                        <img src={lodgeById.image[currentImageIndex]} alt="Imagen del lodge" className="w-full aspect-video" />
+                        <img src={lodgeById.image[currentImageIndex]} alt="Imagen del lodge" className="w-full aspect-video object-cover" />
                         <span className={`absolute inset-0 flex justify-center items-center ${isDarkMode ? "text-amber-950" : "text-green-950"} font-bold text-lg opacity-0 group-hover:opacity-80 bg-white bg-opacity-50 transition-opacity duration-300`}>Agrandar Imagen</span>
                     </Link>
                     <button onClick={prevImage} className={`absolute top-1/2 left-0 transform -translate-y-1/2 ${isDarkMode ? "bg-amber-700 text-amber-950" : "bg-green-700 text-green-950"} px-2 py-1 rounded-r`}> <SvgImage src={"/arrow-sm-left-svgrepo-com.svg"} /> </button>
