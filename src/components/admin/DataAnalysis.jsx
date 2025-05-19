@@ -1,9 +1,11 @@
+import { usePrice } from "../../hook/usePrice";
 import GoBack from "../GoBack";
 import Message from "../Message";
 import Title from "../Title";
 
 export default function DataAnalysis({ isDarkMode, recordsByUserId }) {
 
+    const { setPrice } = usePrice();
     if(!recordsByUserId) return <Message isDarkMode={isDarkMode} >Cargando...</Message>
 
     const totalPrice = recordsByUserId.reduce((sum, record) => sum + (record.price || 0), 0);
@@ -48,8 +50,8 @@ export default function DataAnalysis({ isDarkMode, recordsByUserId }) {
                             <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-28 p-2`}>{totalDays}</td>
                             <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-28 p-2`}>{totalDays/recordsByUserId.length}</td>
                             <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-28 p-2`}>{capPerPercent}</td>
-                            <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-32 p-2`}>${totalPrice/recordsByUserId.length}</td>
-                            <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-22 p-2`}>${totalPrice}</td>
+                            <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-32 p-2`}>${setPrice(totalPrice/recordsByUserId.length)}</td>
+                            <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-22 p-2`}>${setPrice(totalPrice)}</td>
                         </tr>
                     </tbody>
                 </table>

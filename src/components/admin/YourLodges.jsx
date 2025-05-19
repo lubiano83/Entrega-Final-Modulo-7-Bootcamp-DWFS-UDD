@@ -5,10 +5,12 @@ import SvgImage from "../SvgImage";
 import Title from "../Title";
 import ErrorMessage from "../ErrorMessage";
 import GoBack from "../GoBack";
+import { usePrice } from "../../hook/usePrice";
 
 export default function YourLodges({ isDarkMode }) {
 
     const { lodgesByUserId, changeAvailable, deleteAllImageFromLodge, deleteLodgeById, changeWifi } = useLodges();
+    const { setPrice } = usePrice();
 
     if(!lodgesByUserId) return <Message isDarkMode={isDarkMode} >Cargando...</Message>
 
@@ -30,15 +32,15 @@ export default function YourLodges({ isDarkMode }) {
                     <thead className={`${isDarkMode ? "bg-amber-200" : "bg-green-200"}`}>
                         <tr className="border">
                             <th className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-37 p-2`}>Imagen (5 max)</th>
-                            <th className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-48 p-2`}>Nombre Cabaña</th>
+                            <th className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-44 p-2`}>Nombre Cabaña</th>
                             <th className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-18 p-2`}>Piezas</th>
                             <th className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-18 p-2`}>Baños</th>
                             <th className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-15 p-2`}>Mt2</th>
                             <th className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-24 p-2`}>Personas</th>
                             <th className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-16 p-2`}>Wifi</th>
-                            <th className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-21 p-2`}>T/Alta</th>
+                            <th className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-22 p-2`}>T/Alta</th>
                             <th className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-22 p-2`}>T/Media</th>
-                            <th className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-19 p-2`}>T/Baja</th>
+                            <th className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-22 p-2`}>T/Baja</th>
                             <th className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-27 p-2`}>Disponible</th>
                             <th className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-40 p-2`}>Acciones</th>
                         </tr>
@@ -54,7 +56,7 @@ export default function YourLodges({ isDarkMode }) {
                                             "0"
                                         )}
                                     </td>
-                                    <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-48 p-2 truncate max-w-[12rem]`}>
+                                    <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-44 p-2 truncate max-w-[12rem]`}>
                                         <Link to={`/lodges/${item._id}`} className="hover:underline">
                                             {item.hotel}
                                         </Link>
@@ -66,9 +68,9 @@ export default function YourLodges({ isDarkMode }) {
                                     <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-16 p-2`}>
                                         <input type="checkbox" checked={item.wifi} onChange={() => changeWifi(item._id, !item.wifi)} className="w-5 h-5" />
                                     </td>
-                                    <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-21 p-2`}>${item.season.high}</td>
-                                    <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-22 p-2`}>${item.season.medium}</td>
-                                    <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-19 p-2`}>${item.season.low}</td>
+                                    <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-22 p-2`}>${setPrice(item.season.high)}</td>
+                                    <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-22 p-2`}>${setPrice(item.season.medium)}</td>
+                                    <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-22 p-2`}>${setPrice(item.season.low)}</td>
                                     <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-27 p-2`}>
                                         <input type="checkbox" checked={item.available} onChange={() => changeAvailable(item._id, !item.available)} className="w-5 h-5" />
                                     </td>

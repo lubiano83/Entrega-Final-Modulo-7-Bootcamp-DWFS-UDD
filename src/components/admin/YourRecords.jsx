@@ -5,10 +5,12 @@ import Title from "../Title";
 import ErrorMessage from "../ErrorMessage";
 import { Link } from "react-router-dom";
 import GoBack from "../GoBack";
+import { usePrice } from "../../hook/usePrice";
 
 export default function YourRecords({ isDarkMode }) {
 
     const { recordsByUserId } = useRecords();
+    const { setPrice } = usePrice();
 
     if(!recordsByUserId) return <Message isDarkMode={isDarkMode} >Cargando...</Message>
 
@@ -60,7 +62,7 @@ export default function YourRecords({ isDarkMode }) {
                                     <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-28 p-2`}>{moment(item.leave).format("YYYY/MM/DD")}</td>
                                     <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-28 p-2`}>{item.lodge.capacity}</td>
                                     <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-24 p-2`}>{item.people}</td>
-                                    <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-24 p-2`}>${item.price}</td>
+                                    <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-24 p-2`}>${setPrice(item.price)}</td>
                                 </tr>
                             ))
                         }

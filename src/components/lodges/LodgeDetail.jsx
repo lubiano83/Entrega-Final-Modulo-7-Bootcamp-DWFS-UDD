@@ -8,6 +8,7 @@ import useLodges from "../../hook/useLodges";
 import useCapitalize from "../../hook/useCapitalize";
 import ErrorMessage from "../ErrorMessage";
 import GoBack from "../GoBack";
+import { usePrice } from "../../hook/usePrice";
 
 export default function LodgeDetail({ id, isDarkMode }) {
 
@@ -15,6 +16,7 @@ export default function LodgeDetail({ id, isDarkMode }) {
     const { getLodgeById, lodgeById } = useLodges();
     const { capitalizeEachWord } = useCapitalize();
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const { setPrice } = usePrice();
 
     useEffect(() => {
         getLodgeById(id);
@@ -51,9 +53,9 @@ export default function LodgeDetail({ id, isDarkMode }) {
                                 <p><strong>Wifi: </strong>{lodgeById.wifi ? "Si" : "No"}</p>
                             </div>
                         </div>
-                        <p><strong>Temporada Alta: </strong>${lodgeById.season.high}</p>
-                        <p><strong>Temporada Media: </strong>${lodgeById.season.medium}</p>
-                        <p><strong>Temporada Baja: </strong>{lodgeById.season.low}</p>
+                        <p><strong>Temporada Alta: </strong>${setPrice(lodgeById.season.high)}</p>
+                        <p><strong>Temporada Media: </strong>${setPrice(lodgeById.season.medium)}</p>
+                        <p><strong>Temporada Baja: </strong>{setPrice(lodgeById.season.low)}</p>
                         <Link to={`${lodgeById.mapUrl}`} target="_blank">
                             <p><strong>Ubicación: </strong>{lodgeById.mapUrl ? "Google Maps" : "Sin ubicacion"}</p>
                         </Link>

@@ -6,10 +6,12 @@ import moment from "moment";
 import SvgImage from "../SvgImage";
 import ErrorMessage from "../ErrorMessage";
 import GoBack from "../GoBack";
+import { usePrice } from "../../hook/usePrice";
 
 export default function YourReservations({ isDarkMode }) {
 
     const { reservationsByUserId } = useReservations();
+    const { setPrice } = usePrice();
 
     if(!reservationsByUserId) return <Message isDarkMode={isDarkMode} >Cargando...</Message>
 
@@ -57,7 +59,7 @@ export default function YourReservations({ isDarkMode }) {
                                     <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-28 p-2`}>{moment(item.arrive).format("YYYY/MM/DD")}</td>
                                     <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-28 p-2`}>{moment(item.leave).format("YYYY/MM/DD")}</td>
                                     <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-24 p-2`}>{item.people}</td>
-                                    <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-24 p-2`}>${item.price}</td>
+                                    <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-24 p-2`}>${setPrice(item.price)}</td>
                                     <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-20 p-2`}>{item.paid ? "Si" : "No"}</td>
                                     <td className={`border ${isDarkMode ? "border-amber-950" : "border-green-950"} w-28 p-2`}>
                                         <div className="flex justify-center items-center gap-2">
