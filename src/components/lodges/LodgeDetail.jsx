@@ -55,7 +55,7 @@ export default function LodgeDetail({ id, isDarkMode }) {
                         </div>
                         <p><strong>Temporada Alta: </strong>${setPrice(lodgeById.season.high)}</p>
                         <p><strong>Temporada Media: </strong>${setPrice(lodgeById.season.medium)}</p>
-                        <p><strong>Temporada Baja: </strong>{setPrice(lodgeById.season.low)}</p>
+                        <p><strong>Temporada Baja: </strong>${setPrice(lodgeById.season.low)}</p>
                         <Link to={`${lodgeById.mapUrl}`} target="_blank">
                             <p><strong>Ubicación: </strong>{lodgeById.mapUrl ? "Google Maps" : "Sin ubicacion"}</p>
                         </Link>
