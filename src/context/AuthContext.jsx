@@ -260,7 +260,7 @@ export const AuthProvider = ({ children }) => {
             const response = await fetch(`https://entrega-final-modulo-6-bootcamp-dwfs-udd.onrender.com/api/users/image/${id}`, {
                 method: "PATCH",
                 body: formData,
-                credentials: "include",
+                credentials: "include"
             })
             if (response.ok) {
                 const data = await response.json();
