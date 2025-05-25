@@ -28,9 +28,14 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
     useEffect(() => {
-        if (!logged) return;
-        getUserById();
-    }, [logged]);
+        if (!token) return;
+      
+        const fetchUser = async () => {
+          await getUserById();
+        };
+      
+        fetchUser();
+    }, [token]);
 
     const usersRegistered = async() => {
         try {
@@ -154,8 +159,6 @@ export const AuthProvider = ({ children }) => {
 
     const getCurrentSession = async () => {
         try {
-            // console.log("user:", user)
-            // console.log("id", user?._id);
             const response = await fetch("https://entrega-final-modulo-6-bootcamp-dwfs-udd.onrender.com/api/sessions/current/user", {
                 method: "GET",
                 credentials: "include",
