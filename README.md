@@ -166,20 +166,6 @@ npm install
 npm start
 Variables de entorno necesarias (.env):
 
-Backend:
-
-env
-PORT=3001
-MONGODB_URI=your_mongo_uri
-JWT_SECRET=your_jwt_secret
-FIREBASE_CONFIG=...
-EMAIL_CONFIG=...
-
-Frontend:
-
-env
-REACT_APP_API_URL=http://localhost:3001/api
-
 👨‍💻 Autor
 José Pablo Lubiano
 Desarrollador Full Stack MERN
