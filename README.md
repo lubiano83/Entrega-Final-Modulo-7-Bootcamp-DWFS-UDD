@@ -1,13 +1,186 @@
-# React + Vite
+🏡 Sistema de Reservas de Cabañas – Full Stack App
+Este proyecto es una aplicación web full stack construida con React en el frontend y Node.js + Express en el backend. Permite registrar usuarios, gestionar cabañas, realizar reservas, subir imágenes y visualizar estadísticas.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🚀 Tecnologías utilizadas
+🖥️ Frontend
+React.js (con Hooks y Context API)
 
-Currently, two official plugins are available:
+JavaScript
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+CSS / TailwindCSS (según configuración)
 
-## Expanding the ESLint configuration
+Firebase Storage (para imágenes)
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# Entrega-Final-Modulo-7-Bootcamp-DWFS-UDD
+SweetAlert2 (alertas visuales)
+
+🖥️ Backend
+Node.js
+
+Express.js
+
+MongoDB + Mongoose
+
+JWT (autenticación y autorización)
+
+Firebase Admin SDK (manejo de imágenes)
+
+Nodemailer (envío de correos)
+
+📁 Estructura del Proyecto
+Frontend
+Contexts: AuthContext, LodgesContext, ReservationsContext, RecordsContext
+
+Componentes organizados por vistas
+
+Hooks personalizados (useAuth, useRecords, etc.)
+
+Manejo global de estado con useContext
+
+Backend (carpeta /api)
+/sessions – Registro, login, logout, sesión actual
+
+/users – CRUD de usuarios y sus imágenes
+
+/lodges – CRUD de cabañas
+
+/reservations – CRUD de reservas
+
+/records – Registro de reservas finalizadas
+
+✅ Funcionalidades
+👤 Autenticación y Usuarios
+Registro de nuevos usuarios con envío de contraseña aleatoria por email
+
+Inicio y cierre de sesión (JWT en cookies)
+
+Visualización y edición del perfil
+
+Cambio de imagen de perfil
+
+🏘️ Gestión de Cabañas
+Crear nuevas cabañas
+
+Editar detalles (capacidad, habitaciones, wifi, precios por temporada)
+
+Eliminar cabañas
+
+Subir y eliminar imágenes de cada cabaña
+
+Marcar disponibilidad y URL de ubicación
+
+📅 Reservas
+Crear reservas indicando fechas y cantidad de personas
+
+Visualizar reservas activas del usuario
+
+Finalizar reservas marcándolas como "pagadas"
+
+Registro automático en el historial una vez pagadas
+
+📊 Paneles de Administración
+Usuarios registrados y activos
+
+Estadísticas básicas de actividad
+
+🔐 Seguridad
+Autenticación con JWT (almacenado en cookies HTTP Only)
+
+Validación de roles (user, admin, developer)
+
+Protección de rutas tanto en frontend como backend
+
+Validaciones básicas de datos
+
+🌐 Endpoints principales
+Sessions
+
+POST /api/sessions/register
+
+POST /api/sessions/login
+
+POST /api/sessions/logout
+
+GET /api/sessions/current/user
+
+GET /api/sessions/users/logged
+
+GET /api/sessions/users/registered
+
+Users
+
+GET /api/users/:id
+
+PUT /api/users/:id
+
+PATCH /api/users/image/:id
+
+DELETE /api/users/:id
+
+Lodges
+
+GET /api/lodges
+
+GET /api/lodges/:id
+
+GET /api/lodges/user/:userId
+
+POST /api/lodges/:userId
+
+PATCH /api/lodges/:id (agregar imagen)
+
+PATCH /api/lodges/wifi/:id
+
+PATCH /api/lodges/available/:id
+
+PATCH /api/lodges/location/:id
+
+DELETE /api/lodges/:id
+
+DELETE /api/lodges/image/:id
+
+Reservations
+
+POST /api/reservations/:lodgeId/:userId
+
+GET /api/reservations/user/:userId
+
+PATCH /api/reservations/:id (marcar como pagada)
+
+Records
+
+GET /api/records/user/:userId
+
+📸 Gestión de Imágenes
+Las imágenes se almacenan en Firebase Storage desde el frontend. El backend usa Firebase Admin SDK para gestionar y eliminar imágenes asociadas a usuarios y cabañas.
+
+🛠️ Instalación
+Backend
+bash
+cd backend
+npm install
+npm run dev
+Frontend
+bash
+cd frontend
+npm install
+npm start
+Variables de entorno necesarias (.env):
+
+Backend:
+
+env
+PORT=3001
+MONGODB_URI=your_mongo_uri
+JWT_SECRET=your_jwt_secret
+FIREBASE_CONFIG=...
+EMAIL_CONFIG=...
+
+Frontend:
+
+env
+REACT_APP_API_URL=http://localhost:3001/api
+
+👨‍💻 Autor
+José Pablo Lubiano
+Desarrollador Full Stack MERN
+LinkedIn | Portafolio

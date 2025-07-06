@@ -191,7 +191,7 @@ export const AuthProvider = ({ children }) => {
             });
             if(response.ok) {
                 const data = await response.json();
-                setUser(data.payload)
+                setUser(data.payload);
             } else {
                 const error = await response.json();
                 alert(error.message);
