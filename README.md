@@ -169,4 +169,3 @@ Variables de entorno necesarias (.env):
 👨‍💻 Autor
 José Pablo Lubiano
 Desarrollador Full Stack MERN
-LinkedIn | Portafolio
